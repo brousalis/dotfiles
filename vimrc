@@ -143,6 +143,7 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h 
 
+nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
 " Tag List
 map <Leader>z :TlistToggle<CR>

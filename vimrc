@@ -1,8 +1,7 @@
 " fonts, colors etc
 syntax on
 colorscheme molokai
-"let g:zenburn_high_Contrast=1
-"colorscheme zenburn
+set background=dark
 
 " settings 
 set nocompatible                " don't hack around for vi compatiblity
@@ -46,8 +45,11 @@ set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " show command being typed
 set tags=tags;/                 " grab tags directory, all the way up to root
+set title
+set wildmode=longest,list,full
+set wildmenu
 
-filetype on                     " enable filetype
+filetype on               
 filetype plugin on
 filetype indent on
 
@@ -63,8 +65,6 @@ if has('autocmd')
   au BufNewFile,BufRead *.ejs set filetype=html
   au BufNewFile,BufRead *.tpl set filetype=ruby
 endif
-
-" == mappings ==
 
 " fix my bad habits
 cmap w!! %!sudo tee > /dev/null %
@@ -87,15 +87,14 @@ map <F12> ggVGg?
 map <F9> @:
 inoremap <C-tab> <Esc><<i
 
-" = no more arrow key navigation
-"inoremap <Left> <NOP>
-"inoremap <Right> <NOP>
-"inoremap <Up> <NOP>
-"inoremap <Down> <NOP>
-"nnoremap <Left> <NOP>
-"nnoremap <Right> <NOP>
-"nnoremap <Up> <NOP>
-"nnoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+nnoremap <Left> <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Up> <NOP>
+nnoremap <Down> <NOP>
 nnoremap j gj
 nnoremap k gk
 
@@ -122,6 +121,13 @@ vnoremap <F3> :m-2<CR>gv=gv
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" Search
+"set incsearch
+set ic "ignore case
+"set ignorecase
+set smartcase
+set hlsearch
+
 " paste some lorem text by typing lllorem and hitting tab
 iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
 iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
@@ -132,18 +138,84 @@ if has('autocmd')
   autocmd filetype ruby map <C-/> i#<Esc>
 endif
 
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
-
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h 
 
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
+" Tag List
+map <Leader>z :TlistToggle<CR>
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Compadt_Format=1
+let Tlist_Inc_Winwidth=0
+let Tlist_GainFocus_On_ToggleOpen=1
+
+" Status Line
+set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]
+"set laststatus=2
+"set statusline+=[%F]
+"set statusline+=[FORMAT=%{&ff}]
+"set statusline+=[TYPE=%Y]
+"set statusline+=[POS=%04l,%04v]
+"set statusline+=[%p%%]
+"set statusline+=%*
+set ruler
+:set laststatus=2
+if version >= 700 
+  au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+  au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+endif
+
+" now set it up to change the status line based on mode
+" if version >= 700
+"   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+"   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+" endif
+
+" folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" Swap and Backup Files
+"set nobackup
+"set nowritebackup
+"set noswapfile
+set backupdir=/tmp/
+set directory=/tmp/
+
+set tags=~/.tags
+
+" Jump to last cursor position when opening a file.
+" Do not do it when writing a commit log entry.
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+  if &filetype !~ 'commit\c'
+    if line("'\"") > 0 && line("'\"") <= line("$")
+     exe "normal g`\""
+    endif
+  end
+endfunction
+
+" FuzzyFinderTextMate
+map <leader>b :FuzzyFinderTextMate<CR>
+map <leader>n :FuzzyFinderBuffer<CR>
+let g:fuzzy_ceiling=50000
+let g:fuzzy_matching_limit=10
+let g:fuzzy_ignore='*.sql;*.log;*.sh;*.out;*.png;*.txt;*.csv;*.readme;*.zip;'
+let g:fuzzy_roots = ['../cnuapp_models', '../cnu_ruby_core','./ruby','./etc']
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Perforce
+augroup vimrcAu 
+au! 
+  au BufEnter,BufNew Test.log setlocal autoread 
+augroup END 
+

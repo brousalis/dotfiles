@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/dropbox/Dropbox/Portable_Configuration/home/Scripts/castt/castt-railsapp/app/helpers/admin'
-let g:netrw_dirhist_2='/dropbox/Dropbox/Portable_Configuration/home/Scripts/castt/castt-railsapp/app/controllers/admin'
-let g:netrw_dirhist_3='/dropbox/Dropbox/Portable_Configuration/home/Scripts/castt/castt-railsapp/app/helpers/admin'
-let g:netrw_dirhist_4='/home/jmastey/.vim'
-let g:netrw_dirhist_5='/home/cnuapp/config'
-let g:netrw_dirhist_6='/home/cnuapp'
-let g:netrw_dirhist_7='/home/cnuapp/.vim'

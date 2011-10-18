@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/Volumes/MyInstaller/Library/Preferences/SystemConfiguration'
+let g:netrw_dirhist_2='/Users/bfeigin/code/AcuPlan/acuplan/config/initializers'
+let g:netrw_dirhist_3='/usr/local/.dscache'
+let g:netrw_dirhist_4='/usr/local/Cellar/openvpn/2.2.1/share/doc/openvpn'
+let g:netrw_dirhist_5='/Users/bfeigin'
+let g:netrw_dirhist_6='/Users/bfeigin/Circuital'
+let g:netrw_dirhist_7='/Users/bfeigin'
+let g:netrw_dirhist_8='/home/cnuapp/cnu_ruby'

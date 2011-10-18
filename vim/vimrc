@@ -1,0 +1,153 @@
+let mapleader = ","
+filetype off
+filetype plugin indent on
+"set t_Co=256
+
+" Tabs
+set tabstop=2
+set smarttab
+set shiftwidth=2
+set autoindent
+set autoread
+set expandtab
+
+" Look and Feel
+set backspace=indent,eol,start
+"colorscheme vibrantink 
+colorscheme desert
+syntax on
+"set cursorline
+"set number 
+set equalalways
+set splitbelow splitright
+set scrolloff=8
+set hidden
+"better tab and file controll
+set wildmode=longest,list,full
+set wildmenu 
+set title
+
+" Key Mappings
+map <leader>c :tabe ~/.vim/cheetSheet.txt<CR>
+"nmap <silent> <Leader>t :NERDTreeToggle<CR>
+nmap <silent> <Leader>t :CommandT<CR>
+
+map <leader>F :Ack<space>
+nmap <leader>w <C-w><C-w>_
+inoremap <buffer> <silent> <Up>   <C-o>gk
+inoremap <buffer> <silent> <Down> <C-o>gj
+inoremap <buffer> <silent> <Home> <C-o>g<Home>
+inoremap <buffer> <silent> <End>  <C-o>g<End>
+imap jj <ESC>
+
+nmap OA <ESC>k
+nmap OB <ESC>j
+nmap OC <ESC>l
+nmap OD <ESC>h
+
+nnoremap j gj
+nnoremap k gk
+
+
+
+" Remap auto_increment to avoid screen ctl-a mapping
+imap <C-f> <C-a>
+
+" Search
+"set incsearch
+set ic "ignore case
+"set ignorecase
+set smartcase
+set hlsearch
+
+"random mappings
+map <Leader>po  <C-c>:!p4 edit %<CR>
+map <Leader>pa <C-c>:!p4 add %<CR>
+map <Leader>m zMGzOgg
+map <Leader>s :setlocal spell! spelllang=en_us<CR>
+map <leader>d <C-c>:set syn=diff<CR>
+map s  ]sz=
+map ; :
+map <Esc> <C-c>
+
+" => for ruby
+imap <C-l> <Space>=><Space>
+imap <C-d> <Space>=<Space>
+imap <<>> <% %><C-c>hhi
+
+" Tag List
+map <Leader>z :TlistToggle<CR>
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Compadt_Format=1
+let Tlist_Inc_Winwidth=0
+let Tlist_GainFocus_On_ToggleOpen=1
+
+" Status Line
+set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]
+"set laststatus=2
+"set statusline+=[%F]
+"set statusline+=[FORMAT=%{&ff}]
+"set statusline+=[TYPE=%Y]
+"set statusline+=[POS=%04l,%04v]
+"set statusline+=[%p%%]
+"set statusline+=%*
+set ruler
+:set laststatus=2
+if version >= 700 
+  au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+  au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+endif
+
+" now set it up to change the status line based on mode
+" if version >= 700
+"   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
+"   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
+" endif
+
+" folding settings
+set foldmethod=indent   "fold based on indent
+set foldnestmax=10      "deepest fold is 10 levels
+set nofoldenable        "dont fold by default
+set foldlevel=1         "this is just what i use
+
+" Swap and Backup Files
+"set nobackup
+"set nowritebackup
+"set noswapfile
+set backupdir=/tmp/
+set directory=/tmp/
+
+set tags=~/.tags
+
+" Jump to last cursor position when opening a file.
+" Do not do it when writing a commit log entry.
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+  if &filetype !~ 'commit\c'
+    if line("'\"") > 0 && line("'\"") <= line("$")
+     exe "normal g`\""
+    endif
+  end
+endfunction
+
+" FuzzyFinderTextMate
+map <leader>b :FuzzyFinderTextMate<CR>
+map <leader>n :FuzzyFinderBuffer<CR>
+let g:fuzzy_ceiling=50000
+let g:fuzzy_matching_limit=10
+let g:fuzzy_ignore='*.sql;*.log;*.sh;*.out;*.png;*.txt;*.csv;*.readme;*.zip;'
+let g:fuzzy_roots = ['../cnuapp_models', '../cnu_ruby_core','./ruby','./etc']
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Perforce
+augroup vimrcAu 
+au! 
+  au BufEnter,BufNew Test.log setlocal autoread 
+augroup END 
+
+set guioptions-=T

@@ -1,6 +1,6 @@
 " fonts, colors etc
 syntax on
-colorscheme molokai
+"colorscheme molokai
 set background=dark
 
 " settings 
@@ -61,15 +61,18 @@ if has('autocmd')
   au filetype ruby set list        " list chars in js
   au filetype js set listchars=tab:>-,trail:- " list trailing spaces + all tabs
 
+  autocmd filetype php map <C-/> i//<Esc>
+  autocmd filetype ruby map <C-/> i#<Esc>
+
   au BufNewFile,BufRead *.scss set filetype=css
   au BufNewFile,BufRead *.ejs set filetype=html
   au BufNewFile,BufRead *.tpl set filetype=ruby
 endif
 
-" fix my bad habits
+" Fix my bad habits
 cmap w!! %!sudo tee > /dev/null %
 
-" leader + custom macros
+" Leader + custom macros
 let mapleader = ","
 nnoremap <leader>dW pldW
 nnoremap <leader>dw pldw
@@ -87,6 +90,7 @@ map <F12> ggVGg?
 map <F9> @:
 inoremap <C-tab> <Esc><<i
 
+" Stop using the arrow keys!
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 inoremap <Up> <NOP>
@@ -98,19 +102,19 @@ nnoremap <Down> <NOP>
 nnoremap j gj
 nnoremap k gk
 
-" move between files
+" Move between files
 map <C-K> <Esc>:next<CR>
 map <C-J> <Esc>:prev<CR>
 map <C-H> <Esc>:first<CR>
 map <C-L> <Esc>:last<CR>
 
-" ctags on better keys
+" Ctags on better keys
 map <M-Right> <C-]>
 map <M-Left> <C-T>
 map <M-Up> <Esc>:tp<CR>
 map <M-Down> <Esc>:tn<CR>
 
-" move a line of text w/ alt-jk
+" Move a line of text w/ alt-jk
 nnoremap <F4> :m+<CR>==
 nnoremap <F3> :m-2<CR>==
 inoremap <F4> <Esc>:m+<CR>==gi
@@ -118,33 +122,29 @@ inoremap <F3> <Esc>:m-2<CR>==gi
 vnoremap <F4> :m'>+<CR>gv=gv
 vnoremap <F3> :m-2<CR>gv=gv
 
-" highlight conflict markers
+" Highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Search
-"set incsearch
-set ic "ignore case
-"set ignorecase
+set ic 
 set smartcase
 set hlsearch
 
-" paste some lorem text by typing lllorem and hitting tab
+" Paste some lorem text by typing lllorem and hitting tab
 iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
 iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
 iab lllorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor
 
-if has('autocmd')
-  autocmd filetype php map <C-/> i//<Esc>
-  autocmd filetype ruby map <C-/> i#<Esc>
-endif
-
+" Move around
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h 
 
+" Command
 nmap <silent> <Leader>t :CommandT<CR>
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
+
 " Tag List
 map <Leader>z :TlistToggle<CR>
 let Tlist_Exit_OnlyWindow=1
@@ -154,25 +154,12 @@ let Tlist_GainFocus_On_ToggleOpen=1
 
 " Status Line
 set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]
-"set laststatus=2
-"set statusline+=[%F]
-"set statusline+=[FORMAT=%{&ff}]
-"set statusline+=[TYPE=%Y]
-"set statusline+=[POS=%04l,%04v]
-"set statusline+=[%p%%]
-"set statusline+=%*
 set ruler
 :set laststatus=2
 if version >= 700 
   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
 endif
-
-" now set it up to change the status line based on mode
-" if version >= 700
-"   au InsertEnter * hi StatusLine term=reverse ctermbg=5 gui=undercurl guisp=Magenta
-"   au InsertLeave * hi StatusLine term=reverse ctermfg=0 ctermbg=2 gui=bold,reverse
-" endif
 
 " folding settings
 set foldmethod=indent   "fold based on indent
@@ -181,9 +168,6 @@ set nofoldenable        "dont fold by default
 set foldlevel=1         "this is just what i use
 
 " Swap and Backup Files
-"set nobackup
-"set nowritebackup
-"set noswapfile
 set backupdir=/tmp/
 set directory=/tmp/
 
@@ -209,14 +193,7 @@ let g:fuzzy_ignore='*.sql;*.log;*.sh;*.out;*.png;*.txt;*.csv;*.readme;*.zip;'
 let g:fuzzy_roots = ['../cnuapp_models', '../cnu_ruby_core','./ruby','./etc']
 
 " Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+nmap <leader>k :set list!<CR>
  
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
-
-" Perforce
-augroup vimrcAu 
-au! 
-  au BufEnter,BufNew Test.log setlocal autoread 
-augroup END 
-

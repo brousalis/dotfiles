@@ -4,9 +4,6 @@ vbell off
 # no message when screen is started
 startup_message off
 
-shell -$SHELL
-shelltitle "]|bash"
-
 # define the scrollback buffer
 defscrollback 10000
 

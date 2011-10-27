@@ -1,0 +1,5 @@
+P4PORT=p4d.cashnetusa.com:1666
+P4CLIENT=pbrousalis.deb 
+P4USER=pbrousalis
+P4DIFF=diff -U 3
+ 

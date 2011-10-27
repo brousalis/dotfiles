@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/cnuapp/bin'
+let g:netrw_dirhist_2='/Users/dlobraico/sandbox/cnuapp/pylon/stable/app/models'
+let g:netrw_dirhist_3='/Users/dlobraico/sandbox/cnuapp/pylon/stable/app/views/layouts'
+let g:netrw_dirhist_4='/Users/dlobraico/.ssh'

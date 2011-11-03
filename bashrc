@@ -117,3 +117,4 @@ alias l='ls -alh'
 alias ifi='ifconfig | ack "net" '
 alias untar="tar -xvvf"
 alias grm="git rm $(git ls-files --deleted)"
+alias reload="source ~/.bashrc"

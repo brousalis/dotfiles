@@ -1,0 +1,40 @@
+# turn off bell
+vbell off
+
+# no message when screen is started
+startup_message off
+
+shell -$SHELL
+shelltitle "]|bash"
+
+# define the scrollback buffer
+defscrollback 10000
+
+# adds a caption at the bottom of the screen
+#caption always '%{= kG}[ %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%{g} ]%= [%{B} %d/%M/%Y %{W}%c:%s %{g}]'
+caption always '%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{B}%d/%M/%Y %{W}%c:%s'
+
+# adds window toggle keys to F11 and F12 (NOT F1 and F2)
+bindkey -k F1 prev
+bindkey -k F2 next
+bindkey -k k; other
+
+# bind shift-n to switch to 10+n
+bind  ! select 11
+bind  @ select 12
+bind \# select 13
+bind  $ select 14
+bind  % select 15
+bind \^ select 16
+bind  & select 17
+bind  * select 18
+bind  ( select 19
+bind  ) select 10
+
+source ~/cnu-tools/screen/$BUG
+
+# color support
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
+

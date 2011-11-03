@@ -1,5 +1,5 @@
 # pete brousalis
-# .bashrc
+# .bashrc - bash profile
 
 # platform detection
 platform='unknown'
@@ -115,3 +115,4 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias ifi='ifconfig | ack "net" '
 alias untar="tar -xvvf"
+alias grm="git rm $(git ls-files --deleted)"

@@ -1,3 +1,6 @@
+" pete brousalis
+" .vimrc - vim config
+
 " fonts, colors etc
 syntax on
 colorscheme molokai

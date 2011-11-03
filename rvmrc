@@ -1,6 +1,0 @@
-rvm_project_rvmrc_default=1
-rvm_install_on_use_flag=1
-#if ! command -v bundle ; then
-#  gem install bundler
-#fi
-export rvm_path="$HOME/.rvm"

@@ -164,7 +164,3 @@ function! SetCursorPosition()
     endif
   end
 endfunction
-
- 
-" use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬

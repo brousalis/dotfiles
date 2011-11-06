@@ -43,7 +43,7 @@ parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(
 #export PS1='\[\033k\033\\\][\t@drz \w]'
 #export PS1='[\t@drz \w]'
 #export PS1="$YELLOW_GREY$WHITE_BLACK"
-export PS1="\[\033[01;32m\][\[\033[01;34m\]\h:\[\033[01;32m\]\w]\[\033[01;34m\]\$(parse_git_branch) \[\033[01;32m\]>$WHITE_BLACK "
+export PS1="\[\033[01;32m\]\[\033[01;34m\]\h:\[\033[01;32m\]\w\[\033[01;34m\] \$(parse_git_branch)\[\033[01;32m\]>$WHITE_BLACK "
 #export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} [${PWD}]"; echo -ne "\007"'
 #export PS1="$YELLOW_GREY\w\[\033[00m\]:\[\033[01;34m\]\$(parse_git_branch)\[\033[00m\] >$WHITE_BLACK "
 #export PS1='\[\033k\033\\\][\t@mbp \w]'
@@ -53,9 +53,7 @@ function bugscreen() { export BUG=$1; screen -R $1; }
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
 # add stuff to the path
-export PATH=/usr/lib:${HOME}/bin:/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/bug/172476_sparse/bin:${PATH}
-export PATH=/cnu/bin:/home/cnuapp/.gem/ruby/1.8/bin:${PATH}
-export GEM_HOME=/export/web/cnu/chelsea/stable/vendor:/home/cnuapp/.gem/ruby/1.8/bin/rspec
+export PATH=/usr/lib:${HOME}/bin:${PATH}
 export P4EDITOR='vim'
 export EDITOR='vim'
 export P4CONFIG=${HOME}/.p4config
@@ -63,6 +61,8 @@ export CNUAPP_DIR=/export/web/cnuapp
 
 # platform dependent
 if [[ $platform = 'linux' ]]; then
+  #cnu paths
+  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/bug/172476_sparse/bin:${PATH}
   #cnu tools
   function cnuc() { cd $(cnucd "$@") ;} # find paths based on p4 opened files [deprecated]
   function ccd() { cd $(cnucd "$@") ;}  # find paths based on p4 opened files [deprecated]

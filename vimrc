@@ -1,5 +1,8 @@
 " pete brousalis
 " .vimrc - vim config
+let &runtimepath.=',/usr/share/vim/vim73' 
+let $VIMRUNTIME = "/usr/share/vim/vim73"
+
 " fonts, colors etc
 syntax on
 colorscheme molokai
@@ -54,7 +57,6 @@ if has('autocmd')
   au filetype ruby set list                     " list chars in js
   au filetype js set listchars=tab:>-,trail:-   " list trailing spaces + all tabs
 
-  au BufNewFile,BufRead *.scss set filetype=css " sass support
   au BufNewFile,BufRead *.ejs set filetype=html " ejs suppport
   au BufNewFile,BufRead *.tpl set filetype=ruby " tpl support for ruby
 endif

@@ -7,3 +7,5 @@ ln -sf  $HOME/dotfiles/bash_profile $HOME/.bash_profile
 ln -sf  $HOME/dotfiles/vim $HOME/.vim
 ln -sf  $HOME/dotfiles/screenrc $HOME/.screenrc
 ln -sf  $HOME/dotfiles/gitconfig $HOME/.gitconfig
+mkdir   $HOME/.vimbackup
+mkdir   $HOME/.vimtmp

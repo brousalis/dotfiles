@@ -1,11 +1,15 @@
 " pete brousalis
 " .vimrc - vim config
+
 let &runtimepath.=',/usr/share/vim/vim73' 
 let $VIMRUNTIME = "/usr/share/vim/vim73"
 
 " fonts, colors etc
 syntax on
-colorscheme molokai
+" colorscheme molokai
+set background=dark
+let g:zenburn_high_Contrast=1
+colorscheme pete
 
 " settings 
 set nocompatible                " don't hack around for vi compatiblity

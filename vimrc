@@ -122,6 +122,9 @@ map <F2> :tabprev<CR>
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" when vimrc is edited, reload it
+autocmd! bufwritepost vimrc source ~/.vimrc
+
 " search
 set ic
 set smartcase
@@ -140,6 +143,12 @@ map <Leader>h <C-w>h
 
 " NERDTree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
+
+" ctrlp settings
+let g:ctrlp_max_files =0
+let g:ctrlp_max_depth =1000
+let g:ctrlp_max_height = 50
+let g:ctrlp_working_path_mode = 0
 
 " Status Line
 set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]

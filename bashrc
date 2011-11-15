@@ -105,6 +105,7 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 # aliases
 alias h='cd ~'
 alias home='cd ~'
+alias dots='cd ~/Dropbox/dotfiles'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

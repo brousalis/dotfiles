@@ -122,3 +122,22 @@ alias reload="source ~/.bashrc"
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# iterm background color
+setBackground() {
+  osascript -e "tell application \"iTerm\"
+    set current_terminal to (current terminal)
+    tell current_terminal
+      set current_session to (current session)
+      tell current_session
+        set background color to $1
+      end tell
+    end tell
+  end tell"
+}
+
+su() {
+  ( setBackground "{15000,0,0}" & )
+  ( exec su $* )
+  ( setBackground "{0,0,0}" & )
+}

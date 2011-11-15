@@ -8,7 +8,6 @@ let $VIMRUNTIME = "/usr/share/vim/vim73"
 syntax on
 " colorscheme molokai
 set background=dark
-let g:zenburn_high_Contrast=1
 colorscheme pete
 
 " settings 
@@ -76,6 +75,7 @@ nnoremap <leader><space> :noh<CR>
 nnoremap <leader>u gUgU
 nnoremap <leader>l gugu
 inoremap jj <Esc>
+inoremap jk <Esc>
 nnoremap ; :
 nnoremap <C-d> :q<CR>
 noremap Y $
@@ -138,18 +138,8 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h 
 
-" CommandT
-nmap <silent> <Leader>t :CommandT<CR>
-
 " NERDTree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
-
-" Tag List
-map <Leader>z :TlistToggle<CR>
-let Tlist_Exit_OnlyWindow=1
-let Tlist_Compadt_Format=1
-let Tlist_Inc_Winwidth=0
-let Tlist_GainFocus_On_ToggleOpen=1
 
 " Status Line
 set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]

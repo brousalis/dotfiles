@@ -106,6 +106,8 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 alias h='cd ~'
 alias home='cd ~'
 alias dots='cd ~/Dropbox/dotfiles'
+alias todo='vim ~/Dropbox/dotfiles/list.todo'
+alias gtd='vim ~/Dropbox/dotfiles/list.todo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

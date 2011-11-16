@@ -1,11 +1,22 @@
 #!/bin/bash
 
-cd      $HOME/dotfiles
-ln -sf  $HOME/dotfiles/vimrc $HOME/.vimrc
-ln -sf  $HOME/dotfiles/bashrc $HOME/.bashrc
-ln -sf  $HOME/dotfiles/bash_profile $HOME/.bash_profile
-ln -sf  $HOME/dotfiles/vim $HOME/.vim
-ln -sf  $HOME/dotfiles/screenrc $HOME/.screenrc
-ln -sf  $HOME/dotfiles/gitconfig $HOME/.gitconfig
-mkdir   $HOME/.vimbackup
-mkdir   $HOME/.vimtmp
+FOLDER=$HOME/Dropbox/dotfiles
+
+# dotfiles
+cd      $FOLDER
+ln -sf  $FOLDER/vimrc         $HOME/.vimrc
+ln -sf  $FOLDER/bashrc        $HOME/.bashrc
+ln -sf  $FOLDER/bash_profile  $HOME/.bash_profile
+ln -sf  $FOLDER/vim           $HOME/.vim
+ln -sf  $FOLDER/screenrc      $HOME/.screenrc
+ln -sf  $FOLDER/gitconfig     $HOME/.gitconfig
+
+# vim
+mkdir -p $HOME/.vimbackup
+mkdir -p $HOME/.vimtmp
+
+# dropbox
+sudo cp dropbox.sh /etc/init.d/dropbox
+sudo chmod +x /etc/init.d/dropbox
+sudo update-rc.d dropbox defaults
+

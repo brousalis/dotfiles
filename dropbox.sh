@@ -1,14 +1,4 @@
-### BEGIN INIT INFO
-# Provides:          dropbox
-# Required-Start:    $local_fs $remote_fs $network $syslog $named
-# Required-Stop:     $local_fs $remote_fs $network $syslog $named
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# X-Interactive:     false
-# Short-Description: dropbox service
-### END INIT INFO
-# dropbox service
-DROPBOX_USERS="$USER"
+DROPBOX_USERS="cnuapp"
  
 DAEMON=.dropbox-dist/dropbox
  

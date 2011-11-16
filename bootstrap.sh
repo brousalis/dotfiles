@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# platform
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='darwin'
+fi
+ 
 FOLDER=$HOME/Dropbox/dotfiles
 
 # dotfiles
@@ -16,7 +25,8 @@ mkdir -p $HOME/.vimbackup
 mkdir -p $HOME/.vimtmp
 
 # dropbox
-sudo cp dropbox.sh /etc/init.d/dropbox
-sudo chmod +x /etc/init.d/dropbox
-sudo update-rc.d dropbox defaults
-
+if [[ $platform = 'linux' ]]; then
+  sudo cp dropbox.sh /etc/init.d/dropbox
+  sudo chmod +x /etc/init.d/dropbox
+  sudo update-rc.d dropbox defaults
+fi

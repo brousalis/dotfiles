@@ -1,5 +1,6 @@
 # pete brousalis
 # .bashrc - bash profile
+# terminal color - rgb(2, 37, 56)
 
 # platform detection
 platform='unknown'

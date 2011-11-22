@@ -1,0 +1,29 @@
+chdir /export/comp/stable/cnuapp/ruby/web/Portal/
+screen -t rb-base
+
+chdir /export/comp/stable/cnuapp/ruby/web/Portal/app/controllers/data
+screen -t rb-cnt
+
+chdir /export/comp/stable/jmvc_core/lib/js/callcenter/cashnet/models
+screen -t js-model
+
+chdir /export/comp/stable/jmvc_core/lib/js/callcenter/callcenter/views
+screen -t js-view
+
+chdir /export/comp/stable/jmvc_core/lib/js/callcenter/callcenter/controllers
+screen -t js-cnt
+
+chdir /export/comp/stable/jmvc_core/lib/js/callcenter/callcenter/test
+screen -t js-tests
+
+screen -t restart
+
+chdir /export/logs
+screen -t log
+stuff "tail -fq -n 0 /export/logs/*\015"
+
+chdir /export/comp/stable/jmvc_core/lib/js/callcenter/callcenter/css
+screen -t css
+
+chdir /export/comp/stable
+select 0

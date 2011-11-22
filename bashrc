@@ -51,6 +51,7 @@ export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_bran
 
 # u ..
 function bugscreen() { export BUG=$1; screen -R $1; }
+function bs() { export BUG=$1; screen -R $1; }
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
 # add stuff to the path
@@ -91,6 +92,7 @@ if [[ $platform = 'linux' ]]; then
   alias tps='cd /export/web/chelsea/stable/app/svc/iovation'
   alias io='cd /export/web/comp/stable/cnuapp/ruby/svc/iovation'
   alias neph='bugscreen 186670'
+  alias oec='bugscreen 404988'
 elif [[ $platform = 'darwin' ]]; then
   # connect to vm
   alias vmstart='VBoxHeadless --startvm "ASTERISK MOTHERFUCKER" &'
@@ -111,6 +113,7 @@ alias h='cd ~'
 alias home='cd ~'
 alias dots='cd ~/Dropbox/dotfiles'
 alias t='vim ~/Dropbox/dotfiles/list.todo'
+alias tl='cat ~/Dropbox/dotfiles/list.todo'
 alias gtd='vim ~/Dropbox/dotfiles/list.todo'
 alias dropbox='sudo /etc/init.d/dropbox'
 alias ..='cd ..'

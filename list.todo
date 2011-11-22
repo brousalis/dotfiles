@@ -1,10 +1,10 @@
 == Home
 
-  [ ] Configure Chase Freedom card online
+  [v] Configure Chase Freedom card online
   [ ] Talk to Yianni about 401k 
   [ ] Get healthcare options sorted out
   [v] Setup dropbox for dotscripts
-  [ ] Get mom a present
+  [v] Get mom a present
   
 == Freelance
 
@@ -16,12 +16,16 @@
 
   [ ] Check on IVR status with Skim
   [v] Set up dev environment for OEC
-  [ ] Spec out OEC in Acunote
-  [ ] Auto lending vehicle state bug
+  [v] Spec out OEC in Acunote
+  [v] Auto lending vehicle state bug
+  [v] Finish goals for Ben
   [ ] Get healthcare sorted out
+  [ ] Expense the keyboards
 
   == Portal admin
     
-    [ ] Fix login layout
+    [v] Fix login layout
     [ ] Add javascript layer
-    [ ] Blue links?
+    [v] Blue links?
+    [ ] Edit User form
+    [ ] Edit User /:id

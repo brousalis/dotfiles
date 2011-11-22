@@ -34,7 +34,7 @@ bind  * select 18
 bind  ( select 19
 bind  ) select 10
 
-source ~/cnu-tools/screen/$BUG
+source ~/Dropbox/dotfiles/screen/$BUG
 
 # color support
 attrcolor b ".I"

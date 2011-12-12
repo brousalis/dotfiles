@@ -62,6 +62,7 @@ if has('autocmd')
 
   au BufNewFile,BufRead *.ejs set filetype=html " ejs suppport
   au BufNewFile,BufRead *.tpl set filetype=ruby " tpl support for ruby
+  au BufRead,BufNewFile *.todo setfiletype todo 
 endif
 
 " fix my bad habits

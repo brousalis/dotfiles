@@ -56,16 +56,14 @@ function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd .
 
 # add stuff to the path
 export PATH=/usr/lib:${HOME}/bin:${PATH}
-export P4EDITOR='vim'
 export EDITOR='vim'
-export P4CONFIG=${HOME}/.p4config
 export CNUAPP_DIR=/export/web/cnuapp
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 # platform dependent
 if [[ $platform = 'linux' ]]; then
   #cnu paths
-  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/bug/172476_sparse/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
+  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
   #cnu tools
   function cnuc() { cd $(cnucd "$@") ;} # find paths based on p4 opened files [deprecated]
   function ccd() { cd $(cnucd "$@") ;}  # find paths based on p4 opened files [deprecated]
@@ -93,11 +91,6 @@ if [[ $platform = 'linux' ]]; then
   alias io='cd /export/web/comp/stable/cnuapp/ruby/svc/iovation'
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
-elif [[ $platform = 'darwin' ]]; then
-  # connect to vm
-  alias vmstart='VBoxHeadless --startvm "ASTERISK MOTHERFUCKER" &'
-  alias vmstop='VBoxManage controlvm "ASTERISK MOTHERFUCKER" poweroff'
-  alias vmssh='ssh cnuapp@192.168.56.3'
 fi
 
 # bash completion settings (actually, these are readline settings)
@@ -107,6 +100,7 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 
 # desktop
 alias cssh='ssh cnuapp@10.224.23.55'
+alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
 
 # aliases
 alias h='cd ~'

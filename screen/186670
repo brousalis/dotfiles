@@ -1,16 +1,15 @@
-chdir /export/web/nephilim/stable.ep
+chdir /export/web/nephilim/stable
 screen -t bash
 
-chdir /export/web/nephilim/stable.ep
+chdir /export/web/nephilim/stable
 screen -t stable
-stuff "vim"
 
 chdir /export/web
 screen -t nephilim
-stuff "while true; do ./start_nephilim; done;\015"
+stuff "sudo ./start_nephilim"
 
 chdir /export/web
 screen -t asterisk
-stuff "while true; do sudo ./start_nephilim_asterisk; done;\015"
+stuff "sudo ./start_nephilim_asterisk"
 
 select 0

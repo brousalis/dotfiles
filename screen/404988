@@ -1,15 +1,15 @@
-chdir /export/comp/stable/cnuapp/ruby/web/FrontEnd/app/controllers
+chdir /export/web/stable/cnuapp/ruby/web/FrontEnd/app/controllers
 screen -t controllers
 
-chdir /export/stable/cnuapp/ruby/web/FrontEnd/app/views/existing_customers
+chdir /export/web/stable/cnuapp/ruby/web/FrontEnd/app/views
 screen -t views
 
-chdir /export/stable/cnuapp/etc
+chdir /export/web/stable/cnuapp/etc
 screen -t etc
 
 chdir /export/web/stable
 screen -t sconsole
 stuff "while true; do sconsole; done;\015"
 
-chdir /export/comp/stable
+chdir /export/web/stable
 select 0

@@ -65,7 +65,7 @@ export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 # platform dependent
 if [[ $platform = 'linux' ]]; then
   #cnu paths
-  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/bug/172476_sparse/bin:${PATH}
+  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/bug/172476_sparse/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
   #cnu tools
   function cnuc() { cd $(cnucd "$@") ;} # find paths based on p4 opened files [deprecated]
   function ccd() { cd $(cnucd "$@") ;}  # find paths based on p4 opened files [deprecated]
@@ -128,7 +128,7 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias ifi='ifconfig | ack "net" '
 alias untar="tar -xvvf"
-alias rmg="git rm $(git ls-files --deleted)"
+alias gitrem="git rm $(git ls-files --deleted)"
 alias reload="source ~/.bashrc"
 
 # load rvm

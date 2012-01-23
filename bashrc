@@ -66,30 +66,12 @@ if [[ $platform = 'linux' ]]; then
   #cnu paths
   export PATH=/cnu/bin:/export/web/stable/cnuapp/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
   #cnu tools
-  function cnuc() { cd $(cnucd "$@") ;} # find paths based on p4 opened files [deprecated]
-  function ccd() { cd $(cnucd "$@") ;}  # find paths based on p4 opened files [deprecated]
-  function clog() { tail -fq -n 0 /export/logs/* | grep -v mef | grep -v 'Session data'; } # tail and follow the log for ALL log messages
-  function cnuweb() { cnurestart murder; rm /export/web; ln -s $1 /export/web; cnurestart restart; } # change the current /export/web dir
-  function spec-start() { cd /export/web/cnuapp/test; ../bin/cnu_env bash; } # start the test environment so we can run tests faster
   function cdb() { cnurestart stop; cnudbrebuild "$@"; cnurestart start; } # rebuild a DB. specify a cluster to start automatically
-  function cprv() { cnupromote "$@"; vim "$@"; } # promote a file, edit it, and then open it in vim. use on one file only
   alias sconsole='source /etc/cnu/cnu_env; /export/web/cnuapp/script/console $(echo $RAILS_ENV)' 
-  alias cb="cnubugchanges" # see previous log commits to this bug [deprecated]
-  alias cch="cnuchange" # pick a current bug number [deprecated]
   alias ce="cnuenv" # change the cluster running and restart lightspeed
-  alias ci="cnuinfo" # view client and opened file info [broken]
-  alias cm="cnumakebranch" # create a new sparse branch
-  alias cpr="cnupromote" # promote a file to the current bug branch
   alias cr="cnurestart" # restart, start, stop, or kill runsv
-  alias cs="cnusubmit" # search files for errant tab characters, and submit if your opened files are clear
-  alias cw="cnuwait" # check the queue for people currently commiting, integrating, etc
-  alias spec='spec -c -fs' # default switches for rspec
-  alias p4i='p4 integrate -3dtv' # integrate, plus the 'correct' switches
-  alias cg='/export/web/cnuapp/bin/cnu_env cnu_gem'
   # cnu shortcuts
-  alias cnu='cd /export/web/comp/stable'
-  alias tps='cd /export/web/chelsea/stable/app/svc/iovation'
-  alias io='cd /export/web/comp/stable/cnuapp/ruby/svc/iovation'
+  alias cnu='cd /export/web/stable'
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
 fi
@@ -105,17 +87,17 @@ bind "set bell-style none" # No bell, because it's damn annoying
 bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
 
 # desktop
-alias cssh='ssh cnuapp@10.224.23.55'
+alias ossh='ssh cnuapp@10.224.23.55'
+alias cssh='ssh cnuapp@10.224.23.10'
 alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
 
 # aliases
 alias h='cd ~'
 alias home='cd ~'
-alias dots='cd ~/Dropbox/dotfiles'
-alias t='vim ~/Dropbox/dotfiles/list.todo'
-alias tl='cat ~/Dropbox/dotfiles/list.todo'
-alias gtd='vim ~/Dropbox/dotfiles/list.todo'
-alias dropbox='sudo /etc/init.d/dropbox'
+alias dots='cd ~/dotfiles'
+alias t='vim ~/dotfiles/list.todo'
+alias tl='cat ~/dotfiles/list.todo'
+alias gtd='vim ~/dotfiles/list.todo'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

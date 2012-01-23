@@ -22,9 +22,6 @@ export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
 
-YELLOW_GREY="\[\e[33;40m\]"
-WHITE_BLACK="\[\e[0m\]"
-
 if [ -x /usr/bin/dircolors ]; then
   eval "`dircolors -b`"
   alias ls='ls --color=auto'
@@ -39,6 +36,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # command line
+YELLOW_GREY="\[\e[33;40m\]"
+WHITE_BLACK="\[\e[0m\]"
+
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 #export PS1="$YELLOW_GREY[\u.\h:\w]\$[parse_git_branch]>$WHITE_BLACK "
 #export PS1='\[\033k\033\\\][\t@drz \w]'

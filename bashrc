@@ -74,6 +74,7 @@ if [[ $platform = 'linux' ]]; then
   alias cnu='cd /export/web/stable'
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
+  alias mef='bugscreen 470561'
 fi
 
 #vm

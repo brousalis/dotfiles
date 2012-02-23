@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/export/web/stable/cnuapp_models/lib/rails/models'
 let g:netrw_dirhist_2='/home/cnuapp/Dropbox/dotfiles/screen'
 let g:netrw_dirhist_3='/etc/postgresql/8.3/main'
+let g:netrw_dirhist_4='/export/web/nephilim/prod.ep/ivr_base_cnuapp'
+let g:netrw_dirhist_5='/var/log/cnuapp'

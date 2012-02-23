@@ -6,7 +6,7 @@ screen -t stable
 
 chdir /export/web
 screen -t nephilim
-stuff "sudo ./start_nephilim"
+stuff "./start_nephilim"
 
 chdir /export/web
 screen -t asterisk

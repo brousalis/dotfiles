@@ -40,6 +40,7 @@ set wildmenu                    " make tab completion for files/buffers act like
 set wildmode=list:full          " show a list when pressing tab and complete first full match
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 set clipboard+=unnamed          " share clipboard
+set clipboard=unnamed
 set more                        " page on extended output
 set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
@@ -64,6 +65,10 @@ if has('autocmd')
   au BufNewFile,BufRead *.tpl set filetype=ruby " tpl support for ruby
   au BufRead,BufNewFile *.todo setfiletype todo 
 endif
+
+" copy paste
+map <F8> :.w !pbcopy<CR><CR>
+map <F9> :r !pbpaste<CR>
 
 " fix my bad habits
 cmap w!! %!sudo tee > /dev/null %

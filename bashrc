@@ -55,15 +55,16 @@ function bs() { export BUG=$1; screen -R $1; }
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
 # add stuff to the path
-export PATH=/usr/lib:${HOME}/bin:${PATH}
+export PATH=/usr/lib:${HOME}/bin:/opt/local/lib/postgresql83/bin/:/usr/local/bin:${PATH}
 export EDITOR='vim'
+export P4CONFIG=~/.p4config
 export CNUAPP_DIR=/export/web/cnuapp
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 # platform dependent
 if [[ $platform = 'linux' ]]; then
   #cnu paths
-  export PATH=/cnu/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
+  export PATH=/cnu/bin:/export/web/stable/cnuapp/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
   #cnu tools
   function cnuc() { cd $(cnucd "$@") ;} # find paths based on p4 opened files [deprecated]
   function ccd() { cd $(cnucd "$@") ;}  # find paths based on p4 opened files [deprecated]
@@ -92,6 +93,11 @@ if [[ $platform = 'linux' ]]; then
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
 fi
+
+#vm
+alias vmstart='VBoxHeadless --startvm "ASTERISK MOTHERFUCKER" &'
+alias vmstop='VBoxManage controlvm "ASTERISK MOTHERFUCKER" poweroff'
+alias vmssh='ssh cnuapp@192.168.56.3'
 
 # bash completion settings (actually, these are readline settings)
 bind "set completion-ignore-case on" # note: bind is used instead of setting these in .inputrc.  This ignores case in bash completion
@@ -122,7 +128,7 @@ alias ll='ls -alh'
 alias l='ls -alh'
 alias ifi='ifconfig | ack "net" '
 alias untar="tar -xvvf"
-alias gitrem="git rm $(git ls-files --deleted)"
+alias gitrem="git ls-files --deleted | xargs git rm"
 alias reload="source ~/.bashrc"
 
 # load rvm

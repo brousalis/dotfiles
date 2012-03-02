@@ -4,6 +4,9 @@ screen -t controllers
 chdir /export/web/stable/cnuapp/ruby/web/FrontEnd/app/views
 screen -t views
 
+chdir /export/web/stable/cnuapp/ruby/web/FrontEnd/app/helpers
+screen -t helpers
+ 
 chdir /export/web/stable/cnuapp/etc
 screen -t etc
 

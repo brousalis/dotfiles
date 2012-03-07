@@ -18,8 +18,13 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # bash completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+  . /usr/local/git/contrib/completion/git-completion.bash
+fi
+GIT_PS1_SHOWDIRTYSTATE=true
+
+if [ -f /opt/local/etc/bash_completion ]; then
+  . /opt/local/etc/bash_completion
 fi
 
 # git aliases
@@ -85,9 +90,9 @@ export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
 # platform dependent
 if [[ $platform = 'linux' ]]; then
-  #cnu paths
+  # cnu paths
   export PATH=/cnu/bin:/export/web/stable/cnuapp/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
-  #cnu tools
+  # cnu tools
   function cdb() { cnurestart stop; cnudbrebuild "$@"; cnurestart start; } # rebuild a DB. specify a cluster to start automatically
   alias sconsole='source /etc/cnu/cnu_env; /export/web/cnuapp/script/console $(echo $RAILS_ENV)' 
   alias ce="cnuenv" # change the cluster running and restart lightspeed
@@ -102,6 +107,9 @@ if [[ $platform = 'linux' ]]; then
   alias logs='tail -f /var/log/cnuapp/*.log'
   alias elog='tail -f /var/log/cnuapp/stderr.log'
   alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
+  # git completion on debian  
+  source /etc/bash_completion.d/git
+  GIT_PS1_SHOWDIRTYSTATE=true
 fi
 
 #vm

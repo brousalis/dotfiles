@@ -17,6 +17,28 @@ export HISTSIZE=10000
 shopt -s histappend
 shopt -s checkwinsize
 
+# bash completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
+fi
+
+# git aliases
+alias gs='git status'
+alias gc='git checkout'
+alias gb='git branch'
+alias ga='git add'
+alias gd='git diff -U10 --color HEAD' #most common usage
+alias gl='git gl'
+alias gcb='git checkout -b'
+
+# vi mode
+set -o vi
+set editing-mode vi
+set keymap vi
+bind -m vi-insert "\C-n":menu-complete
+bind -m vi-insert "\C-p":dynamic-complete-history
+bind -m vi-insert "\C-l":clear-screen
+
 # colorful 
 export TERM=xterm-256color
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
@@ -74,12 +96,17 @@ if [[ $platform = 'linux' ]]; then
   alias cnu='cd /export/web/stable'
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
-  alias mef='bugscreen 470561'
+  # logs
+  alias flog='tail -f /var/log/cnuapp/frontend.log'
+  alias plog='tail -f /var/log/cnuapp/portal.log'
+  alias logs='tail -f /var/log/cnuapp/*.log'
+  alias elog='tail -f /var/log/cnuapp/stderr.log'
+  alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
 fi
 
 #vm
-alias vmstart='VBoxHeadless --startvm "ASTERISK MOTHERFUCKER" &'
-alias vmstop='VBoxManage controlvm "ASTERISK MOTHERFUCKER" poweroff'
+alias vmstart='VBoxHeadless --startvm "mexico" &'
+alias vmstop='VBoxManage controlvm "mexico" poweroff'
 alias vmssh='ssh cnuapp@192.168.56.3'
 
 # bash completion settings (actually, these are readline settings)

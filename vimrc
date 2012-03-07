@@ -1,8 +1,8 @@
 " pete brousalis
 " .vimrc - vim config
 
-let &runtimepath.=',/usr/share/vim/vim73' 
-let $VIMRUNTIME = "/usr/share/vim/vim73"
+" let &runtimepath.=',/usr/share/vim/vim73' 
+" let $VIMRUNTIME = "/usr/share/vim/vim73"
 
 " fonts, colors etc
 syntax on

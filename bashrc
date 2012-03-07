@@ -33,7 +33,7 @@ alias gc='git checkout'
 alias gb='git branch'
 alias ga='git add'
 alias gd='git diff -U10 --color HEAD' #most common usage
-alias gl='git gl'
+alias gl='git log'
 alias gcb='git checkout -b'
 
 # vi mode

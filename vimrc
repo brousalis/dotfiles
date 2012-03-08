@@ -1,12 +1,8 @@
 " pete brousalis
 " .vimrc - vim config
 
-" let &runtimepath.=',/usr/share/vim/vim73' 
-" let $VIMRUNTIME = "/usr/share/vim/vim73"
-
 " fonts, colors etc
 syntax on
-" colorscheme molokai
 set background=dark
 colorscheme pete
 
@@ -113,6 +109,10 @@ map <M-Right> <C-]>
 map <M-Left> <C-T>
 map <M-Up> <Esc>:tp<CR>
 map <M-Down> <Esc>:tn<CR>
+
+" newline on shift/enter
+map <S-Enter> O<Esc>j
+map <CR> o<Esc>k
 
 " move a line of text w/ F3/F4
 nnoremap <F3> :m+<CR>==

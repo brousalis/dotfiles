@@ -122,8 +122,8 @@ inoremap <F4> <Esc>:m-2<CR>==gi
 vnoremap <F3> :m'>+<CR>gv=gv
 vnoremap <F4> :m-2<CR>gv=gv
 
-map <F1> :tabnext<CR>
-map <F2> :tabprev<CR>
+map <F1> :tabprev<CR>
+map <F2> :tabnext<CR>
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

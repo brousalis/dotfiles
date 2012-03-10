@@ -124,7 +124,7 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 
 # desktop
 alias ossh='ssh cnuapp@10.224.23.55'
-alias cssh='ssh cnuapp@10.224.23.10'
+alias cssh='ssh cnuapp@10.224.115.152'
 alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
 
 # aliases

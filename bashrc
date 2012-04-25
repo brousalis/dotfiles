@@ -101,12 +101,16 @@ if [[ $platform = 'linux' ]]; then
   alias cnu='cd /export/web/stable'
   alias neph='bugscreen 186670'
   alias oec='bugscreen 404988'
+  alias app='cd /export/web/mexico/cnuapp_mloc/cnuapp/ruby/web/LineOfCredit/app'
+  alias views='cd /export/web/mexico/cnuapp_mloc/cnuapp/ruby/web/LineOfCredit/app/views'
+  alias public='cd /export/web/mexico/cnuapp_mloc/cnuapp/ruby/web/LineOfCredit/public'
   # logs
   alias flog='tail -f /var/log/cnuapp/frontend.log'
   alias plog='tail -f /var/log/cnuapp/portal.log'
   alias logs='tail -f /var/log/cnuapp/*.log'
   alias elog='tail -f /var/log/cnuapp/stderr.log'
   alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
+  alias findpete='tail -f loc.log | grep "PETE"'
   # git completion on debian  
   source /etc/bash_completion.d/git
   GIT_PS1_SHOWDIRTYSTATE=true

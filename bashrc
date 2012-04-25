@@ -71,7 +71,7 @@ parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(
 #export PS1='\[\033k\033\\\][\t@drz \w]'
 #export PS1='[\t@drz \w]'
 #export PS1="$YELLOW_GREY$WHITE_BLACK"
-export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_branch)\[\033[01;33m\] >$WHITE_BLACK "
+export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_branch) $(~/.rvm/bin/rvm-prompt i v g) \[\033[01;33m\]>$WHITE_BLACK "
 #export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} [${PWD}]"; echo -ne "\007"'
 #export PS1="$YELLOW_GREY\w\[\033[00m\]:\[\033[01;34m\]\$(parse_git_branch)\[\033[00m\] >$WHITE_BLACK "
 #export PS1='\[\033k\033\\\][\t@mbp \w]'
@@ -82,7 +82,7 @@ function bs() { export BUG=$1; screen -R $1; }
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
 # add stuff to the path
-export PATH=/usr/lib:${HOME}/bin:/opt/local/lib/postgresql83/bin/:/usr/local/bin:${PATH}
+export PATH=/usr/lib:${HOME}/bin:/usr/local/bin:${PATH}
 export EDITOR='vim'
 export P4CONFIG=~/.p4config
 export CNUAPP_DIR=/export/web/cnuapp
@@ -126,6 +126,7 @@ bind "set show-all-if-ambiguous On" # this allows you to automatically show comp
 alias ossh='ssh cnuapp@10.224.23.55'
 alias cssh='ssh cnuapp@10.224.115.152'
 alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
+alias teamego='ssh teamegoc@50.22.11.31'
 
 # aliases
 alias h='cd ~'
@@ -151,3 +152,6 @@ alias reload="source ~/.bashrc"
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -r "$HOME/.rvm/scripts/completion" ]] && . "$HOME/.rvm/scripts/completion" 
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

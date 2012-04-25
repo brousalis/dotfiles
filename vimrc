@@ -14,6 +14,7 @@ set backup                      " do backups
 set backupdir=~/.vimbackup      " put backups in one place
 set directory=~/.vimtmp         " put tmp files in one place
 set dir=~/.vimtmp               " for backup swaps
+set noswapfile
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
 set smartindent                 " let vim indent for you

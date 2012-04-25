@@ -71,7 +71,7 @@ parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(
 #export PS1='\[\033k\033\\\][\t@drz \w]'
 #export PS1='[\t@drz \w]'
 #export PS1="$YELLOW_GREY$WHITE_BLACK"
-export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_branch) $(~/.rvm/bin/rvm-prompt i v g) \[\033[01;33m\]>$WHITE_BLACK "
+export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_branch) \[\033[01;33m\]>$WHITE_BLACK "
 #export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*} [${PWD}]"; echo -ne "\007"'
 #export PS1="$YELLOW_GREY\w\[\033[00m\]:\[\033[01;34m\]\$(parse_git_branch)\[\033[00m\] >$WHITE_BLACK "
 #export PS1='\[\033k\033\\\][\t@mbp \w]'

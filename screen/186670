@@ -1,5 +1,5 @@
-chdir /export/web/nephilim/stable
-screen -t bash
+chdir /export/web/nephilim/stable/ivr_base_pi
+screen -t ppi
 
 chdir /export/web/nephilim/stable
 screen -t stable

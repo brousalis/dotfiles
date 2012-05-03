@@ -131,6 +131,7 @@ alias ossh='ssh cnuapp@10.224.23.55'
 alias cssh='ssh cnuapp@10.224.115.152'
 alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
 alias teamego='ssh teamegoc@50.22.11.31'
+alias leonards='ssh theleona@174.120.254.130'
 
 # aliases
 alias h='cd ~'

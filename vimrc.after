@@ -36,11 +36,10 @@ set shortmess+=atI              " eliminate annoying 'Press ENTER or type comman
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
 
+" indenting
 filetype plugin indent on
-
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.sass set filetype=scss
-
 
 " status bar
 set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P

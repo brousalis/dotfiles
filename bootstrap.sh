@@ -1,4 +1,5 @@
 #!/bin/bash
+
 FOLDER="$HOME"/dotfiles
 
 # install vim
@@ -15,8 +16,13 @@ ln -sf  "$FOLDER"/bashrc        "$HOME"/.bashrc
 ln -sf  "$FOLDER"/bash_profile  "$HOME"/.bash_profile
 ln -sf  "$FOLDER"/vim           "$HOME"/.vim
 ln -sf  "$FOLDER"/screenrc      "$HOME"/.screenrc
+ln -sf  "$FOLDER"/tmuxconf      "$HOME"/.tmux.conf
 ln -sf  "$FOLDER"/gitconfig     "$HOME"/.gitconfig
 echo    "Setup symlinks"
+
+# reload tmux config
+tmux source-file ~/.tmux.conf
+echo    "Reload tmux config"
 
 # vim
 mkdir -p "$HOME"/.vimbackup

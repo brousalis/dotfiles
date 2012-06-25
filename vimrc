@@ -3,7 +3,7 @@
 " fonts, colors etc
 syntax on
 set background=dark
-colorscheme pete
+colorscheme jellybeans
 
 " settings 
 set nocompatible                " don't hack around for vi compatiblity

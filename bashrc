@@ -109,15 +109,23 @@ if [[ $platform = 'linux' ]]; then
   alias elog='tail -f /var/log/cnuapp/stderr.log'
   alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
   alias findpete='tail -f loc.log | grep "PETE"'
+  alias rpsql='sudo killall postgres && /etc/init.d/postgresql-8.3 start'
+  alias rmem='sudo /etc/init.d/memcached restart'
   # git completion on debian  
   source /etc/bash_completion.d/git
   GIT_PS1_SHOWDIRTYSTATE=true
 fi
 
-#vm
-alias vmstart='VBoxHeadless --startvm "mexico" &'
-alias vmstop='VBoxManage controlvm "mexico" poweroff'
-alias vmssh='ssh cnuapp@192.168.56.3'
+# vm stuff
+function vmstart() { 
+  VBoxHeadless --startvm "$1" &
+} 
+export -f vmstart
+function vmstop { 
+  VBoxManager controlvm "$1" savestate
+} 
+export -f vmstop
+alias vmssh='ssh cnuapp@33.33.33.2'
 
 # bash completion settings (actually, these are readline settings)
 bind "set completion-ignore-case on" # note: bind is used instead of setting these in .inputrc.  This ignores case in bash completion

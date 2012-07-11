@@ -1,4 +1,5 @@
-source personal # my private aliases
+# personal
+source ~/dotfiles/personal
 
 # history
 export HISTCONTROL=erasedups

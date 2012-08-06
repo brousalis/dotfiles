@@ -1,13 +1,5 @@
-# .bashrc - bash profile
-
-# platform detection
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
-  platform='linux'
-elif [[ "$unamestr" == 'Darwin' ]]; then
-  platform='darwin'
-fi
+# personal
+source ~/dotfiles/personal
 
 # history
 export HISTCONTROL=erasedups
@@ -30,7 +22,7 @@ alias gs='git status'
 alias gc='git checkout'
 alias gb='git branch'
 alias ga='git add'
-alias gd='git diff -U10 --color HEAD' #most common usage
+alias gd='git diff -U10 --color HEAD' 
 alias gl='git log'
 alias gcb='git checkout -b'
 
@@ -74,52 +66,22 @@ export PS1="\[\033[01;34m\]\h:\[\033[01;33m\]\w\[\033[01;34m\] \$(parse_git_bran
 #export PS1="$YELLOW_GREY\w\[\033[00m\]:\[\033[01;34m\]\$(parse_git_branch)\[\033[00m\] >$WHITE_BLACK "
 #export PS1='\[\033k\033\\\][\t@mbp \w]'
 
-# u ..
+# moving up in folders;
 function bugscreen() { export BUG=$1; screen -R $1; }
-function bs() { export BUG=$1; screen -R $1; }
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # add stuff to the path
 export PATH=/usr/lib:${HOME}/bin:/usr/local/bin:${PATH}
 export EDITOR='vim'
-export P4CONFIG=~/.p4config
-export CNUAPP_DIR=/export/web/cnuapp
 export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
 
-# platform dependent
-if [[ $platform = 'linux' ]]; then
-  # cnu paths
-  export PATH=/cnu/bin:/export/web/stable/cnuapp/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
-  # cnu tools
-  function cdb() { cnurestart stop; cnudbrebuild "$@"; cnurestart start; } # rebuild a DB. specify a cluster to start automatically
-  alias sconsole='source /etc/cnu/cnu_env; /export/web/cnuapp/script/console $(echo $RAILS_ENV)' 
-  alias ce="cnuenv" # change the cluster running and restart lightspeed
-  alias cr="cnurestart" # restart, start, stop, or kill runsv
-  # cnu shortcuts
-  alias cnu='cd /export/web/stable'
-  alias neph='bugscreen 186670'
-  alias oec='bugscreen 404988'
-  alias app='cd /export/web/cnuapp/ruby/web/LineOfCredit/app'
-  alias views='cd /export/web/cnuapp/ruby/web/LineOfCredit/app/views'
-  alias public='cd /export/web/cnuapp/ruby/web/LineOfCredit/public'
-  # logs
-  alias flog='tail -f /var/log/cnuapp/frontend.log'
-  alias plog='tail -f /var/log/cnuapp/portal.log'
-  alias logs='tail -f /var/log/cnuapp/*.log'
-  alias elog='tail -f /var/log/cnuapp/stderr.log'
-  alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
-  alias findpete='tail -f loc.log | grep "PETE"'
-  alias rpsql='sudo killall postgres && /etc/init.d/postgresql-8.3 start'
-  alias rmem='sudo /etc/init.d/memcached restart'
-  # git completion on debian  
-  source /etc/bash_completion.d/git
-  GIT_PS1_SHOWDIRTYSTATE=true
-fi
-
-# vm stuff
+# virtual machines
 function vmstart() { 
   VBoxHeadless --startvm "$1" &
-} 
+}
 export -f vmstart
 function vmstop { 
   VBoxManage controlvm "$1" savestate
@@ -127,43 +89,24 @@ function vmstop {
 export -f vmstop
 alias vmssh='ssh cnuapp@33.33.33.2'
 
-# bash completion settings (actually, these are readline settings)
-bind "set completion-ignore-case on" # note: bind is used instead of setting these in .inputrc.  This ignores case in bash completion
-bind "set bell-style none" # No bell, because it's damn annoying
-bind "set show-all-if-ambiguous On" # this allows you to automatically show completion without double tab-ing
-
-# desktop
-alias ossh='ssh cnuapp@10.224.23.55'
-alias cssh='ssh cnuapp@10.224.115.152'
-alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
-alias baja='ssh cnuapp@baja.dev.cashnetusa.com'
-alias teamego='ssh teamegoc@184.173.85.198'
-alias leonards='ssh theleona@174.120.254.130'
+# readline settings
+bind "set completion-ignore-case on" 
+bind "set bell-style none" 
+bind "set show-all-if-ambiguous On" 
 
 # aliases
 alias h='cd ~'
 alias home='cd ~'
 alias dots='cd ~/dotfiles'
-alias t='vim ~/dotfiles/list.todo'
-alias tl='cat ~/dotfiles/list.todo'
-alias gtd='vim ~/dotfiles/list.todo'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ......='cd ../../../../..'
-alias .......='cd ../../../../../..'
-alias ........='cd ../../../../../../..'
-alias .........='cd ../../../../../../../..'
 alias ll='ls -alh'
 alias l='ls -alh'
-alias ifi='ifconfig | ack "net" '
+alias ifi='ifconfig | ack "net"'
 alias untar="tar -xvvf"
 alias gitrem="git ls-files --deleted | xargs git rm"
 alias reload="source ~/.bashrc"
+alias dsremove="find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch"
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [[ -r "$HOME/.rvm/scripts/completion" ]] && . "$HOME/.rvm/scripts/completion" 
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin 

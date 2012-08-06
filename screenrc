@@ -1,5 +1,3 @@
-# .screenrc - screen config
-
 # turn off bell
 vbell off
 
@@ -13,7 +11,6 @@ shelltitle "]|bash"
 defscrollback 10000
 
 # adds a caption at the bottom of the screen
-#caption always '%{= kG}[ %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%{g} ]%= [%{B} %d/%M/%Y %{W}%c:%s %{g}]'
 caption always '%{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{B}%d/%M/%Y %{W}%c:%s'
 
 # adds window toggle keys to F11 and F12 (NOT F1 and F2)

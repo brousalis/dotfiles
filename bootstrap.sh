@@ -6,7 +6,7 @@ FOLDER="$HOME"/dotfiles
 if [ "$1" == "vim" ]
 then
   source vim.sh    
-  echo   "Setup vim install"
+  echo "Setup vim install"
 fi
 
 # dotfiles
@@ -27,4 +27,4 @@ echo    "Reload tmux config"
 # vim
 mkdir -p "$HOME"/.vimbackup
 mkdir -p "$HOME"/.vimtmp
-echo     "Setup vim temp"
+echo "Setup vim temp"

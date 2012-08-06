@@ -2,6 +2,7 @@
 
 " fonts, colors etc
 syntax on
+set t_Co=256
 set background=dark
 colorscheme jellybeans
 
@@ -57,8 +58,8 @@ if has('autocmd')
   au filetype ruby set list                     " list chars in js
   au filetype js set listchars=tab:>-,trail:-   " list trailing spaces + all tabs
 
-  au BufNewFile,BufRead *.ejs set filetype=html " ejs suppport
-  au BufNewFile,BufRead *.tpl set filetype=ruby " tpl support for ruby
+  au BufNewFile,BufRead *.erb set filetype=html
+  au BufNewFile,BufRead *.tpl set filetype=ruby
   au BufRead,BufNewFile *.todo setfiletype todo 
 endif
 

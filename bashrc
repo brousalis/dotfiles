@@ -122,7 +122,7 @@ function vmstart() {
 } 
 export -f vmstart
 function vmstop { 
-  VBoxManager controlvm "$1" savestate
+  VBoxManage controlvm "$1" savestate
 } 
 export -f vmstop
 alias vmssh='ssh cnuapp@33.33.33.2'

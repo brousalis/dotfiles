@@ -17,6 +17,7 @@ ln -sf  "$FOLDER"/bash_profile  "$HOME"/.bash_profile
 ln -sf  "$FOLDER"/vim           "$HOME"/.vim
 ln -sf  "$FOLDER"/screenrc      "$HOME"/.screenrc
 ln -sf  "$FOLDER"/tmuxconf      "$HOME"/.tmux.conf
+ln -sf  "$FOLDER"/gemrc         "$HOME"/.gemrc
 ln -sf  "$FOLDER"/gitconfig     "$HOME"/.gitconfig
 echo    "Setup symlinks"
 

@@ -96,6 +96,7 @@ alias reload="source ~/.bashrc"
 alias dsremove="find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch"
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
 alias rails_new='rails new $1 -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb'
+alias spotify="osascript ~/dotfiles/spotify.scpt"
 
 # load rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"

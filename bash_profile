@@ -1,5 +1,7 @@
 # personal
-source ~/dotfiles/personal
+if [ -f ~/dotfiles/personal ]; then
+	. ~/dotfiles/personal
+fi
 
 # history
 export HISTCONTROL=erasedups

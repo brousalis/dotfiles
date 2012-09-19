@@ -11,6 +11,15 @@ rescue LoadError
   require 'pp'
 end
 
+begin
+  require 'hirb'
+  Hirb.enable
+  extend Hirb::Console
+rescue LoadError
+  puts "*** hirb disabled ***"
+  puts "gem install hirb"
+end
+
 IRB.conf[:AUTO_INDENT] = true
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"

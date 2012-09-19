@@ -62,7 +62,7 @@ function prompt_git() {
     if [[ "$flags" ]]; then
         output="$output[$flags]"
     fi
-    echo -ne " ${GREEN}${output}"
+    echo -ne " ${GREEN}(${output})"
 }
 
 PS1="${style_host}\h" # Host

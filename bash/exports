@@ -1,0 +1,26 @@
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+
+shopt -s histappend
+shopt -s checkwinsize
+shopt -s cdspell
+
+export EDITOR='vim'
+
+export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+export CLICOLOR=1
+export LSCOLORS="ExGxBxDxCxEgEdxbxgxcxd"
+
+if [ -x /usr/bin/dircolors ]; then
+  eval "`dircolors -b`"
+  alias ls='ls --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+  alias ack='ack --color'
+  alias less='less -R'
+  alias diff='colordiff -dw'
+fi
+ 

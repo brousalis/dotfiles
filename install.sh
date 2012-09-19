@@ -29,3 +29,18 @@ echo    "Reload tmux config"
 mkdir -p "$HOME"/.vimbackup
 mkdir -p "$HOME"/.vimtmp
 echo "Setup vim temp"
+
+#!/usr/bin/env bash
+set -e
+
+here="$(dirname "$0")"
+here="$(cd "$here"; pwd)"
+
+for file in "$here"/*; do
+  name="$(basename "$file" .md)"
+  [[ $name = bin ]] && dotname="$name" || dotname=".${name}"
+
+  if [[ !( "install readme" =~ $name || -e ~/$dotname || -d $file/.git ) ]]; then
+    ln -sfhv ${file#$HOME/} "${HOME}/${dotname}"
+  fi
+done

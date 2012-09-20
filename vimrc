@@ -179,7 +179,6 @@ let g:Powerline_symbols = 'fancy'
 " nerdcommenter
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
-let g:NERDCustomDelimiters = { 'racket': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' } }
 
 " rainbows
 nnoremap <leader>rp :RainbowParenthesesToggle<CR>

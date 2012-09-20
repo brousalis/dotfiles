@@ -22,11 +22,6 @@ ln -sf  "$FOLDER"/irbrc         ~/.irbrc
 ln -sf  "$FOLDER"/gitconfig     ~/.gitconfig
 echo    "Setup symlinks"
 
-# init submodules for pathogen
-git pull origin master
-git submodule init
-git submodule update
-
 # reload tmux config
 tmux source-file ~/.tmux.conf
 echo "Reload tmux config"

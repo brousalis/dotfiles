@@ -170,8 +170,19 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h 
 
-" NERDTree
+" nerdtree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
+
+" powerline
+let g:Powerline_symbols = 'fancy'
+
+" nerdcommenter
+let NERDSpaceDelims=1
+let NERDCompactSexyComs=1
+let g:NERDCustomDelimiters = { 'racket': { 'left': ';', 'leftAlt': '#|', 'rightAlt': '|#' } }
+
+" rainbows
+nnoremap <leader>rp :RainbowParenthesesToggle<CR>
 
 " folding settings
 set foldmethod=indent   "fold based on indent

@@ -2,13 +2,6 @@
 
 FOLDER=~/dotfiles
 
-# install vim, maybe
-if [ "$1" == "vim" ]
-then
-  source vim.sh    
-  echo "Setup vim install"
-fi
-
 # dotfiles
 cd      "$FOLDER"
 ln -sf  "$FOLDER"/vimrc         ~/.vimrc

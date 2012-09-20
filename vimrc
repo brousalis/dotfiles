@@ -176,7 +176,7 @@ let g:NERDTreeDirArrows=0
 
 " powerline
 "let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme='zenburn'
+let g:Powerline_colorscheme='default'
 
 " nerdcommenter
 let NERDSpaceDelims=1

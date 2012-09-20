@@ -45,10 +45,26 @@ set showcmd                     " show command /eing typed
 set tags=~/.tags                " grab tags directory, all the way up to root
 set title                       " set the title
 
-" load all the things (pathogen)
-call pathogen#runtime_append_all_bundles()
+" load all the things (vundle)
+filetype off                   
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'gf3/vim-css-color'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rails'
+Bundle 'pangloss/vim-javascript'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'kien/rainbow_parentheses.vim'
+
 filetype plugin indent on
 
+" file type detection
 if has('autocmd')
   au filetype php set tabstop=4                 " four spaces for PHP tabs
   au filetype php set shiftwidth=4              " four spaces for PHP tabs

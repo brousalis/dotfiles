@@ -45,10 +45,9 @@ set showcmd                     " show command /eing typed
 set tags=~/.tags                " grab tags directory, all the way up to root
 set title                       " set the title
 
-" filetypes
-filetype on               
-filetype plugin on
-filetype indent on
+" load all the things (pathogen)
+call pathogen#runtime_append_all_bundles()
+filetype plugin indent on
 
 if has('autocmd')
   au filetype php set tabstop=4                 " four spaces for PHP tabs

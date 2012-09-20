@@ -17,13 +17,6 @@ set -s escape-time 0
 # client connected to *that window*. Much more reasonable.
 setw -g aggressive-resize on
 
-# activity monitoring
-setw -g monitor-activity on
-set -g visual-activity on
-
-# highlight active window
-set-window-option -g window-status-current-bg red
-
 # hjkl pane traversal and alt arrow
 bind h select-pane -L
 bind j select-pane -D
@@ -62,7 +55,7 @@ set-window-option -g mode-mouse on
 
 set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
-## set status bar
+# set status bar
 set-option -g status-utf8 on
 set-option -g status-bg colour234
 set-option -g status-fg colour3
@@ -76,19 +69,19 @@ set-option -g status-right '❐ #S ⡇ ❖ #(rvm tools identifier) ⡇ #(whoami)
 set-option -g status-right-length 90
 set-option -g status-left-length 60
 
-## highlight active window
+# highlight active window
 set-window-option -g window-status-current-bg colour166
 set-window-option -g window-status-current-fg colour15
 set-window-option -g window-status-current-attr bold
 set-window-option -g window-status-current-format ' #I #W '
 
-## set window notifications
+# set window notifications
 set-option -g visual-activity on
 set-option -g visual-content on
 set-window-option -g monitor-activity on
 set-window-option -g automatic-rename on
 
-## tmux window titling for X
+# tmux window titling for X
 set-option -g set-titles on
 set-option -g set-titles-string '[#I] #W'
 set-window-option -g automatic-rename on
@@ -97,15 +90,11 @@ set-window-option -g window-status-attr bold
 # starts windows at 1 not 0
 set-option -g base-index 1
 
-## enable mouse
+# enable mouse
 set-option -g mouse-select-pane on
 set-window-option -g mode-keys vi
 set-window-option -g mode-mouse on
-# set-window-option -g monitor-activity off
-# set-window-option -g monitor-content off
-# set-option -g status-keys vi
-# set-option -g history-limit 4096
 
-## pane border and colors
-set-option -g pane-active-border-fg yellow
+# pane border and colors
+set-option -g pane-active-border-fg black
 set-option -g pane-border-fg white

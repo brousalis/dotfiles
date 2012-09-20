@@ -7,7 +7,6 @@ begin
   require 'ap'
 rescue LoadError
   puts "*** awesome_print disabled ***"
-  puts "gem install awesome_print"
   require 'pp'
 end
 
@@ -17,7 +16,6 @@ begin
   extend Hirb::Console
 rescue LoadError
   puts "*** hirb disabled ***"
-  puts "gem install hirb"
 end
 
 IRB.conf[:AUTO_INDENT] = true

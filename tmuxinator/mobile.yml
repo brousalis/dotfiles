@@ -1,0 +1,7 @@
+project_name: mobile
+project_root: /export/web/ep
+rvm: system   
+tabs:
+  - vim: vim
+  - bash:
+  - logs: cd /var/log/cnuapp

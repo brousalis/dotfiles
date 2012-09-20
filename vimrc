@@ -6,7 +6,7 @@ set t_Co=256
 set background=dark
 colorscheme jellybeans
 
-" settings 
+" settings
 set nocompatible                " don't hack around for vi compatiblity
 set mouse=a                     " because i'm lame
 set nu                          " line numbers
@@ -61,16 +61,23 @@ if has('autocmd')
   au BufNewFile,BufRead *.erb set filetype=html
   au BufNewFile,BufRead *.tpl set filetype=ruby
   au BufRead,BufNewFile *.todo setfiletype todo 
+  au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
+
 endif
 
-" copy paste
-map <F8> :.w !pbcopy<CR><CR>
-map <F9> :r !pbpaste<CR>
+" faster split resizing (+,-)
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
 
-" fix my bad habits
+" sudo write ,W
+noremap <leader>W :w !sudo tee %<CR>
+
+" bad habits
 cmap w!! %!sudo tee > /dev/null %
 
-" leader + custom macros
+" custom binds I use
 let mapleader = ","
 nnoremap <leader>dW pldW
 nnoremap <leader>dw pldw
@@ -87,7 +94,7 @@ nmap <leader>w :set wrap!<CR>
 nmap <leader>k :set list!<CR>
 inoremap <C-tab> <Esc><<i
 
-" use the home row
+" use the home row BITCH
 inoremap <Left> <NOP>
 inoremap <Right> <NOP>
 inoremap <Up> <NOP>
@@ -105,11 +112,15 @@ map <C-J> <Esc>:prev<CR>
 map <C-H> <Esc>:first<CR>
 map <C-L> <Esc>:last<CR>
 
-" ctags on better keys
-map <M-Right> <C-]>
-map <M-Left> <C-T>
-map <M-Up> <Esc>:tp<CR>
-map <M-Down> <Esc>:tn<CR>
+" strip trailing whitespace (,ss)
+function! StripWhitespace ()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfunction
+noremap <leader>ss :call StripWhitespace ()<CR>
 
 " newline on shift/enter
 map <S-Enter> O<Esc>j
@@ -123,6 +134,7 @@ inoremap <F4> <Esc>:m-2<CR>==gi
 vnoremap <F3> :m'>+<CR>gv=gv
 vnoremap <F4> :m-2<CR>gv=gv
 
+" tabs
 map <F1> :tabprev<CR>
 map <F2> :tabnext<CR>
 
@@ -137,11 +149,6 @@ set ic
 set smartcase
 set hlsearch
 
-" paste some lorem text by typing lllorem and hitting tab
-iab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit
-iab llorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi
-iab lllorem Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam lacus ligula, accumsan id imperdiet rhoncus, dapibus vitae arcu.  Nulla non quam erat, luctus consequat nisi.  Integer hendrerit lacus sagittis erat fermentum tincidunt.  Cras vel dui neque.  In sagittis commodo luctus.  Mauris non metus dolor, ut suscipit dui.  Aliquam mauris lacus, laoreet et consequat quis, bibendum id ipsum.  Donec gravida, diam id imperdiet cursus, nunc nisl bibendum sapien, eget tempor neque elit in tortor
-
 " move between panes
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
@@ -150,17 +157,6 @@ map <Leader>h <C-w>h
 
 " NERDTree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
-
-" ctrlp settings
-let g:ctrlp_max_files =0
-let g:ctrlp_max_depth =1000
-let g:ctrlp_max_height = 50
-let g:ctrlp_working_path_mode = 0
-
-" Status Line
-set statusline=%F%m%r%h%w\ %=[POS=%01l,%01v]\ [LEN=%L]
-set ruler
-:set laststatus=2
 
 " folding settings
 set foldmethod=indent   "fold based on indent

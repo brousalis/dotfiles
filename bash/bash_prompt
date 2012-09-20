@@ -1,11 +1,5 @@
 # bash_prompt
 
-if [[ $COLORTERM = gnome-* && $TERM = xterm ]] && infocmp gnome-256color >/dev/null 2>&1; then
-  export TERM=gnome-256color
-elif infocmp xterm-256color >/dev/null 2>&1; then
-  export TERM=xterm-256color
-fi
-
 if tput setaf 1 &> /dev/null; then
   tput sgr0
   if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
@@ -37,13 +31,13 @@ style_host="\[${RESET}${MAGENTA}\]"
 style_path="\[${RESET}${ORANGE}\]"
 style_chars="\[${RESET}${SOLAR_WHITE}\]"
 
-if [[ "$SSH_TTY" ]]; then
-    # connected via ssh
-    style_host="\[${BOLD}${PURPLE}\]"
-elif [[ "$USER" == "root" ]]; then
-    # logged in as root
-    style_user="\[${BOLD}${SOLAR_RED}\]"
-fi
+#if [[ "$SSH_TTY" ]]; then
+#    # connected via ssh
+#    style_host="\[${BOLD}${}\]"
+#elif [[ "$USER" == "root" ]]; then
+#    # logged in as root
+#    style_user="\[${BOLD}${SOLAR_RED}\]"
+#fi
 
 function prompt_git() {
     local status output flags

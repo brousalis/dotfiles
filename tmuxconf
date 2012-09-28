@@ -98,3 +98,8 @@ set-window-option -g mode-mouse on
 # pane border and colors
 set-option -g pane-active-border-fg black
 set-option -g pane-border-fg white
+
+# move x clipboard into tmux paste buffer
+bind C-p run "tmux set-buffer \"$(xclip -o)\"; tmux paste-buffer"
+# # move tmux copy buffer into x clipboard
+bind C-y run "tmux show-buffer | xclip -i"

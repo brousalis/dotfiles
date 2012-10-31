@@ -32,9 +32,9 @@ style_path="\[${RESET}${ORANGE}\]"
 style_chars="\[${RESET}${SOLAR_WHITE}\]"
 style_git="\[${RESET}${GREEN}\]"
 
-#if [[ "$SSH_TTY" ]]; then
-#  style_host="\[${RESET}${PURPLE}\]"
-#fi
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
+  style_host="\[${RESET}${PURPLE}\]"
+fi
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 

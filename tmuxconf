@@ -48,7 +48,7 @@ bind r source-file ~/.tmux.conf
 set-window-option -g automatic-rename
 
 # color
-set -g default-terminal "screen-256color"
+#set -g default-terminal "xterm-256color"
 
 set-option -g mouse-select-pane on
 set-window-option -g mode-mouse on
@@ -57,12 +57,12 @@ set -g terminal-overrides 'xterm*:smcup@:rmcup@'
 
 # set status bar
 set-option -g status-utf8 on
-set-option -g status-bg colour234
+set-option -g status-bg colour232
 set-option -g status-fg colour248
 
-set-option -g status-left '#[fg=colour70]⣿'
+set-option -g status-left '#[fg=colour31]⣿'
 #set-option -g status-right '⡇ #[bold]❐ #S:#I#[default] ⡇ #[bold]#(whoami) ● #H#[default] '
-set-option -g status-right '❐ #S #[fg=colour70]⡇ #[fg=colour248]❖ #(rvm tools identifier) #[fg=colour70]⡇ #[fg=colour248]#(whoami) ● #H #[fg=colour70]⡇ #[fg=colour248]%m/%d/%Y - #[bold]%I:%M '
+set-option -g status-right '❐ #S #[fg=colour31]⡇ #[fg=colour248]#(whoami) #[fg=colour31]✱  #[fg=colour248]#H #[fg=colour31]⡇ #[fg=colour248]%m/%d/%Y #[fg=colour31]✱ #[fg=colour248] #[bold]%I:%M '
 #set-option -g status-left ' #[bold]❐ #S#[default] ⡇'
 #set-option -g status-right '#[bold]#(whoami) ● #H#[default] '
 
@@ -70,7 +70,7 @@ set-option -g status-right-length 90
 set-option -g status-left-length 60
 
 # highlight active window
-set-window-option -g window-status-current-bg colour0
+set-window-option -g window-status-current-bg colour235
 set-window-option -g window-status-current-fg colour15
 set-window-option -g window-status-current-attr bold
 set-window-option -g window-status-current-format ' #I #W '

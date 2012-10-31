@@ -1,9 +1,6 @@
-" .vimrc - vim config
-
-" fonts, colors etc
+" colors
 syntax on
 set t_Co=256
-set background=dark
 colorscheme jellybeans
 
 " settings
@@ -14,7 +11,7 @@ set backup                      " do backups
 set backupdir=~/.vimbackup      " put backups in one place
 set directory=~/.vimtmp         " put tmp files in one place
 set dir=~/.vimtmp               " for backup swaps
-set noswapfile
+set noswapfile                  " wait wat
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
 set smartindent                 " let vim indent for you
@@ -37,7 +34,7 @@ set wildmenu                    " make tab completion for files/buffers act like
 set wildmode=list:full          " show a list when pressing tab and complete first full match
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 set clipboard+=unnamed          " share clipboard
-set clipboard=unnamed
+set clipboard=unnamed           " please work
 set more                        " page on extended output
 set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
@@ -52,8 +49,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'gmarik/vundle'
-
-Bundle 'gf3/vim-css-color'
 Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rails'
 Bundle 'pangloss/vim-javascript'
@@ -61,6 +56,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on
 
@@ -77,7 +73,6 @@ if has('autocmd')
   au BufNewFile,BufRead *.tpl set filetype=ruby
   au BufRead,BufNewFile *.todo setfiletype todo 
   au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
-
 endif
 
 " faster split resizing (+,-)
@@ -200,3 +195,41 @@ function! SetCursorPosition()
     endif
   end
 endfunction
+
+" ctrl p for cnuapp
+set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
+"set wildignore+=*/.git/* " This line breaks fugitive.vim
+set wildignore+=*.pyc,*/*.scssc
+set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
+set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*
+set wildignore+=*/cnu_config/*,*/cnu_content/*,*/cnu_database/*,*/cnu_gems/*,*/cnu_ivr/*
+set wildignore+=*/cnu_ldap/*,*/cnu_locale/*,*/cnu_logger/*,*/cnu_memcache/*,*/cnu_perf/*
+set wildignore+=*/cnu_pg/*,*/cnu_product_offering/*,*/cnu_rails_app/*,*/cnu_regexp/*
+set wildignore+=*/cnu_ruby_build/*,*/cnu_ruby_core/*,*/cnu_ruby_lib/*,*/cnu_scm/*
+set wildignore+=*/cnu_selenium/*,*/cnu_service/*,*/cnu_space/*,*/cnu_test/*,*/contenter_api/*
+set wildignore+=*/cookbooks/*,*/db_global/*,*/doc/*,*/enf_app/*,*/enf_log/*,*/lsws-3.3.14/*
+set wildignore+=*/mod_rails/*,*/rails-1.2/*,*/red_steak/*,*/screenshots/*,*/shout_trace/*
+set wildignore+=*/sol_api/*,*/trick_serial/*,*/waffles/*,*/wtf/*
+set wildignore+=*static/CACHE/css/*
+set wildignore+=*/cnuapp/apache/*,*/cnuapp/bin/*
+set wildignore+=*/cnuapp/debian/*,*/cnuapp/gems/*,*/cnuapp/gui/*,*/cnuapp/include/*
+set wildignore+=*/cnuapp/locproot/*,*/cnuapp/lsws/*,*/cnuapp/noderoot/*
+set wildignore+=*/cnuapp/plugins/*,*/cnuapp/queries/*,*/cnuapp/Rakefile/*,*/cnuapp/Rakefile.US/*
+set wildignore+=*/cnuapp/result.GB/*,*/cnuapp/result.GB.fail/*,*/cnuapp/result.GB.last/*
+set wildignore+=*/cnuapp/result.GB.pass/*,*/cnuapp/script/*,*/cnuapp/src/*
+set wildignore+=*/cnuapp/tmp/*,*/cnuapp/tools/*,*/cnuapp/typeroot/*,*/cnuapp/var/*
+set wildignore+=*/cnuapp/vendor/*
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
+
+let g:ctrlp_max_files =0
+let g:ctrlp_max_depth =1000
+let g:ctrlp_max_height = 50
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_clear_cache_on_exit = 0 
+
+let g:CommandTMaxFiles=50000
+let g:ctrlp_open_multiple_files = 't'
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \} 

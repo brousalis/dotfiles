@@ -30,39 +30,17 @@ fi
 style_host="\[${RESET}${MAGENTA}\]"
 style_path="\[${RESET}${ORANGE}\]"
 style_chars="\[${RESET}${SOLAR_WHITE}\]"
+style_git="\[${RESET}${GREEN}\]"
 
 #if [[ "$SSH_TTY" ]]; then
-#    # connected via ssh
-#    style_host="\[${BOLD}${}\]"
-#elif [[ "$USER" == "root" ]]; then
-#    # logged in as root
-#    style_user="\[${BOLD}${SOLAR_RED}\]"
+#  style_host="\[${RESET}${PURPLE}\]"
 #fi
-
-function prompt_git() {
-    local status output flags
-    status="$(git status 2>/dev/null)"
-    [[ $? != 0 ]] && return;
-    output="$(echo "$status" | awk '/# Initial commit/ {print "(init)"}')"
-    [[ "$output" ]] || output="$(echo "$status" | awk '/# On branch/ {print $4}')"
-    [[ "$output" ]] || output="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
-    flags="$(
-    echo "$status" | awk 'BEGIN {r=""} \
-        /^# Changes to be committed:$/        {r=r "+"}\
-        /^# Changes not staged for commit:$/  {r=r "!"}\
-        /^# Untracked files:$/                {r=r "?"}\
-        END {print r}'
-    )"
-    if [[ "$flags" ]]; then
-        output="$output[$flags]"
-    fi
-    echo -ne " ${GREEN}${output}"
-}
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 
-PS1="${style_host}\h" # Host
-PS1+="${style_chars}:" # :
-PS1+="${style_path}\w" # Working directory
-PS1+=" ${GREEN}\$(parse_git_branch)" # Git details
-PS1+="${style_chars} ▸ \[${RESET}\]" # $ (and reset color)
+PS1="${style_host}⌘  " # host
+PS1+="${style_path}\w" # working directory
+if [[ "$(parse_git_branch)" != "0" ]]; then
+  PS1+=" ${style_git}\$(parse_git_branch) " # git details
+fi
+PS1+="${style_chars}▸ \[${RESET}\]" # 

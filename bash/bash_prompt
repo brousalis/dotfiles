@@ -1,46 +1,54 @@
 # bash_prompt
 
-if tput setaf 1 &> /dev/null; then
-  tput sgr0
-  if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-    MAGENTA=$(tput setaf 33)
-    ORANGE=$(tput setaf 172)
-    GREEN=$(tput setaf 190)
-    PURPLE=$(tput setaf 141)
-    WHITE=$(tput setaf 256)
-  else
-    MAGENTA=$(tput setaf 5)
-    ORANGE=$(tput setaf 4)
-    GREEN=$(tput setaf 2)
-    PURPLE=$(tput setaf 1)
-    WHITE=$(tput setaf 7)
-  fi
-  BOLD=$(tput bold)
-  RESET=$(tput sgr0)
-else
-  MAGENTA="\033[1;31m"
-  ORANGE="\033[1;33m"
-  GREEN="\033[1;32m"
-  PURPLE="\033[1;35m"
-  WHITE="\033[1;37m"
-  BOLD=""
-  RESET="\033[m"
-fi
+txtblk='\e[0;30m' # Black - Regular
+txtred='\e[0;31m' # Red
+txtgrn='\e[0;32m' # Green
+txtylw='\e[0;33m' # Yellow
+txtblu='\e[0;34m' # Blue
+txtpur='\e[0;35m' # Purple
+txtcyn='\e[0;36m' # Cyan
+txtwht='\e[0;37m' # White
+bldblk='\e[1;30m' # Black - Bold
+bldred='\e[1;31m' # Red
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+bldblu='\e[1;34m' # Blue
+bldpur='\e[1;35m' # Purple
+bldcyn='\e[1;36m' # Cyan
+bldwht='\e[1;37m' # White
+unkblk='\e[4;30m' # Black - Underline
+undred='\e[4;31m' # Red
+undgrn='\e[4;32m' # Green
+undylw='\e[4;33m' # Yellow
+undblu='\e[4;34m' # Blue
+undpur='\e[4;35m' # Purple
+undcyn='\e[4;36m' # Cyan
+undwht='\e[4;37m' # White
+bakblk='\e[40m'   # Black - Background
+bakred='\e[41m'   # Red
+bakgrn='\e[42m'   # Green
+bakylw='\e[43m'   # Yellow
+bakblu='\e[44m'   # Blue
+bakpur='\e[45m'   # Purple
+bakcyn='\e[46m'   # Cyan
+bakwht='\e[47m'   # White
+txtrst='\e[0m'    # Text Reset
+txtmgn="\033[1;31m"
+txtorg="\033[1;33m"
 
-style_host="\[${RESET}${MAGENTA}\]"
-style_path="\[${RESET}${ORANGE}\]"
-style_chars="\[${RESET}${SOLAR_WHITE}\]"
-style_git="\[${RESET}${GREEN}\]"
+
+style_host="\[${txtrst}${txtblu}\]"
+style_path="\[${txtrst}${txtylw}\]"
+style_chars="\[${txtrst}${txtwht}\]"
+style_git="\[${txtrst}${txtcyn}\]"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
-  style_host="\[${RESET}${PURPLE}\]"
+  style_host="\[${txtrst}${txtred}\]"
 fi
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 
 PS1="${style_host}⌘  " # host
-PS1+="${style_path}\w" # working directory
-if [[ "$(parse_git_branch)" != "" ]]; then
-  PS1+=" ${style_git}\$(parse_git_branch)" # git details
-fi
-PS1+=" ${style_chars}‣ \[${RESET}\]" # 
+PS1+="${style_path}\w " # working directory
+PS1+="${style_git}\$(parse_git_branch)${txtrst}" # git details
+PS1+=" ${style_chars}‣ \[${txtrst}\]" # 

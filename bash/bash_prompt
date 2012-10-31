@@ -40,7 +40,7 @@ parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(
 
 PS1="${style_host}⌘  " # host
 PS1+="${style_path}\w" # working directory
-if [[ "$(parse_git_branch)" != "0" ]]; then
-  PS1+=" ${style_git}\$(parse_git_branch) " # git details
+if [[ "$(parse_git_branch)" != "" ]]; then
+  PS1+=" ${style_git}\$(parse_git_branch)" # git details
 fi
-PS1+="${style_chars}▸ \[${RESET}\]" # 
+PS1+=" ${style_chars}‣ \[${RESET}\]" # 

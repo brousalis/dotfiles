@@ -36,6 +36,8 @@ alias gc='git commit -v'
 alias gca='git commit . -v'
 alias gb='git branch -v'
 alias gs='git status -sb'
+alias ga='git add'
+alias gcl='git clone'
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
@@ -46,3 +48,14 @@ function gco {
     git checkout "$@"
   fi
 }
+
+# completion with git aliases
+complete -o bashdefault -o default -o nospace -F _git_add ga
+complete -o bashdefault -o default -o nospace -F _git_branch gb
+complete -o bashdefault -o default -o nospace -F _git_checkout gco
+complete -o bashdefault -o default -o nospace -F _git_clone gcl
+complete -o bashdefault -o default -o nospace -F _git_diff gd
+complete -o bashdefault -o default -o nospace -F _git_log glog
+complete -o bashdefault -o default -o nospace -F _git_commit gc gca
+complete -o bashdefault -o default -o nospace -F _git_push gp
+complete -o bashdefault -o default -o nospace -F _git_pull gl

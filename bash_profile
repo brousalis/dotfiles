@@ -13,3 +13,6 @@ for file in ~/dotfiles/bash/{bash_prompt,exports,functions,aliases}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
+
+# fix font smoothing on macs
+# defaults -currentHost write -g AppleFontSmoothing -int 2

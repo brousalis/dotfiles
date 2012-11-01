@@ -35,7 +35,7 @@ alias gd='git diff'
 alias gc='git commit -v'
 alias gca='git commit . -v'
 alias gb='git branch -v'
-alias st='git status -sb'
+alias gs='git status -sb'
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"

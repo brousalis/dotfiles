@@ -42,7 +42,8 @@ bind-key -nr M-Left resize-pane -L
 bind-key -nr M-Right resize-pane -R
 
 # reload config
-bind r source-file ~/.tmux.conf
+bind R source-file ~/.tmux.conf
+bind-key r run-shell "sudo sv restart /var/service/lsws"
 
 # auto window rename
 set-window-option -g automatic-rename

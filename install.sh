@@ -12,6 +12,8 @@ ln -sf  "$FOLDER"/tmuxinator    ~/.tmuxinator
 ln -sf  "$FOLDER"/tmuxconf      ~/.tmux.conf
 ln -sf  "$FOLDER"/gemrc         ~/.gemrc
 ln -sf  "$FOLDER"/irbrc         ~/.irbrc
+ln -sf  "$FOLDER"/inputrc       ~/.inputrc
+ln -sf  "$FOLDER"/hushlogin     ~/.hushlogin
 ln -sf  "$FOLDER"/gitconfig     ~/.gitconfig
 echo    "Setup symlinks"
 

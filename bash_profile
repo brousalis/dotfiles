@@ -15,4 +15,6 @@ done
 unset file
 
 # fix font smoothing on macs
-# defaults -currentHost write -g AppleFontSmoothing -int 2
+if [[ $platform = 'darwin' ]]; then
+  defaults -currentHost write -g AppleFontSmoothing -int 2
+fi

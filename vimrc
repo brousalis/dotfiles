@@ -15,6 +15,7 @@ set noswapfile                  " wait wat
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
 set smartindent                 " let vim indent for you
+set smarttab                    " let vim tab
 set autoindent                  " always set autoindenting on
 set copyindent                  " copy the previous indent on autoindenting
 set tabstop=2                   " two-space tabs
@@ -41,6 +42,7 @@ set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " show command /eing typed
 set tags=~/.tags                " grab tags directory, all the way up to root
 set title                       " set the title
+set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
 
 " load all the things (vundle)
 filetype off                   
@@ -57,7 +59,6 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
 
 filetype plugin indent on
 
@@ -234,3 +235,14 @@ let g:ctrlp_open_multiple_files = 't'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \} 
+
+" ,df to see diff
+nnoremap <silent> <Leader>df :call DiffToggle()<CR>
+
+function! DiffToggle()
+    if &diff
+        diffoff
+    else
+        diffthis
+    endif
+:endfunction

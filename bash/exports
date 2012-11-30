@@ -1,5 +1,6 @@
-export HISTCONTROL=erasedups
+export HISTCONTROL=ignoredups
 export HISTSIZE=10000
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 shopt -s histappend
 shopt -s checkwinsize

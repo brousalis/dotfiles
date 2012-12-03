@@ -3,6 +3,7 @@
   email = brousapg@gmail.com
 [core]
   excludesfile = ~/.gitignore
+	editor = /usr/bin/vim
 [color]
   ui = auto
 [color "branch"]

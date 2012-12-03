@@ -1,4 +1,4 @@
-colorscheme solarized
+colorscheme jellybeans
 
 " settings
 set mouse=a                     " because mouse
@@ -35,12 +35,8 @@ set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " display incomplete commands
 set title                       " set the title
 set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
-set showmatch			" bracket/braces showing
-set mat=5			" show it for 5 seconds
-set ruler
-set noeol
-
-
+set laststatus=2
+set statusline=%F%m%r%h%w
 filetype plugin indent on
 
 " file type detection
@@ -189,7 +185,6 @@ let g:ctrlp_custom_ignore = {
 
 " ,df to see diff
 nnoremap <silent> <Leader>df :call DiffToggle()<CR>
-
 function! DiffToggle()
     if &diff
         diffoff

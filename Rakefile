@@ -1,7 +1,7 @@
 require 'rake'
 
 task :install do
-  linkables = Dir.glob('*').reject{|f| f["Rakefile"] || f["osx"]}
+  linkables = Dir.glob('*').reject{|f| f["aliases"] || f["Rakefile"] || f["osx"]}
 
   skip_all = false
   overwrite_all = false

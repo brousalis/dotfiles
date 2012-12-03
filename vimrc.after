@@ -4,6 +4,7 @@ colorscheme jellybeans
 set mouse=a                     " because mouse
 set nu                          " line numbers
 set nobackup                    " don't do backups
+set paste                       " don't judge me
 set nowritebackup               " 
 set noswapfile                  " 
 set hidden                      " hide buffers, rather than closing them

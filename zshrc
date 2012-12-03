@@ -1,7 +1,8 @@
 ZSH_THEME="random"
-plugins=(fasd heroku osx gem rake rails3 ruby git)
+ZSH="$HOME/dotfiles/oh-my-zsh"
+plugins=(fasd heroku autojump osx gem rake rails3 ruby git)
 
-source $HOME/dotfiles/oh-my-zsh/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 source $HOME/dotfiles/aliases
 
 export SHELL='/bin/zsh'

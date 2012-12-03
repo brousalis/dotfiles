@@ -1,23 +1,16 @@
-" colors
-syntax on
-set t_Co=256
-colorscheme jellybeans
+colorscheme solarized
 
 " settings
-set nocompatible                " don't hack around for vi compatiblity
-set mouse=a                     " because i'm lame
+set mouse=a                     " because mouse
 set nu                          " line numbers
-set backup                      " do backups
-set backupdir=~/.vimbackup      " put backups in one place
-set directory=~/.vimtmp         " put tmp files in one place
-set dir=~/.vimtmp               " for backup swaps
-set noswapfile                  " wait wat
+set nobackup                    " don't do backups
+set nowritebackup               " 
+set noswapfile                  " 
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
 set smartindent                 " let vim indent for you
 set smarttab                    " let vim tab
 set autoindent                  " always set autoindenting on
-set copyindent                  " copy the previous indent on autoindenting
 set tabstop=2                   " two-space tabs
 set shiftwidth=2                " two-space tabs
 set expandtab                   " use spaces for tabs
@@ -39,33 +32,19 @@ set clipboard=unnamed           " please work
 set more                        " page on extended output
 set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
-set showcmd                     " show command /eing typed
-set tags=~/.tags                " grab tags directory, all the way up to root
+set showcmd                     " display incomplete commands
 set title                       " set the title
 set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
+set showmatch			" bracket/braces showing
+set mat=5			" show it for 5 seconds
+set ruler
+set noeol
 
-" load all the things (vundle)
-filetype off                   
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rails'
-Bundle 'pangloss/vim-javascript'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on
 
 " file type detection
 if has('autocmd')
-  au filetype php set tabstop=4                 " four spaces for PHP tabs
-  au filetype php set shiftwidth=4              " four spaces for PHP tabs
   au filetype ruby set list                     " list chars in ruby
   au filetype ruby set listchars=tab:>-,trail:- " list trailing spaces + all tabs
   au filetype ruby set list                     " list chars in js
@@ -77,17 +56,8 @@ if has('autocmd')
   au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
 endif
 
-" faster split resizing (+,-)
-if bufwinnr(1)
-  map + <C-W>+
-  map - <C-W>-
-endif
-
-" sudo write ,W
-noremap <leader>W :w !sudo tee %<CR>
-
-" bad habits
-cmap w!! %!sudo tee > /dev/null %
+" treat these like blocks
+let g:html_indent_tags = 'li\|p'
 
 " custom binds I use
 let mapleader = ","
@@ -105,24 +75,14 @@ noremap T ^
 nmap <leader>w :set wrap!<CR>
 nmap <leader>k :set list!<CR>
 inoremap <C-tab> <Esc><<i
-
-" use the home row BITCH
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-inoremap <Up> <NOP>
-inoremap <Down> <NOP>
-nnoremap <Left> <NOP>
-nnoremap <Right> <NOP>
-nnoremap <Up> <NOP>
-nnoremap <Down> <NOP>
 nnoremap j gj
 nnoremap k gk
 
-" move between files
-map <C-K> <Esc>:next<CR>
-map <C-J> <Esc>:prev<CR>
-map <C-H> <Esc>:first<CR>
-map <C-L> <Esc>:last<CR>
+" get off my lawn
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up> :echoe "Use k"<CR>
+nnoremap <Down> :echoe "Use j"<CR>
 
 " strip trailing whitespace (,ss)
 function! StripWhitespace ()
@@ -146,7 +106,7 @@ inoremap <F4> <Esc>:m-2<CR>==gi
 vnoremap <F3> :m'>+<CR>gv=gv
 vnoremap <F4> :m-2<CR>gv=gv
 
-" tabs
+" nerdtree tab navigation
 map <F1> :tabprev<CR>
 map <F2> :tabnext<CR>
 
@@ -156,11 +116,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " when vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
 
-" search
-set ic
-set smartcase
-set hlsearch
-
 " move between panes
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
@@ -169,11 +124,7 @@ map <Leader>h <C-w>h
 
 " nerdtree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows=0
-
-" powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme='default'
+let g:NERDTreeDirArrows=1
 
 " nerdcommenter
 let NERDSpaceDelims=1
@@ -183,10 +134,10 @@ let NERDCompactSexyComs=1
 nnoremap <leader>rp :RainbowParenthesesToggle<CR>
 
 " folding settings
-set foldmethod=indent   "fold based on indent
-set foldnestmax=10      "deepest fold is 10 levels
-set nofoldenable        "dont fold by default
-set foldlevel=1         "this is just what i use
+set foldmethod=indent   " fold based on indent
+set foldnestmax=10      " deepest fold is 10 levels
+set nofoldenable        " dont fold by default
+set foldlevel=1         " this is just what i use
 
 " jump to last cursor position when opening a file.
 autocmd BufReadPost * call SetCursorPosition()

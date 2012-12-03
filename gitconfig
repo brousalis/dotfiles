@@ -1,6 +1,8 @@
 [user]
   name = brousalis
   email = brousapg@gmail.com
+[core]
+  excludesfile = ~/.gitignore
 [color]
   ui = auto
 [color "branch"]
@@ -16,7 +18,11 @@
   added = yellow
   changed = green
   untracked = cyan
+[format]
+  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [merge]
   log = true
+  summary = true
+  verbosity = 1
 [rerere]
   enabled = 1

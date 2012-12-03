@@ -7,8 +7,7 @@ function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd .
 alias h='cd ~'
 alias home='cd ~'
 alias dots='cd ~/dotfiles'
-alias ll='ls -alh'
-alias l='ls -alh'
+alias r='rails'
 alias ifi='ifconfig | ack "net"'
 alias untar="tar -xvvf"
 alias reload="source ~/.bashrc"
@@ -21,29 +20,37 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias cheftar="rm chef.tar.gz && tar -czvf chef.tar.gz --exclude=.git --exclude=.ssh --exclude=.DS_Store ."  
 alias fs="stat -f '%z bytes'"
 alias df="df -h"
-
-# git
-alias gl='git pull'
-alias gp='git push'
-alias gd='git diff'
-alias gc='git commit -v'
-alias gca='git commit . -v'
-alias gb='git branch -v'
-alias gs='git status -sb'
-alias ga='git add'
-alias gco='git checkout'
-alias gcl='git clone'
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
-# completion with git aliases
-complete -o bashdefault -o default -o nospace -F _git_add ga
-complete -o bashdefault -o default -o nospace -F _git_branch gb
-complete -o bashdefault -o default -o nospace -F _git_checkout gco
-complete -o bashdefault -o default -o nospace -F _git_clone gcl
-complete -o bashdefault -o default -o nospace -F _git_diff gd
-complete -o bashdefault -o default -o nospace -F _git_log glog
-complete -o bashdefault -o default -o nospace -F _git_commit gc gca
-complete -o bashdefault -o default -o nospace -F _git_push gp
-complete -o bashdefault -o default -o nospace -F _git_pull gl
+# ls
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+alias lh='ls -lah'                # human readable
+alias lsam='ls -am'               # list files horizontally
+alias lr='ls -lR'                 # recursive
+alias lsx='ls -ax'                # sort right to left rather then in columns
+alias lss='ls -shAxSr'            # sort by size
+alias lt='ls -lAtrh'              # sort by date and human readable
+alias lm='ls -al |more'           # pipe through 'more'
+alias lls='ls -l -h -g -F --color=auto'
+alias lc='ls -aCF'
+
+# pretty ways to look at directory contents
+alias l1='tree --dirsfirst -ChFL 1'
+alias l2='tree --dirsfirst -ChFL 2'
+alias l3='tree --dirsfirst -ChFL 3'
+
+alias ll1='tree --dirsfirst -ChFupDaL 1'
+alias ll2='tree --dirsfirst -ChFupDaL 2'
+alias ll3='tree --dirsfirst -ChFupDaL 3'
+
+alias l='l1'
+alias ll='ll1'
+
+# Remove autocorrect for some terms
+alias mv="nocorrect mv"
+alias cp="nocorrect cp"
+alias mkdir="nocorrect mkdir"
+alias tmux="nocorrect tmux"

@@ -26,9 +26,5 @@ if [ -x /usr/bin/dircolors ]; then
   alias diff='colordiff -dw'
 fi
 
-# path
-export PATH=/usr/lib:~/bin:/usr/local/bin:~/.rvm/bin:$PATH
-
 # heroku toolbelt
 export PATH="/usr/local/heroku/bin:$PATH" 
- 

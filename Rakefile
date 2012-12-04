@@ -1,7 +1,7 @@
 require 'rake'
 
-task :install do
-  linkables = Dir.glob('*').reject{|f| f["aliases"] || f["Rakefile"] || f["osx"]}
+task :install, [:submodules] do
+  linkables = Dir.glob('*').reject{|f| f["custom"] || f["Rakefile"] || f["osx"]}
 
   skip_all = false
   overwrite_all = false
@@ -15,7 +15,7 @@ task :install do
 
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
-        puts "File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
+        puts "✱ File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
         case STDIN.gets.chomp
         when 'o' then overwrite = true
         when 'b' then backup = true
@@ -28,9 +28,12 @@ task :install do
       FileUtils.rm_rf(target) if overwrite || overwrite_all
       `mv "$HOME/.#{linkable}" "$HOME/backups/.#{linkable}.backup"` if backup || backup_all
     end
-    puts "Linked #{target}"
+    puts "✱ Linked #{target}"
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
+
+  puts "✱ Installing Janus"
+  `cd ~/dotfiles/janus && rake`
 end
 
 task :uninstall do
@@ -39,16 +42,21 @@ task :uninstall do
     target = "#{ENV["HOME"]}/.#{linkable}"
 
     if File.symlink?(target)
-      puts "Removed #{target}"
+      puts "✱ Removed #{target}"
       FileUtils.rm(target)
     end
 
     if File.exists?("#{ENV["HOME"]}/.#{linkable}.backup")
-      puts "Restored #{linkable}"
+      puts "✱ Restored #{linkable}"
       `mv "$HOME/backups/.#{linkable}.backup" "$HOME/.#{linkable}"` 
     end
 
   end
+end
+
+task :submodules do
+  puts "✱ Updating submodules"
+  `git submodule update --init --recursive`
 end
 
 task :default => 'install'

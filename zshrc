@@ -10,6 +10,8 @@ export SHELL='/bin/zsh'
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
 export PATH=${HOME}/bin:${PATH}
+export LC_ALL=en_US.utf-8 
+export LANG="$LC_ALL" 
 
 export HISTCONTROL=ignoredups
 export HISTSIZE=10000

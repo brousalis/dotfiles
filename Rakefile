@@ -1,11 +1,13 @@
 require 'rake'
 
-task :install, [:submodules] do
+task :install => [:submodules] do
   linkables = Dir.glob('*').reject{|f| f["custom"] || f["Rakefile"] || f["osx"]}
 
   skip_all = false
   overwrite_all = false
   backup_all = false
+
+  puts "✱ Symlinking dotfiles"
 
   linkables.each do |linkable|
     overwrite = false
@@ -15,7 +17,7 @@ task :install, [:submodules] do
 
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
-        puts "✱ File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
+        puts "✖ File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
         case STDIN.gets.chomp
         when 'o' then overwrite = true
         when 'b' then backup = true
@@ -50,8 +52,10 @@ task :uninstall do
       puts "✱ Restored #{linkable}"
       `mv "$HOME/backups/.#{linkable}.backup" "$HOME/.#{linkable}"` 
     end
-
   end
+
+  puts "✱ Removing Janus"
+  `rm ~/.vimrc ~/.gvimrc ~/.vim`
 end
 
 task :submodules do

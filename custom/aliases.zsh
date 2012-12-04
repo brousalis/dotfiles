@@ -20,6 +20,7 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias cheftar="rm chef.tar.gz && tar -czvf chef.tar.gz --exclude=.git --exclude=.ssh --exclude=.DS_Store ."
 alias fs="stat -f '%z bytes'"
 alias df="df -h"
+alias gs="git status -sb"
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 

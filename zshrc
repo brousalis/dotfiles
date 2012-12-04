@@ -10,8 +10,6 @@ export SHELL='/bin/zsh'
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
 export PATH=${HOME}/bin:${PATH}
-export LC_ALL=en_US.utf-8 
-export LANG="$LC_ALL" 
 
 export HISTCONTROL=ignoredups
 export HISTSIZE=10000
@@ -22,7 +20,11 @@ export EDITOR='vim'
 export CLICOLOR=1
 
 # heroku
-export PATH="/usr/local/heroku/bin:$PATH" 
+export PATH="/usr/local/heroku/bin:$PATH"
 
 # secrets
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LESSCHARSET=utf-8

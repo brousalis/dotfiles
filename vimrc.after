@@ -38,6 +38,8 @@ set title                       " set the title
 set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=2
 set statusline=%F%m%r%h%w
+scriptencoding utf-8
+set encoding=utf-8
 
 " file type detection
 if has('autocmd')

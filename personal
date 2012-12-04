@@ -1,0 +1,65 @@
+# platform detection
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='darwin'
+fi
+
+# platform dependent
+if [[ $platform = 'linux' ]]; then
+  # cnu paths
+  export PATH=/cnu/bin:/export/web/stable/cnuapp/bin:/export/web/cnuapp/lib/service_mgr/bin:${HOME}/cnu-tools/bin:/export/web/stable/cabar/bin:/etc/postgresql/8.3/main:${PATH}
+
+  export FRONTEND_URL='http://www-gbi.baja.dev.cashnetusa.com'
+  export PORTAL_URL='http://portal-gbi.baja.dev.cashnetusa.com'
+
+  # cnu tools
+  alias sconsole='source /etc/cnu/cnu_env; /export/web/cnuapp/script/console $(echo $RAILS_ENV)' 
+
+  # cnu shortcuts
+  alias cnu='cd /export/web/cnuapp'
+  alias app='cd /export/web/cnuapp/ruby/web/FrontEnd/app'
+  alias views='cd /export/web/cnuapp/ruby/web/FrontEnd/app/views'
+  alias public='cd /export/web/cnuapp/ruby/web/FrontEnd/public'
+
+  # logs
+  alias dlogs='rm *.log; rm lsws.log.*'
+  alias flog='tail -f /var/log/cnuapp/frontend.log'
+  alias plog='tail -f /var/log/cnuapp/portal.log'
+  alias logs='tail -f /var/log/cnuapp/*.log'
+  alias elog='tail -f /var/log/cnuapp/stderr.log'
+  alias slog='tail -f /export/web/cnuapp/web/cnuapp/var/service_mgr*/*.log'
+  alias findpete='tail -f * | grep "PETE"'
+  alias nephrebase='p4 integ -3dtrb nephilim-stable-production-ep'
+
+  alias rpsql='sudo killall postgres && sudo /etc/init.d/postgresql-8.3 start'
+  alias rtoneloc='sudo sv restart /var/service/toneloc_api_services'
+  alias rmem='sudo /etc/init.d/memcached restart'
+  alias rclean='/export/web/toneloc/script/db_cleaner'
+  alias rsv='sudo sv restart /var/service/*'
+  alias rlsws='sudo sv restart /var/service/lsws'
+
+  alias mexico='ln -sf /etc/cnu/cnu_env.CASA /etc/cnu/cnu_env; rm /export/web/cnuapp; ln -sf /export/web/mloc/cnuapp /export/web'
+  alias ep='ln -sf /etc/cnu/cnu_env.EP /etc/cnu/cnu_env; rm /export/web/cnuapp; ln -sf /export/web/ep/cnuapp /export/web'
+  alias ce='/export/web/ep/cnuapp/bin/cnu_env'
+
+  alias cdb='/export/web/cnuapp/bin/cnurake db:rebuild'
+  alias cdbt='sudo /etc/init.d/postgresql-8.3 restart && sudo /export/web/toneloc/script/db_rebuild' 
+
+  # git completion on debian  
+  source /etc/bash_completion.d/git
+  GIT_PS1_SHOWDIRTYSTATE=true
+
+  # holy fucking perforce
+  export P4CONFIG=~/.p4config
+fi
+
+# desktops
+alias ossh='ssh cnuapp@10.224.23.55'
+alias cssh='ssh cnuapp@10.224.115.152'
+alias xen='ssh cnuapp@hades.dev.cashnetusa.com'
+alias baja='ssh cnuapp@baja.dev.cashnetusa.com'
+alias teamego='ssh teamegoc@184.173.85.198'
+alias leonards='ssh theleona@174.120.254.130'

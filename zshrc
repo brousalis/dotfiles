@@ -1,4 +1,4 @@
-HOSTNAME="$(cat /etc/hostname)"
+HOSTNAME="$(hostname)"
 
 ZSH="$HOME/dotfiles/oh-my-zsh"
 ZSH_CUSTOM="$HOME/dotfiles/custom"
@@ -45,6 +45,6 @@ export LANG=en_US.UTF-8
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local
 
 # specific hostnames
-if [[ -a ~/.${HOSTNAME}_zshrc ]]; then
- source ~/.${HOSTNAME}_zshrc
+if [[ -a ~/dotfiles/hosts/${HOSTNAME} ]]; then
+ source ~/dotfiles/hosts/${HOSTNAME}
 fi

@@ -54,6 +54,8 @@ if has('autocmd')
   au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
 endif
 
+filetype plugin indent on
+
 " treat these like blocks
 let g:html_indent_tags = 'li\|p'
 
@@ -70,6 +72,7 @@ nnoremap ; :
 nnoremap <C-d> :q<CR>
 noremap Y $
 noremap T ^
+noremap K i<CR><Esc>
 nmap <leader>w :set wrap!<CR>
 nmap <leader>k :set list!<CR>
 inoremap <C-tab> <Esc><<i

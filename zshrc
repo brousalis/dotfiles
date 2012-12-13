@@ -48,3 +48,8 @@ export LANG=en_US.UTF-8
 if [[ -a ~/dotfiles/hosts/${HOSTNAME} ]]; then
  source ~/dotfiles/hosts/${HOSTNAME}
 fi
+
+# fix git slowness
+__git_files () {
+  _wanted files expl 'local files' _files
+}

@@ -9,8 +9,13 @@ task :install => [:submodules] do
   overwrite_all = false
   backup_all = false
 
-  puts "✱ Symlinking dotfiles"
+  puts "✱ Installing Janus"
+  `curl -Lo- https://bit.ly/janus-bootstrap | bash`
 
+  puts "✱ Installing oh-my-zsh"
+  `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
+
+  puts "✱ Symlinking dotfiles"
   linkables.each do |linkable|
     overwrite = false
     backup = false
@@ -35,12 +40,6 @@ task :install => [:submodules] do
     puts "✱ Linked #{target}"
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
-
-  puts "✱ Installing oh-my-zsh"
-  `git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh`
-
-  puts "✱ Installing Janus"
-  `cd ~/dotfiles/janus && rake`
 end
 
 task :uninstall do

@@ -1,6 +1,6 @@
 HOSTNAME="$(hostname)"
 
-ZSH="$HOME/oh-my-zsh"
+ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$HOME/dotfiles/custom"
 ZSH_THEME="pete"
 

@@ -3,7 +3,7 @@
 require 'rake'
 
 task :install => [:submodules] do
-  linkables = Dir.glob('*').reject{|f| f["custom"] || f["Rakefile"] || f["osx"]}
+  linkables = Dir.glob('*').reject{|f| f["hosts"] || f["custom"] || f["Rakefile"] || f["osx"]}
 
   skip_all = false
   overwrite_all = false
@@ -36,6 +36,9 @@ task :install => [:submodules] do
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
 
+  puts "✱ Installing oh-my-zsh"
+  `git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh`
+
   puts "✱ Installing Janus"
   `cd ~/dotfiles/janus && rake`
 end
@@ -58,6 +61,11 @@ task :uninstall do
 
   puts "✱ Removing Janus"
   `rm ~/.vimrc ~/.gvimrc ~/.vim`
+
+  puts "✱ Removing oh-my-zsh"
+  `rm ~/.oh-my-zsh`
+
+  puts "⚑ You may want to switch the shell back to bash (sudo chsh -s /bin/bash)"
 end
 
 task :submodules do

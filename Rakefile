@@ -2,7 +2,7 @@
 
 require 'rake'
 
-task :install => [:submodules] do
+task :install do
   linkables = Dir.glob('*').reject{|f| f["hosts"] || f["custom"] || f["Rakefile"] || f["osx"]}
 
   skip_all = false
@@ -65,11 +65,6 @@ task :uninstall do
   `rm ~/.oh-my-zsh`
 
   puts "⚑ You may want to switch the shell back to bash (sudo chsh -s /bin/bash)"
-end
-
-task :submodules do
-  puts "✱ Updating submodules"
-  `git submodule update --init --recursive`
 end
 
 task :default => 'install'

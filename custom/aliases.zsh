@@ -26,7 +26,8 @@ alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 
 # ls
-alias ll='ls -l'
+alias l='ls -A'
+alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 alias lh='ls -lah'                # human readable
@@ -41,9 +42,6 @@ alias lc='ls -aCF'
 alias l1='tree --dirsfirst -ChFL 1'
 alias l2='tree --dirsfirst -ChFL 2'
 alias l3='tree --dirsfirst -ChFL 3'
-
-alias l='ls -A'
-alias ll='l1'
 
 # Remove autocorrect for some terms
 alias mv="nocorrect mv"

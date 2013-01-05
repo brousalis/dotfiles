@@ -1,6 +1,6 @@
 HOSTNAME="$(hostname)"
 
-ZSH="$HOME/dotfiles/oh-my-zsh"
+ZSH="$HOME/oh-my-zsh"
 ZSH_CUSTOM="$HOME/dotfiles/custom"
 ZSH_THEME="pete"
 
@@ -41,15 +41,15 @@ export LANG=en_US.UTF-8
 # load up tmux
 #if [ "$TMUX" = "" ]; then tmux; fi
 
-# secrets
+# file for sensitive information 
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local
 
-# specific hostnames
+# load settings for specific hostnames 
 if [[ -a ~/dotfiles/hosts/${HOSTNAME} ]]; then
  source ~/dotfiles/hosts/${HOSTNAME}
 fi
 
-# fix git slowness
+# fix git tab slowness
 __git_files () {
   _wanted files expl 'local files' _files
 }

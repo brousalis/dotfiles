@@ -1,4 +1,5 @@
-colorscheme herald
+colorscheme jellybeans
+set t_Co=256
 
 " settings
 set mouse=a                     " because mouse

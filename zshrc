@@ -16,7 +16,8 @@ plugins=(fasd heroku autojump osx gem rake rails3 ruby git)
 source $ZSH/oh-my-zsh.sh
 
 export SHELL='/bin/zsh'
-export TERM='xterm-256color'
+export TERM='screen-256color'
+#export TERM='xterm-256color'
 
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}

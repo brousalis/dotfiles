@@ -26,7 +26,8 @@ alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 
 # ls
-alias l='ls -A'
+alias l='tree --dirsfirst -ChFl 1'
+alias ls='ls -A'
 alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'

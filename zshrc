@@ -17,7 +17,6 @@ source $ZSH/oh-my-zsh.sh
 
 export SHELL='/bin/zsh'
 export TERM='screen-256color'
-#export TERM='xterm-256color'
 
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
@@ -38,9 +37,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export LESSCHARSET=utf-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# load up tmux
-#if [ "$TMUX" = "" ]; then tmux; fi
 
 # file for sensitive information 
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local

@@ -7,3 +7,6 @@ defaults write NSGlobalDomain KeyRepeat -int 0
 # Fix font smoothing
 defaults -currentHost write -g AppleFontSmoothing -int 2
 
+# Remove spotlight icon from top bar
+sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
+killall SystemUIServer

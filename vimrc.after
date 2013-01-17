@@ -1,5 +1,3 @@
-colorscheme jellybeans
-set t_Co=256
 
 " settings
 set mouse=a                     " because mouse
@@ -79,12 +77,11 @@ nmap <leader>k :set list!<CR>
 inoremap <C-tab> <Esc><<i
 nnoremap j gj
 nnoremap k gk
-
-" get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+nnoremap <silent> '. :cd %:p:h<cr>
+nnoremap Q q
+nnoremap q <nop>
+map <S-Enter> O<Esc>j
+map <CR> o<Esc>k 
 
 " strip trailing whitespace (,ss)
 function! StripWhitespace ()
@@ -95,10 +92,6 @@ function! StripWhitespace ()
     call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
-
-" newline on shift/enter
-map <S-Enter> O<Esc>j
-map <CR> o<Esc>k
 
 " move a line of text w/ F3/F4
 nnoremap <F3> :m+<CR>==
@@ -132,9 +125,6 @@ let g:NERDTreeDirArrows=1
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 
-" rainbows
-nnoremap <leader>rp :RainbowParenthesesToggle<CR>
-
 " folding settings
 set foldmethod=indent   " fold based on indent
 set foldnestmax=10      " deepest fold is 10 levels
@@ -153,7 +143,6 @@ endfunction
 
 " ctrl p for cnuapp
 set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
-"set wildignore+=*/.git/* " This line breaks fugitive.vim
 set wildignore+=*.pyc,*/*.scssc
 set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
 set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*
@@ -199,5 +188,35 @@ function! DiffToggle()
     endif
 :endfunction
 
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+" splitjoin plugin
+nmap zj :SplitjoinSplit<cr>
+nmap zk :SplitjoinJoin<cr>
+
+" colors
+set t_Co=256
+colorscheme jellybeans
+set background=dark
+
+if &t_Co > 255
+  let g:solarized_termcolors=16
+  let g:solarized_contrast="low"
+  let g:solarized_termtrans="1"
+  set background=light
+  colorscheme solarized
+  highlight clear NonText
+  highlight clear StatusLine
+  highlight clear StatusLineNC
+  highlight clear VertSplit
+  highlight NonText ctermfg=7
+  highlight VertSplit ctermfg=15 ctermbg=15
+  highlight StatusLine ctermfg=10 ctermbg=15
+  highlight StatusLineNC ctermfg=14 ctermbg=15
+  highlight clear Comment
+  highlight Search cterm=underline
+  highlight LineNr ctermfg=15
+  set nocursorline
+  highlight CursorLineNr ctermfg=7
+  highlight clear CursorLine
+end
+
+call togglebg#map("<F5>")

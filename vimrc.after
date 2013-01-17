@@ -1,4 +1,3 @@
-
 " settings
 set mouse=a                     " because mouse
 set nu                          " line numbers
@@ -8,9 +7,7 @@ set nowritebackup               "
 set noswapfile                  " 
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
-set smartindent                 " let vim indent for you
 set smarttab                    " let vim tab
-set autoindent                  " always set autoindenting on
 set tabstop=2                   " two-space tabs
 set shiftwidth=2                " two-space tabs
 set expandtab                   " use spaces for tabs
@@ -37,7 +34,7 @@ set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=2
 set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P\ 
-set tw=0 ts=2 sw=4 sta et sts=2 ai nocindent nosmartindent
+set tw=0 ts=2 sw=2 sta et sts=2 ai nocindent nosmartindent
 
 " utf 8 up in this bitch
 scriptencoding utf-8
@@ -113,6 +110,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " when vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vimrc
+autocmd! bufwritepost vimrc.after source ~/.vimrc.after
 
 " move between panes
 map <Leader>j <C-w>j
@@ -184,11 +182,11 @@ let g:ctrlp_custom_ignore = {
 " ,df to see diff
 nnoremap <silent> <Leader>df :call DiffToggle()<CR>
 function! DiffToggle()
-    if &diff
-        diffoff
-    else
-        diffthis
-    endif
+  if &diff
+    diffoff
+  else
+    diffthis
+  endif
 :endfunction
 
 " splitjoin plugin
@@ -197,13 +195,9 @@ nmap zk :SplitjoinJoin<cr>
 
 " colors
 set t_Co=256
-colorscheme jellybeans
-set background=dark
-
 if &t_Co > 255
   let g:solarized_termcolors=16
   let g:solarized_contrast="low"
-  let g:solarized_termtrans="1"
   set background=light
   colorscheme solarized
   highlight clear NonText
@@ -217,6 +211,8 @@ if &t_Co > 255
   highlight clear Comment
   highlight Search cterm=underline
   highlight LineNr ctermfg=15
+  highlight Normal ctermbg=255
+  highlight Visual ctermbg=254
   set nocursorline
   highlight CursorLineNr ctermfg=7
   highlight clear CursorLine

@@ -36,7 +36,7 @@ set showcmd                     " display incomplete commands
 set title                       " set the title
 set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=2
-set statusline=%F%m%r%h%w
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
 scriptencoding utf-8
 set encoding=utf-8
 
@@ -218,5 +218,3 @@ if &t_Co > 255
   highlight CursorLineNr ctermfg=7
   highlight clear CursorLine
 end
-
-call togglebg#map("<F5>")

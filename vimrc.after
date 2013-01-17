@@ -34,9 +34,12 @@ set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " display incomplete commands
 set title                       " set the title
-set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
+set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=2
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)%P
+set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P\ 
+set tw=0 ts=2 sw=4 sta et sts=2 ai nocindent nosmartindent
+
+" utf 8 up in this bitch
 scriptencoding utf-8
 set encoding=utf-8
 

@@ -1,13 +1,15 @@
-colorscheme jellybeans
+" colors
 set t_Co=256
+set background=dark
+colorscheme herald
 
 " settings
 set mouse=a                     " because mouse
 set nu                          " line numbers
 set nobackup                    " don't do backups
 set paste                       " don't judge me
-set nowritebackup               " 
-set noswapfile                  " 
+set nowritebackup               " no backups
+set noswapfile                  " no swapfiles
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
 set smartindent                 " let vim indent for you
@@ -36,26 +38,17 @@ set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " display incomplete commands
 set title                       " set the title
-set shortmess=at                " eliminate annoying 'Press ENTER or type command to continue' notices
-set laststatus=2
-set statusline=%F%m%r%h%w
-scriptencoding utf-8
-set encoding=utf-8
+set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
+set laststatus=1                " status bar only shows if multiple files are open
 
-" file type detection
-if has('autocmd')
-  au filetype ruby set list                     " list chars in ruby
-  au filetype ruby set listchars=tab:>-,trail:- " list trailing spaces + all tabs
-  au filetype ruby set list                     " list chars in js
-  au filetype js set listchars=tab:>-,trail:-   " list trailing spaces + all tabs
-
-  au BufNewFile,BufRead *.erb set filetype=html
-  au BufNewFile,BufRead *.tpl set filetype=ruby
-  au BufRead,BufNewFile *.todo setfiletype todo 
-  au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
-endif
+set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P\
+set tw=0 ts=2 sw=2 sta et sts=2 ai nocindent nosmartindent
 
 filetype plugin indent on
+
+" utf 8, just incase
+scriptencoding utf-8
+set encoding=utf-8
 
 " treat these like blocks
 let g:html_indent_tags = 'li\|p'
@@ -79,12 +72,11 @@ nmap <leader>k :set list!<CR>
 inoremap <C-tab> <Esc><<i
 nnoremap j gj
 nnoremap k gk
-
-" get off my lawn
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR>
-nnoremap <Down> :echoe "Use j"<CR>
+nnoremap <silent> '. :cd %:p:h<cr>
+nnoremap Q q
+nnoremap q <nop>
+map <S-Enter> O<Esc>j
+map <CR> o<Esc>k
 
 " strip trailing whitespace (,ss)
 function! StripWhitespace ()
@@ -122,7 +114,7 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
-map <Leader>h <C-w>h 
+map <Leader>h <C-w>h
 
 " nerdtree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -180,14 +172,14 @@ let g:ctrlp_max_files =0
 let g:ctrlp_max_depth =1000
 let g:ctrlp_max_height = 50
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_clear_cache_on_exit = 0 
+let g:ctrlp_clear_cache_on_exit = 0
 
 let g:CommandTMaxFiles=50000
 let g:ctrlp_open_multiple_files = 't'
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \} 
+  \}
 
 " ,df to see diff
 nnoremap <silent> <Leader>df :call DiffToggle()<CR>
@@ -199,5 +191,6 @@ function! DiffToggle()
     endif
 :endfunction
 
-nmap sj :SplitjoinSplit<cr>
-nmap sk :SplitjoinJoin<cr>
+" splitjoin plugin
+nmap zj :SplitjoinSplit<cr>
+nmap zk :SplitjoinJoin<cr>

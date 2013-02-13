@@ -25,6 +25,7 @@ alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 alias gbcleanup="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}mcolour${i}\n"; done'
+alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
 
 alias -g COUNT='| wc -l'
 alias -g NULL='2> /dev/null'

@@ -40,7 +40,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # load up tmux
-#if [ "$TMUX" = "" ]; then tmux; fi
+if [ "$TMUX" = "" ]; then tmux; fi
 
 # file for sensitive information 
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local

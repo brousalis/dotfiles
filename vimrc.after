@@ -40,8 +40,9 @@ set showcmd                     " display incomplete commands
 set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=1                " status bar only shows if multiple files are open
+set nolist
 
-set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P\
+set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P
 set tw=0 ts=2 sw=2 sta et sts=2 ai nocindent nosmartindent
 
 filetype plugin indent on
@@ -124,9 +125,6 @@ let g:NERDTreeDirArrows=1
 let NERDSpaceDelims=1
 let NERDCompactSexyComs=1
 
-" rainbows
-nnoremap <leader>rp :RainbowParenthesesToggle<CR>
-
 " folding settings
 set foldmethod=indent   " fold based on indent
 set foldnestmax=10      " deepest fold is 10 levels
@@ -145,7 +143,6 @@ endfunction
 
 " ctrl p for cnuapp
 set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
-"set wildignore+=*/.git/* " This line breaks fugitive.vim
 set wildignore+=*.pyc,*/*.scssc
 set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
 set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*
@@ -167,30 +164,25 @@ set wildignore+=*/cnuapp/result.GB.pass/*,*/cnuapp/script/*,*/cnuapp/src/*
 set wildignore+=*/cnuapp/tmp/*,*/cnuapp/tools/*,*/cnuapp/typeroot/*,*/cnuapp/var/*
 set wildignore+=*/cnuapp/vendor/*
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
-
 let g:ctrlp_max_files =0
 let g:ctrlp_max_depth =1000
 let g:ctrlp_max_height = 50
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_clear_cache_on_exit = 0
-
 let g:CommandTMaxFiles=50000
 let g:ctrlp_open_multiple_files = 't'
-
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \}
 
-" ,df to see diff
-nnoremap <silent> <Leader>df :call DiffToggle()<CR>
-function! DiffToggle()
-    if &diff
-        diffoff
-    else
-        diffthis
-    endif
-:endfunction
+" gitgutter plugin - ,df to see diff
+nnoremap <silent> <Leader>df :GitGutterToggle<cr>
+let g:gitgutter_enabled = 0
 
 " splitjoin plugin
 nmap zj :SplitjoinSplit<cr>
 nmap zk :SplitjoinJoin<cr>
+
+" show characters over 80
+highlight OverLength ctermfg=white
+match OverLength /\%81v.\+/

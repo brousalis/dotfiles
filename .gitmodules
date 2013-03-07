@@ -16,6 +16,6 @@
 [submodule "janus/splitjoin.vim"]
 	path = janus/splitjoin.vim
 	url = git://github.com/AndrewRadev/splitjoin.vim
-[submodule "airblade/vim-gitgutter"]
-	path = airblade/vim-gitgutter
-	url = git://github.com/airblade/vim-gitgutter.vim 
+[submodule "janus/vim-gitgutter"]
+	path = janus/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter

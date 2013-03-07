@@ -15,6 +15,9 @@ task :install do
   puts "✱ Installing oh-my-zsh"
   `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
 
+  puts "✱ Syncing gitmodules (janus plugins)"
+  `git submodule update --init`
+
   puts "✱ Symlinking dotfiles"
   linkables.each do |linkable|
     overwrite = false

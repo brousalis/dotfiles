@@ -21,6 +21,7 @@ source $ZSH/oh-my-zsh.sh
 export SHELL="/bin/zsh"
 export TERM="screen-256color"
 
+export PATH=/usr/local/heroku/bin:$PATH #  heroku toolbelt
 export PATH=/usr/local/sbin:${PATH}
 export PATH=/usr/local/bin:${PATH}
 export PATH=${HOME}/bin:${PATH}

@@ -40,6 +40,7 @@ set showcmd                     " display incomplete commands
 set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=1                " status bar only shows if multiple files are open
+set nolist                      " hide invisible characters
 
 set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P\
 set tw=0 ts=2 sw=2 sta et sts=2 ai nocindent nosmartindent

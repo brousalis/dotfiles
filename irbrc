@@ -26,6 +26,12 @@ def time(times = 1)
   ret
 end
 
+def a(n=nil)
+  l = (n.nil? ? Loan.find(n) : Loan.find(:all).last)
+  l.approve
+  l.issue
+end
+
 def clear
   system 'clear'
 end
@@ -35,3 +41,4 @@ alias q exit
 def IRB.reload
   load __FILE__
 end
+

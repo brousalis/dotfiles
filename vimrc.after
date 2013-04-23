@@ -7,14 +7,10 @@ colorscheme herald
 set mouse=a                     " because mouse
 set nu                          " line numbers
 set nobackup                    " don't do backups
-set paste                       " don't judge me
 set nowritebackup               " no backups
 set noswapfile                  " no swapfiles
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
-set smartindent                 " let vim indent for you
-set smarttab                    " let vim tab
-set autoindent                  " always set autoindenting on
 set tabstop=2                   " two-space tabs
 set shiftwidth=2                " two-space tabs
 set expandtab                   " use spaces for tabs
@@ -24,8 +20,6 @@ set smartcase                   " ignore search case if all lowercase
 set hlsearch                    " highlight search terms
 set gdefault                    " default to global replace
 set virtualedit=all             " free cursor mode
-set wrap!                       " no wordwrap
-set backspace=eol,start,indent  " allow backspace to delete linebreaks
 set scrolloff=10                " have 3 lines of offset (or buffer) when scrolling
 set sidescroll=10               " 3 line buffer horizontally as well
 set wildmenu                    " make tab completion for files/buffers act like bash
@@ -42,29 +36,25 @@ set shortmess+=atI              " eliminate annoying 'Press ENTER or type comman
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
 
-set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P
-set tw=0 ts=2 sw=2 sta et sts=2 ai nocindent nosmartindent
-
 filetype plugin indent on
+
+au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile *.sass set filetype=scss
+
+
+" status bar
+set statusline=\ %.99f\ %<%h%m%r%w%=%l/%L\ %P
 
 " utf 8, just incase
 scriptencoding utf-8
 set encoding=utf-8
 
-" treat these like blocks
-let g:html_indent_tags = 'li\|p'
-
 " custom binds I use
 let mapleader = ","
-nnoremap <leader>dW pldW
-nnoremap <leader>dw pldw
 nnoremap <leader><space> :noh<CR>
-nnoremap <leader>u gUgU
-nnoremap <leader>l gugu
 inoremap jj <Esc>
 inoremap jk <Esc>
 nnoremap ; :
-nnoremap <C-d> :q<CR>
 noremap Y $
 noremap T ^
 noremap K i<CR><Esc>
@@ -89,10 +79,6 @@ function! StripWhitespace ()
 endfunction
 noremap <leader>ss :call StripWhitespace ()<CR>
 
-" newline on shift/enter
-map <S-Enter> O<Esc>j
-map <CR> o<Esc>k
-
 " move a line of text w/ F3/F4
 nnoremap <F3> :m+<CR>==
 nnoremap <F4> :m-2<CR>==
@@ -101,35 +87,26 @@ inoremap <F4> <Esc>:m-2<CR>==gi
 vnoremap <F3> :m'>+<CR>gv=gv
 vnoremap <F4> :m-2<CR>gv=gv
 
+" nerdtree
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows=1
+ 
 " nerdtree tab navigation
 map <F1> :tabprev<CR>
 map <F2> :tabnext<CR>
 
+" nerdcommenter
+let NERDSpaceDelims=1
+let NERDCompactSexyComs=1
+
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" when vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vimrc
 
 " move between panes
 map <Leader>j <C-w>j
 map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h
-
-" nerdtree
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
-let g:NERDTreeDirArrows=1
-
-" nerdcommenter
-let NERDSpaceDelims=1
-let NERDCompactSexyComs=1
-
-" folding settings
-set foldmethod=indent   " fold based on indent
-set foldnestmax=10      " deepest fold is 10 levels
-set nofoldenable        " dont fold by default
-set foldlevel=1         " this is just what i use
 
 " jump to last cursor position when opening a file.
 autocmd BufReadPost * call SetCursorPosition()
@@ -182,7 +159,3 @@ let g:gitgutter_enabled = 0
 " splitjoin plugin
 nmap zj :SplitjoinSplit<cr>
 nmap zk :SplitjoinJoin<cr>
-
-" show characters over 80
-highlight OverLength ctermfg=white
-match OverLength /\%81v.\+/

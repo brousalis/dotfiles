@@ -1,0 +1,8 @@
+sudo apt-get install python-dev libncurses5-dev ruby ruby-dev mercurial
+cd /tmp
+hg clone https://vim.googlecode.com/hg/ vim
+cd vim
+./configure --enable-perlinterp --enable-pythoninterp --enable-rubyinterp --enable-cscope --with-features=huge --prefix=/usr/local --without-x
+make
+sudo make install
+sudo make clean

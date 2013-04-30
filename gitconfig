@@ -1,3 +1,6 @@
+[user]
+  name = pbrousalis
+  email = pbrousapg@enova.com
 [core]
   excludesfile = ~/.gitignore
 	editor = /usr/bin/vim

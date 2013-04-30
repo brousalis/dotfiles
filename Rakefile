@@ -3,7 +3,7 @@
 require 'rake'
 
 task :install do
-  linkables = Dir.glob('*').reject{|f| f["hosts"] || f["custom"] || f["Rakefile"] || f["osx"]}
+  linkables = Dir.glob('*').reject{|f| f["hosts"] || f["custom"] || f["extra"] || f["README.md"]}
 
   skip_all = false
   overwrite_all = false
@@ -11,6 +11,11 @@ task :install do
 
   puts "✱ Installing Janus"
   `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+
+  if !File.exists?("/bin/zsh")
+    puts "✱ Installing zsh"
+    `sudo apt-get install zsh`
+  end
 
   puts "✱ Installing oh-my-zsh"
   `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`

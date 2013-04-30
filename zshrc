@@ -1,5 +1,5 @@
 HOSTNAME="$(hostname)"
-LOCATION="$HOME/dotfiles"
+LOCATION="/export/private/dotfiles"
 
 ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$LOCATION/custom"

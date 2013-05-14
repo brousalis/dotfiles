@@ -1,6 +1,8 @@
 function prompt_char {
     #echo '↪'
-    echo '⚡'
+    #echo '⚡'
+    #echo '🍺 '
+    echo '🌀 '
     #echo '‽'
     #echo '☢'
     #echo '☠'

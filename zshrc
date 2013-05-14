@@ -38,7 +38,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # load up tmux for every shell
-# if [ "$TMUX" = "" ]; then tmux attach; fi
+if [ "$TMUX" = "" ]; then tmux attach; fi
 
 # load personal settings
 [ -f ~/.zshrc.local ] && source ${HOME}/.zshrc.local

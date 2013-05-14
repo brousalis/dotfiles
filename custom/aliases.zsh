@@ -22,7 +22,6 @@ alias gs="git status -sb"
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 alias gbcleanup="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
-alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}mcolour${i}\n"; done'
 alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
 alias biggie="find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $8 \": \" $5 }'"
 

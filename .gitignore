@@ -1,3 +1,4 @@
 .DS_Store
-zshrc.local
-screen/
+local
+screen
+janus

@@ -7,6 +7,8 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
+alias fs="stat -f '%z bytes'"
+alias df="df -h"
 alias ifi='ifconfig | ack "net"'
 alias untar="tar -xvvf"
 alias reload="source ~/.bash_profile"
@@ -15,13 +17,9 @@ alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
-alias fs="stat -f '%z bytes'"
-alias df="df -h"
-alias gs="git status -sb"
-alias grm="git ls-files --deleted | xargs git rm"
-alias undopush="git push -f origin HEAD^:master"
 alias gbcleanup="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
+alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 # ls
 alias ll='ls -la'

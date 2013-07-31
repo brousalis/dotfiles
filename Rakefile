@@ -9,7 +9,7 @@ task :install do
   overwrite_all = false
   backup_all = false
 
-  if !File.exists?("#{ENV["HOME"]}/.janus")
+  if !File.exists?("#{ENV["HOME"]}/.janus") || !File.exists?("#{ENV["HOME"]}/.gvimrc")
     puts "✱ Installing Janus"
     `curl -Lo- https://bit.ly/janus-bootstrap | bash`
   end

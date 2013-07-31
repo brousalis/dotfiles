@@ -16,11 +16,16 @@ export LESSCHARSET=utf-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# tired of writing this
+function include () {
+  [[ -f "$1" ]] && source "$1"
+}
+
 # load personal settings
-[ -f ~/.local ] && source ${HOME}/.local
+include ~/.local
 
 # load settings for specific hostnames
-[ -a ~/.hosts/$(hostname) ] && source ~/.hosts/$(hostname)
+include ~/.hosts/$(ls ~/.hosts | grep $(hostname -s)) 
 
 # load rest of files
 for file in ~/.custom/*.sh; do

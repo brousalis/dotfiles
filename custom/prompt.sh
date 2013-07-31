@@ -1,13 +1,3 @@
-# bash_prompt
-function prompt_char {
-  #echo '🌀 '
-  #echo '👾 '
-  #echo '🐸 '
-  #echo '🌲 '
-  #echo '💠 '
-  echo '↪'
-}
-
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -49,9 +39,7 @@ style_path="\[${txtrst}${txtylw}\]"
 style_chars="\[${txtrst}${txtylw}\]"
 style_git="\[${txtrst}${txtblu}\]"
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
-  style_host="\[${txtrst}${txtmgn}\]"
-fi
+#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 

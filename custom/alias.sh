@@ -1,4 +1,3 @@
-# aliases
 alias h='cd ~'
 alias home='cd ~'
 alias dots='cd ~/dotfiles'
@@ -10,7 +9,7 @@ function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd .
 
 alias ifi='ifconfig | ack "net"'
 alias untar="tar -xvvf"
-alias reload="source ~/.zshrc"
+alias reload="source ~/.bash_profile"
 alias dsremove="find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch"
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -22,13 +21,7 @@ alias gs="git status -sb"
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 alias gbcleanup="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
-alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}mcolour${i}\n"; done'
 alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
-alias biggie="find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $8 \": \" $5 }'"
-
-# use at the end of a command, ex: ls -la COUNT
-alias -g COUNT='| wc -l'
-alias -g NULL='2> /dev/null'
 
 # ls
 alias ll='ls -la'
@@ -49,29 +42,5 @@ if [ -x /usr/bin/dircolors ]; then
   alias ack='ack --color'
   alias less='less -R'
   alias diff='colordiff -dw'
-fi
+fi 
 
-# remove autocorrect for some terms
-alias mv="nocorrect mv"
-alias cp="nocorrect cp"
-alias mkdir="nocorrect mkdir"
-alias tmux="nocorrect tmux"
-alias rake='noglob rake'
-alias heroku='noglob heroku'
-alias bundle='noglob bundle'
-
-# after a cd, run ls
-function chpwd() {
-  emulate -LR zsh
-  ls -la
-}
-
-# find and open files in vim
-function vif() {
-  vim $(find . -name \*$1\*)
-}
-
-# fix git tab completion slowness
-__git_files () {
-  _wanted files expl 'local files' _files
-} 

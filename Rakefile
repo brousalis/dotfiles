@@ -3,24 +3,18 @@
 require 'rake'
 
 task :install do
-  linkables = Dir.glob('*').reject{|f| f["hosts"] || f["custom"] || f["extra"] || f["README.md"]}
+  linkables = Dir.glob('*').reject{|f| f["extra"] || f["README.md"]}
 
   skip_all = false
   overwrite_all = false
   backup_all = false
 
-  puts "✱ Installing Janus"
-  `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-
-  if !File.exists?("/bin/zsh")
-    puts "✱ Installing zsh"
-    `sudo apt-get install zsh`
+  if !File.exists?("#{ENV["HOME"]}/.janus")
+    puts "✱ Installing Janus"
+    `curl -Lo- https://bit.ly/janus-bootstrap | bash`
   end
 
-  puts "✱ Installing oh-my-zsh"
-  `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
-
-  puts "✱ Syncing gitmodules (janus plugins)"
+  puts "✱ Syncing gitmodules (mostly janus plugins)"
   `git submodule update --init`
 
   puts "✱ Symlinking dotfiles"
@@ -51,7 +45,8 @@ task :install do
 end
 
 task :uninstall do
-  linkables = Dir.glob('*').reject{|f| f["Rakefile"] || f["osx"]}
+  linkables = Dir.glob('*').reject{|f| f["janus"] || f["extra"] || f["README.md"]}
+
   linkables.each do |linkable|
     target = "#{ENV["HOME"]}/.#{linkable}"
 
@@ -65,14 +60,15 @@ task :uninstall do
       `mv "$HOME/backups/.#{linkable}.backup" "$HOME/.#{linkable}"` 
     end
   end
-
-  puts "✱ Removing Janus"
-  `rm ~/.vimrc ~/.gvimrc ~/.vim`
-
-  puts "✱ Removing oh-my-zsh"
-  `rm ~/.oh-my-zsh`
-
-  puts "⚑ You may want to switch the shell back to bash (sudo chsh -s /bin/bash)"
+  
+  puts "✖ Remove Janus?"
+  case STDIN.gets.chomp
+    when 'y' then 
+      puts "✱ Removing Janus"
+      `rm ~/.vimrc ~/.gvimrc`
+      `rm -rf ~/.janus`
+    when 'n' then next
+  end
 end
 
 task :default => 'install'

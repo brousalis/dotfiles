@@ -1,0 +1,15 @@
+[submodule "janus/vim-fugitive"]
+	path = janus/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive
+[submodule "janus/vim-endwise"]
+	path = janus/vim-endwise
+	url = git://github.com/tpope/vim-endwise
+[submodule "janus/vim-surround"]
+	path = janus/vim-surround
+	url = git://github.com/tpope/vim-surround
+[submodule "janus/ack"]
+	path = janus/ack
+	url = git://github.com/mileszs/ack.vim
+[submodule "janus/splitjoin.vim"]
+	path = janus/splitjoin.vim
+	url = git://github.com/AndrewRadev/splitjoin.vim

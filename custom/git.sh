@@ -1,4 +1,5 @@
 alias gl='git pull'
+alias ga='git add'
 alias gp='git push'
 alias gd='git diff'
 alias gc='git commit -v'

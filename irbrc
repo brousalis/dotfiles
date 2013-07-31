@@ -4,7 +4,12 @@ ARGV.concat ["--readline", "--prompt-mode", "simple"]
 require 'irb/completion'
 require 'irb/ext/save-history'
 require 'rubygems'
-require 'pp'
+
+begin
+  require 'suite'
+rescue LoadError
+  puts "*** suite disabled ***"
+end
 
 begin
   require 'ap'
@@ -24,12 +29,6 @@ def time(times = 1)
   ret = nil
   Benchmark.bm { |x| x.report { times.times { ret = yield } } }
   ret
-end
-
-def a(n=nil)
-  l = (n.nil? ? Loan.find(n) : Loan.find(:all).last)
-  l.approve
-  l.issue
 end
 
 def clear

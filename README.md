@@ -4,13 +4,10 @@ This is my ideal setup for a Unix/Linux environment. I've taken things from all 
 ![preview](http://i.imgur.com/weujQ8H.png)
 ![preview](http://i.imgur.com/Xmo3A35.png)
 
-## Features
-I use zsh as my shell, most specifically the [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) framework. For vim, I use the [janus](https://github.com/carlhuda/janus) framework. I've made some custom modifications to each of these, which you can find in `/janus` and `/custom` (for oh-my-zsh). If you run the installer, these folders are symlinked to the home folder and are loaded with their respective frameworks.
-
 ### Setup
 Run `rake` inside the repo. 
 
-This will run the installers for Janus and oh-my-zsh, sync the git submodules for several vim plugins (located in /janus), then symlink all of the config files from the repo into your home directory.
+This will run the installers for Janus, sync the git submodules for several vim plugins (located in /janus), then symlink all of the config files from the repo into your home directory.
 
 If the installer finds an existing file when symlinking, you can overwrite it, back it up (moved to a temporary folder, which can be restored by 'uninstalling'), or skip it. I cannot remember where I found this rake task from, but credit goes to a dotfiles repo on Github.
 
@@ -22,7 +19,7 @@ This will remove all of the symlinks and restore any backed up files.
 ***
 
 ## Breakdown
-A quick heads up, in `custom/aliases.zsh` I have a function at the bottom that modifies the `cd` command so it automatically runs `ls` (lists the files) when you change into a directory. Remove the function to turn this off.
+A quick heads up, in `bashrc` I have a function at the bottom that modifies the `cd` command so it automatically runs `ls` (lists the files) when you change into a directory. Remove the function to turn this off.
 
 ### Useful aliases
 <pre>
@@ -105,13 +102,13 @@ function prompt_char {
 
 to override the character. 
 
-Also, the file `~/.zshrc.local` is automatically loaded, so you can store any host specific configuration there.
+Also, the file `~/.local` is automatically loaded, so you can store any host specific configuration there.
 
 ## Requirements
 - `ruby rails`
 - `git ack curl tree tmux vim`
 
-Most of these can be installed by using [brew](http://mxcl.github.com/homebrew/).
+Most of these can be installed by using [homebrew](http://mxcl.github.com/homebrew/).
 
 ## Unicode safe icons
      ✔ ✖ ✘ ✚ ✕ 

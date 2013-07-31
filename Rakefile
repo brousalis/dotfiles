@@ -9,15 +9,20 @@ task :install do
   overwrite_all = false
   backup_all = false
 
-  if !File.exists?("#{ENV["HOME"]}/.janus") || !File.exists?("#{ENV["HOME"]}/.gvimrc")
-    puts "✱ Installing Janus"
-    `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+  puts "\n"
+
+  if File.exists?("#{ENV["HOME"]}/.janus") || File.exists?("#{ENV["HOME"]}/.gvimrc")
+    puts "!!! Janus is already installed, overwrite? [y]es or [n]o"
+    case STDIN.gets.chomp
+      when 'y' then 
+        `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+    end 
   end
 
-  puts "✱ Syncing gitmodules (mostly janus plugins)"
+  puts "\n✱ Syncing gitmodules (mostly janus plugins)"
   `git submodule update --init`
 
-  puts "✱ Symlinking dotfiles"
+  puts "\n✱ Symlinking dotfiles"
   linkables.each do |linkable|
     overwrite = false
     backup = false
@@ -26,7 +31,8 @@ task :install do
 
     if File.exists?(target) || File.symlink?(target)
       unless skip_all || overwrite_all || backup_all
-        puts "✖ File already exists: #{target}, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
+        puts "!!! File already exists: #{target}"
+        puts "!!! What do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all"
         case STDIN.gets.chomp
         when 'o' then overwrite = true
         when 'b' then backup = true
@@ -61,7 +67,7 @@ task :uninstall do
     end
   end
   
-  puts "✖ Remove Janus? [y]es or [n]o"
+  puts "\n!!! Remove Janus? [y]es or [n]o"
   case STDIN.gets.chomp
     when 'y' then 
       puts "✱ Removing Janus"

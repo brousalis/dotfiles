@@ -61,7 +61,7 @@ task :uninstall do
     end
   end
   
-  puts "✖ Remove Janus?"
+  puts "✖ Remove Janus? [y]es or [n]o"
   case STDIN.gets.chomp
     when 'y' then 
       puts "✱ Removing Janus"

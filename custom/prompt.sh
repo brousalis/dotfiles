@@ -50,7 +50,7 @@ style_chars="\[${txtrst}${txtylw}\]"
 style_git="\[${txtrst}${txtblu}\]"
 
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
-  style_host="\[${txtrst}${txtred}\]"
+  style_host="\[${txtrst}${txtmgn}\]"
 fi
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }

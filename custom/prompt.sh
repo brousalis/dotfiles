@@ -43,7 +43,7 @@ style_git="\[${txtrst}${txtblu}\]"
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 
-PS1="${style_host}$(prompt_char) " # host
-PS1+="${style_path}\w " # working directory
-PS1+="${style_git}\$(parse_git_branch)${txtrst}" # git details
-PS1+="${style_chars}▸ \[${txtrst}\]" # 
+PS1="${style_host}$(prompt_char) "        # host
+PS1+="${style_path}\w "                   # working directory
+PS1+="${style_git}\$(parse_git_branch)"   # git details
+PS1+="${style_chars}▸ \[${txtrst}\]"      # arrow

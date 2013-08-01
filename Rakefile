@@ -19,6 +19,9 @@ task :install do
     end 
   end
 
+  puts "\n✱ Installing git bash completion"
+  `curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash`
+
   puts "\n✱ Syncing gitmodules (mostly janus plugins)"
   `git submodule update --init`
 

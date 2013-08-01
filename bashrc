@@ -21,8 +21,11 @@ function include () {
   [[ -f "$1" ]] && source "$1"
 }
 
+# git completion
+include ~/.git-completion.bash
+
 # load personal settings
-include ~/.local
+include ~/.localrc
 
 # load settings for specific hostnames
 include ~/.hosts/$(ls ~/.hosts | grep $(hostname -s)) 
@@ -31,5 +34,3 @@ include ~/.hosts/$(ls ~/.hosts | grep $(hostname -s))
 for file in ~/.custom/*.sh; do
   source "$file"
 done
-
-source $HOME/.rvm/scripts/rvm

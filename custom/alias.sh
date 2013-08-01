@@ -41,4 +41,3 @@ if [ -x /usr/bin/dircolors ]; then
   alias less='less -R'
   alias diff='colordiff -dw'
 fi 
-

@@ -34,3 +34,5 @@ include ~/.hosts/$(ls ~/.hosts | grep $(hostname -s))
 for file in ~/.custom/*.sh; do
   source "$file"
 done
+
+source ~/.rvm/scripts/rvm

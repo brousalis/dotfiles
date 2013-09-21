@@ -34,7 +34,7 @@ txtrst='\e[0m'    # Text Reset
 txtmgn="\033[1;31m"
 txtorg="\033[1;33m"
 
-style_host="\[${txtrst}${txtblu}\]"
+style_host="\[${txtrst}${txtorg}\]"
 style_path="\[${txtrst}${txtylw}\]"
 style_chars="\[${txtrst}${txtylw}\]"
 style_git="\[${txtrst}${txtblu}\]"
@@ -43,7 +43,7 @@ style_git="\[${txtrst}${txtblu}\]"
 
 parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
 
-PS1="${style_host}$(prompt_char) "        # host
-PS1+="${style_path}\w "                   # working directory
+PS1="${style_host}$(hostname)${txtblu}:"           # host
+PS1+="${style_path}\w"                   # working directory
 PS1+="${style_git}\$(parse_git_branch)"   # git details
-PS1+="${style_chars}▸ \[${txtrst}\]"      # arrow
+PS1+="${style_chars} ▸ \[${txtrst}\]"      # arrow

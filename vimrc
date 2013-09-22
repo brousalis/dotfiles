@@ -5,8 +5,10 @@ colorscheme herald
 
 " settings
 set mouse=a                     " because mouse
-set nu                          " line numbers
+set nonumber                    " line numbers
 set nobackup                    " don't do backups
+set ruler                       " show cursor position
+set cursorline                  " obvious
 set nowritebackup               " no backups
 set noswapfile                  " no swapfiles
 set hidden                      " hide buffers, rather than closing them
@@ -14,20 +16,15 @@ set modelines=0                 " don't allow modelines
 set tabstop=2                   " two-space tabs
 set shiftwidth=2                " two-space tabs
 set expandtab                   " use spaces for tabs
+set autoread                    " autoread
 set incsearch                   " show search matches while you type
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore search case if all lowercase
 set hlsearch                    " highlight search terms
 set gdefault                    " default to global replace
-set virtualedit=all             " free cursor mode
-set scrolloff=10                " have 3 lines of offset (or buffer) when scrolling
-set sidescroll=10               " 3 line buffer horizontally as well
-set wildmenu                    " make tab completion for files/buffers act like bash
-set wildmode=list:full          " show a list when pressing tab and complete first full match
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 set clipboard+=unnamed          " share clipboard
 set clipboard=unnamed           " please work
-set more                        " page on extended output
 set ttyfast                     " smoother redraws
 set lazyredraw                  " do not redraw while executing macros
 set showcmd                     " display incomplete commands
@@ -35,9 +32,16 @@ set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
+set backspace=indent,eol,start  " backspace through everything in insert mode
+set formatoptions+=j
+set nojoinspaces
+
+call pathogen#infect()
+filetype plugin indent on
+
+runtime macros/matchit.vim  " enables % to cycle through `if/else/endif`
 
 " indenting
-filetype plugin indent on
 au BufRead,BufNewFile *.scss set filetype=scss
 au BufRead,BufNewFile *.sass set filetype=scss
 
@@ -67,24 +71,6 @@ nnoremap Q q
 nnoremap q <nop>
 map <S-Enter> O<Esc>j
 map <CR> o<Esc>k
-
-" strip trailing whitespace (,ss)
-function! StripWhitespace ()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace ()<CR>
-
-" move a line of text w/ F3/F4
-nnoremap <F3> :m+<CR>==
-nnoremap <F4> :m-2<CR>==
-inoremap <F3> <Esc>:m+<CR>==gi
-inoremap <F4> <Esc>:m-2<CR>==gi
-vnoremap <F3> :m'>+<CR>gv=gv
-vnoremap <F4> :m-2<CR>gv=gv
 
 " nerdtree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>
@@ -151,10 +137,25 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \}
 
-" gitgutter plugin - ,df to see diff
-nnoremap <silent> <Leader>df :GitGutterToggle<cr>
-let g:gitgutter_enabled = 0
-
 " splitjoin plugin
 nmap zj :SplitjoinSplit<cr>
 nmap zk :SplitjoinJoin<cr>
+
+" formatted paste
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
+
+" tab indents
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>k
+
+command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
+

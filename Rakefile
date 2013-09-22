@@ -9,20 +9,8 @@ task :install do
   overwrite_all = false
   backup_all = false
 
-  puts "\n"
-
-  if File.exists?("#{ENV["HOME"]}/.janus") || File.exists?("#{ENV["HOME"]}/.gvimrc")
-    puts "!!! Janus is already installed, overwrite? [y]es or [n]o"
-    case STDIN.gets.chomp
-      when 'y' then 
-        `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-    end 
-  end
-
-  puts "\n✱ Installing git bash completion"
-  `curl https://raw.github.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash`
-
-  puts "\n✱ Syncing gitmodules (mostly janus plugins)"
+  puts "\n✱ Syncing submodules"
+  `git submodule sync >/dev/null`
   `git submodule update --init`
 
   puts "\n✱ Symlinking dotfiles"
@@ -69,15 +57,18 @@ task :uninstall do
       `mv "$HOME/backups/.#{linkable}.backup" "$HOME/.#{linkable}"` 
     end
   end
-  
-  puts "\n!!! Remove Janus? [y]es or [n]o"
-  case STDIN.gets.chomp
-    when 'y' then 
-      puts "✱ Removing Janus"
-      `rm ~/.vimrc ~/.gvimrc`
-      `rm -rf ~/.janus`
-    when 'n' then next
-  end
+ end
+
+# thanks mislav
+task :update_submodules do
+  system <<-EOS
+    git submodule foreach '
+      rev=$(git rev-parse HEAD)
+      git pull --quiet --ff-only --no-rebase origin master &&
+      git --no-pager log --no-merges --pretty=format:"%s %Cgreen(%ar)%Creset" --date=relative ${rev}..
+      echo
+    '
+  EOS
 end
 
 task :default => 'install'

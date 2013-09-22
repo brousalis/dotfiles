@@ -34,16 +34,25 @@ txtrst='\e[0m'    # Text Reset
 txtmgn="\033[1;31m"
 txtorg="\033[1;33m"
 
-style_host="\[${txtrst}${txtorg}\]"
 style_path="\[${txtrst}${txtylw}\]"
 style_chars="\[${txtrst}${txtylw}\]"
 style_git="\[${txtrst}${txtblu}\]"
+style_dirty="\[${txtrst}${bakred}\]"
 
-#if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then 
+function prompt_color {
+  echo "\[${txtrst}${bakred}\]"
+}
 
-parse_git_branch(){ git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'; }
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "+"
+}
 
-PS1="${style_host}$(hostname)${txtblu}:"           # host
-PS1+="${style_path}\w"                   # working directory
-PS1+="${style_git}\$(parse_git_branch)"   # git details
-PS1+="${style_chars} ▸ \[${txtrst}\]"      # arrow
+function parse_git_branch {
+git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/[\1$(parse_git_dirty)]/"
+}
+
+PS1="$(prompt_color)$(hostname)"
+PS1+="${txtblu}:" 
+PS1+="${style_path}\w"                 
+PS1+="${style_git}\$(parse_git_branch)"
+PS1+="${style_chars}▸ \[${txtrst}\]" 

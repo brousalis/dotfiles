@@ -1,15 +1,97 @@
-[submodule "janus/vim-fugitive"]
-	path = janus/vim-fugitive
-	url = git://github.com/tpope/vim-fugitive
-[submodule "janus/vim-endwise"]
-	path = janus/vim-endwise
-	url = git://github.com/tpope/vim-endwise
-[submodule "janus/vim-surround"]
-	path = janus/vim-surround
-	url = git://github.com/tpope/vim-surround
-[submodule "janus/ack"]
-	path = janus/ack
-	url = git://github.com/mileszs/ack.vim
-[submodule "janus/splitjoin.vim"]
-	path = janus/splitjoin.vim
-	url = git://github.com/AndrewRadev/splitjoin.vim
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/bundle/haml"]
+	path = vim/bundle/haml
+	url = https://github.com/chriseppstein/vim-haml
+[submodule "vim/bundle/javascript"]
+	path = vim/bundle/javascript
+	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = https://github.com/tpope/vim-markdown
+[submodule "vim/bundle/rails"]
+	path = vim/bundle/rails
+	url = https://github.com/tpope/vim-rails
+[submodule "vim/bundle/ruby"]
+	path = vim/bundle/ruby
+	url = https://github.com/vim-ruby/vim-ruby
+[submodule "vim/bundle/ack"]
+	path = vim/bundle/ack
+	url = https://github.com/mileszs/ack.vim
+[submodule "vim/bundle/endwise"]
+	path = vim/bundle/endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = https://github.com/wincent/Command-T
+[submodule "vim/bundle/coffee-script"]
+	path = vim/bundle/coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/bundle/commentary"]
+	path = vim/bundle/commentary
+	url = https://github.com/tpope/vim-commentary
+[submodule "vim/bundle/molokai"]
+	path = vim/bundle/molokai
+	url = https://github.com/mrtazz/molokai.vim
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/bundle/puppet"]
+	path = vim/bundle/puppet
+	url = https://github.com/rodjek/vim-puppet/
+[submodule "vim/bundle/solarized"]
+	path = vim/bundle/solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "vim/bundle/liquid"]
+	path = vim/bundle/liquid
+	url = https://github.com/tpope/vim-liquid
+[submodule "vim/bundle/markdown-folding"]
+	path = vim/bundle/markdown-folding
+	url = https://github.com/nelstrom/vim-markdown-folding
+[submodule "vim/bundle/eunuch"]
+	path = vim/bundle/eunuch
+	url = https://github.com/tpope/vim-eunuch
+[submodule "vim/bundle/vimux"]
+	path = vim/bundle/vimux
+	url = https://github.com/benmills/vimux
+[submodule "vim/bundle/turbux"]
+	path = vim/bundle/turbux
+	url = https://github.com/jgdavey/vim-turbux
+[submodule "vim/bundle/scriptease"]
+	path = vim/bundle/scriptease
+	url = https://github.com/tpope/vim-scriptease
+[submodule "vim/bundle/unimpaired"]
+	path = vim/bundle/unimpaired
+	url = https://github.com/tpope/vim-unimpaired
+[submodule "vim/bundle/tbone"]
+	path = vim/bundle/tbone
+	url = https://github.com/tpope/vim-tbone
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = https://github.com/tpope/vim-dispatch
+[submodule "vim/bundle/ragel"]
+	path = vim/bundle/ragel
+	url = https://github.com/jayferd/ragel.vim
+[submodule "vim/bundle/visual-star-search"]
+	path = vim/bundle/visual-star-search
+	url = https://github.com/nelstrom/vim-visual-star-search
+[submodule "vim/bundle/tmux-navigator"]
+	path = vim/bundle/tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "vim/bundle/argumentative"]
+	path = vim/bundle/argumentative
+  url = https://github.com/PeterRincker/vim-argumentative
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vim/bundle/splitjoin"]
+	path = vim/bundle/splitjoin
+	url = https://github.com/AndrewRadev/splitjoin.vim
+

@@ -1,29 +1,31 @@
 [user]
-  name = pbrousalis
-  email = pbrousapg@enova.com
+  name = Pete Brousalis
+  email = brousapg@gmail.com
+[apply]
+  whitespace = nowarn
+[alias]
+  nb = checkout -b
+  lc = log @{1}.. --stat --no-merges
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar)%Creset' --abbrev-commit --date=relative
+  ff = merge --ff-only @{u}
+[color]
+  diff = auto
+  status = auto
+  branch = auto
 [core]
   excludesfile = ~/.gitignore
-	editor = /usr/bin/vim
-[color]
-  ui = auto
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = yellow
-  changed = green
-  untracked = cyan
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[merge]
-  log = true
+  quotepath = false
+  whitespace = -blank-at-eol
+[mirror]
   summary = true
-  verbosity = 1
-[rerere]
-  enabled = 1
+[branch]
+  autosetupmerge = true
+  autosetuprebase = always
+[push]
+  default = tracking
+[rebase]
+  autosquash = true
+[web]
+  browser = open
+[init]
+  templatedir = ~/.git-template

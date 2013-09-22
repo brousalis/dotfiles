@@ -22,7 +22,8 @@ alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | 
 alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 # ls
-alias ll='ls -la'
+alias ls='ls -la'
+alias ll='ls'
 alias l1='tree --dirsfirst -ChFL 1'
 alias l2='tree --dirsfirst -ChFL 2'
 alias l3='tree --dirsfirst -ChFL 3'

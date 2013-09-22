@@ -27,5 +27,3 @@
   autosquash = true
 [web]
   browser = open
-[init]
-  templatedir = ~/.git-template

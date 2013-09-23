@@ -156,3 +156,5 @@ vnoremap <S-Tab> <gv
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
 map <Leader>/ <Plug>RubyTestRunLast 
+
+let g:rubytest_in_quickfix = 1

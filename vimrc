@@ -34,7 +34,7 @@ set shortmess+=atI              " eliminate annoying 'Press ENTER or type comman
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
 set backspace=indent,eol,start  " backspace through everything in insert mode
-set formatoptions+=j
+"set formatoptions+=j
 set nojoinspaces
 
 call pathogen#infect()

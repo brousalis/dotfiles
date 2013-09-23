@@ -44,7 +44,7 @@ function parse_git_branch {
 git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
 }
 
-PS1="$(prompt_color) $(hostname) "
+PS1="$(prompt_color) $(hostname -s) "
 PS1+="${txtylw}\w"                 
 PS1+="${txtblu}\$(parse_git_branch)"
 PS1+="${txtylw} ▸ ${txtrst}" 

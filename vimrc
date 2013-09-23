@@ -158,3 +158,9 @@ command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 map <Leader>/ <Plug>RubyTestRunLast 
 
 let g:rubytest_in_quickfix = 1
+
+" visual fold lines with F9
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf

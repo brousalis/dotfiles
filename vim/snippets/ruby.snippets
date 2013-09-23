@@ -1,0 +1,66 @@
+snippet beg
+	begin
+		${0}
+	rescue ${1:Exception} => ${2:e}
+	end
+snippet case
+	case ${1:object}
+	when ${2:condition}
+		${0}
+	end
+snippet when
+	when ${1:condition}
+		${0}
+snippet def
+	def ${1:method_name}
+		${0}
+	end
+snippet if
+	if ${1:condition}
+		${0}
+	end
+snippet ife
+	if ${1:condition}
+		${2}
+	else
+		${0}
+	end
+snippet eif
+	elsif ${1:condition}
+		${0}
+snippet unless
+	unless ${1:condition}
+		${0}
+	end
+snippet wh
+	while ${1:condition}
+		${0}
+	end
+snippet for
+	for ${1:e} in ${2:c}
+		${0}
+	end
+snippet until
+	until ${1:condition}
+		${0}
+	end
+snippet log
+	Rails.logger.${1:debug} ${0}
+snippet log2
+	RAILS_DEFAULT_LOGGER.${1:debug} ${0}
+snippet logd
+	logger.debug { "${1:message}" }
+snippet loge
+	logger.error { "${1:message}" }
+snippet logf
+	logger.fatal { "${1:message}" }
+snippet logi
+	logger.info { "${1:message}" }
+snippet logw
+	logger.warn { "${1:message}" }
+snippet pa
+	params[:${1:id}]
+snippet rest
+	respond_to do |format|
+		format.${1:html} { ${0} }
+	end

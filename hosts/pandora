@@ -1,3 +1,3 @@
-function prompt_char {
-  echo '⬙ '
+function prompt_color {
+  echo '\[\e[45m\]'   # Purple
 }

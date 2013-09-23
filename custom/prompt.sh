@@ -32,10 +32,6 @@ bakpur='\[\e[45m\]'   # Purple
 bakcyn='\[\e[46m\]'   # Cyan
 bakwht='\[\e[47m\]'   # White
 
-function prompt_color {
-  echo "${bakred}"
-}
-
 function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "+"
 }

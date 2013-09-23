@@ -1,0 +1,3 @@
+function prompt_color {
+  echo '\[\e[41m\]'   # Red 
+}

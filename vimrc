@@ -33,14 +33,10 @@ set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
-set backspace=indent,eol,start  " backspace through everything in insert mode
-"set formatoptions+=j
 set nojoinspaces
 
 call pathogen#infect()
 filetype plugin indent on
-
-runtime macros/matchit.vim  " enables % to cycle through `if/else/endif`
 
 " indenting
 au BufRead,BufNewFile *.scss set filetype=scss
@@ -153,10 +149,11 @@ inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
+" remove traililng whitespace
 command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
 
+" rubytest
 map <Leader>/ <Plug>RubyTestRunLast 
-
 let g:rubytest_in_quickfix = 1
 
 " visual fold lines with F9

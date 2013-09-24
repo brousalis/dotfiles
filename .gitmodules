@@ -95,3 +95,18 @@
 	path = vim/bundle/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
 
+[submodule "vim/bundle/coffeescript"]
+	path = vim/bundle/coffeescript
+	url = https://github.com/kchmck/vim-coffee-script
+[submodule "vim/bundle/rubytest"]
+	path = vim/bundle/rubytest
+	url = https://github.com/janx/vim-rubytest.git
+[submodule "vim/bundle/snipmate"]
+	path = vim/bundle/snipmate
+	url = https://github.com/garbas/vim-snipmate.git
+[submodule "vim/bundle/mwutils"]
+	path = vim/bundle/mwutils
+	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/bundle/tlib"]
+	path = vim/bundle/tlib
+	url = https://github.com/tomtom/tlib_vim.git

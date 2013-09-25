@@ -20,6 +20,7 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias gbcleanup="git branch --merged | grep -v "\*" | xargs -n 1 git branch -d"
 alias github="chrome \`git remote -v | grep github.com | grep fetch | head -1 | field 2 | sed 's/git:/http:/g'\`"
 alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+alias be='bundle exec'
 alias rails80='rvmsudo rails -s p 80'
 
 # ls

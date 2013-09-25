@@ -10,6 +10,11 @@ alias gs="git status -sb"
 alias grm="git ls-files --deleted | xargs git rm"
 alias undopush="git push -f origin HEAD^:master"
 
+__git_complete gco _git_checkout
+__git_complete gl _git_pull
+__git_complete gp _git_push
+__git_complete gc _git_commit
+
 function gco {
   if [ $# -eq 0 ]; then
     git checkout master

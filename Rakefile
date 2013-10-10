@@ -9,8 +9,18 @@ task :install do
   overwrite_all = false
   backup_all = false
 
-  puts "\n✱ Syncing submodules"
-  `git submodule sync >/dev/null`
+  puts "✱ Installing Janus"
+  `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+
+  if !File.exists?("/bin/zsh")
+    puts "✱ Installing zsh"
+    `sudo apt-get install zsh`
+  end
+
+  puts "✱ Installing oh-my-zsh"
+  `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
+
+  puts "✱ Syncing gitmodules (janus plugins)"
   `git submodule update --init`
 
   puts "\n✱ Symlinking dotfiles"

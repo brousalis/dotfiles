@@ -1,8 +1,6 @@
 # My dotfiles
 This is my ideal setup for a Unix/Linux environment. I've taken things from all over the place, and I can't guarentee it will work on your machine as well as it does on mine - this is just what works for me. 
 
-![preview](http://i.imgur.com/weujQ8H.png)
-
 ### Setup
 Run `rake` inside the repo. 
 

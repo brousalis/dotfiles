@@ -1,4 +1,4 @@
-set bell-style bell
+set bell-style none 
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on

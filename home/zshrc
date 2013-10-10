@@ -1,0 +1,26 @@
+DISABLE_AUTO_UPDATE="true"
+COMPLETION_WAITING_DOTS="true"
+
+setopt auto_cd
+setopt auto_pushd
+setopt prompt_subst
+setopt histignoredups
+autoload -Uz compinit && compinit
+
+source $ZSH/oh-my-zsh.sh
+
+# tired of writing this
+function include () {
+  [[ -f "$1" ]] && . "$1"
+}
+
+# load personal settings
+include ~/.localrc
+
+# load settings for specific hostnames
+include ~/dotfiles/hosts/$(ls ~/dotfiles/hosts | grep $(hostname -s)) 
+
+# load rest of files
+for file in ~/dotfiles/bash/*; do
+  . "$file"
+done

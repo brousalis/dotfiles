@@ -6,7 +6,7 @@ colorscheme herald
 
 " settings
 set mouse=a                     " because mouse
-set nonumber                    " line numbers
+set number                      " line numbers
 set nobackup                    " don't do backups
 set ruler                       " show cursor position
 set cursorline                  " obvious

@@ -6,12 +6,6 @@ require 'irb/ext/save-history'
 require 'rubygems'
 
 begin
-  require 'suite'
-rescue LoadError
-  puts "*** suite disabled ***"
-end
-
-begin
   require 'ap'
 rescue LoadError
   puts "*** awesome_print disabled ***"

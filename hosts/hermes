@@ -1,3 +1,1 @@
-function prompt_color {
-  echo '\[\e[41m\]'   # Red 
-}
+/Users/pbrousalis/dotfiles/hosts/hermes

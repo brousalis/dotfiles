@@ -1,3 +1,1 @@
-function prompt_color {
-  echo '\[\e[0;30;44m\]'   # Green
-} 
+/Users/pbrousalis/dotfiles/hosts/prometheus

@@ -3,22 +3,26 @@
 require 'rake'
 
 task :install do
-  linkables = Dir.glob('*').reject{|f| f["extra"] || f["README.md"]}
+  linkables = Dir.glob('home/*')
 
   skip_all = false
   overwrite_all = false
   backup_all = false
 
-  puts "✱ Installing Janus"
-  `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+  if !File.exists?("/Users/pbrousalis/.vim/janus")
+    puts "✱ Installing Janus"
+    `curl -Lo- https://bit.ly/janus-bootstrap | bash`
+  end
 
   if !File.exists?("/bin/zsh")
     puts "✱ Installing zsh"
     `sudo apt-get install zsh`
   end
 
-  puts "✱ Installing oh-my-zsh"
-  `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
+  if !File.exists?("/Users/pbrousalis/.oh-my-zsh")
+    puts "✱ Installing oh-my-zsh"
+    `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
+  end
 
   puts "✱ Syncing gitmodules (janus plugins)"
   `git submodule update --init`
@@ -27,7 +31,7 @@ task :install do
   linkables.each do |linkable|
     overwrite = false
     backup = false
-
+    linkable = linkeable.sub('home/','')
     target = "#{ENV["HOME"]}/.#{linkable}"
 
     if File.exists?(target) || File.symlink?(target)
@@ -52,7 +56,7 @@ task :install do
 end
 
 task :uninstall do
-  linkables = Dir.glob('*').reject{|f| f["janus"] || f["extra"] || f["README.md"]}
+  linkables = Dir.glob('home/*')
 
   linkables.each do |linkable|
     target = "#{ENV["HOME"]}/.#{linkable}"

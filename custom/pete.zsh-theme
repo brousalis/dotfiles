@@ -7,4 +7,4 @@ PROMPT='$(prompt_color) $(hostname -s) %{$reset_color%}%{$fg[green]%}%~%{$fg_bol
 ZSH_THEME_GIT_PROMPT_PREFIX="("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 ZSH_THEME_GIT_PROMPT_DIRTY=" ✗"
-ZSH_THEME_GIT_PROMPT_CLEAN=" ✔"
+ZSH_THEME_GIT_PROMPT_CLEAN=""

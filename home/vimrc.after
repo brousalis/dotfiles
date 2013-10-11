@@ -1,16 +1,19 @@
 " colors
 syntax on
+
 set t_Co=256
 set background=dark
-colorscheme herald
+
+let g:zenburn_high_Contrast=1
+colorscheme zenburn 
 
 " settings
 set mouse=a                     " because mouse
 set number                      " line numbers
 set nobackup                    " don't do backups
 set ruler                       " show cursor position
-set cursorline                  " obvious
 set nowritebackup               " no backups
+set cursorline
 set noswapfile                  " no swapfiles
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
@@ -147,13 +150,6 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
-
-" remove traililng whitespace
-command! KillWhitespace :normal :%s/ *$//g<cr><c-o><cr>
-
-" rubytest
-map <Leader>/ <Plug>RubyTestRunLast 
-let g:rubytest_in_quickfix = 1
 
 " visual fold lines with F9
 inoremap <F9> <C-O>za

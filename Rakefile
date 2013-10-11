@@ -4,12 +4,13 @@ require 'rake'
 
 task :install do
   linkables = Dir.glob('home/*')
+  hostname = `hostname`.strip
 
   skip_all = false
   overwrite_all = false
   backup_all = false
 
-  if !File.exists?("/Users/pbrousalis/.vim/janus")
+  if !File.exists?("/Users/#{hostname}/.vim/janus")
     puts "✱ Installing Janus"
     `curl -Lo- https://bit.ly/janus-bootstrap | bash`
   end
@@ -19,7 +20,7 @@ task :install do
     `sudo apt-get install zsh`
   end
 
-  if !File.exists?("/Users/pbrousalis/.oh-my-zsh")
+  if !File.exists?("/Users/#{hostname}/.oh-my-zsh")
     puts "✱ Installing oh-my-zsh"
     `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
   end
@@ -31,7 +32,7 @@ task :install do
   linkables.each do |linkable|
     overwrite = false
     backup = false
-    linkable = linkeable.sub('home/','')
+    linkable = linkable.sub('home/','')
     target = "#{ENV["HOME"]}/.#{linkable}"
 
     if File.exists?(target) || File.symlink?(target)
@@ -51,7 +52,7 @@ task :install do
       `mv "$HOME/.#{linkable}" "$HOME/backups/.#{linkable}.backup"` if backup || backup_all
     end
     puts "✱ Linked #{target}"
-    `ln -s "$PWD/#{linkable}" "#{target}"`
+    `ln -s "$PWD/home/#{linkable}" "#{target}"`
   end
 end
 
@@ -59,6 +60,7 @@ task :uninstall do
   linkables = Dir.glob('home/*')
 
   linkables.each do |linkable|
+    linkable = linkable.sub('home/','')
     target = "#{ENV["HOME"]}/.#{linkable}"
 
     if File.symlink?(target)

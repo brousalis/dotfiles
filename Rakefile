@@ -87,4 +87,8 @@ task :update_submodules do
   EOS
 end
 
+task :brew do
+  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush rbenv rbenv-gemset ruby-build tmux vim tree ssh-copy-id`
+end
+
 task :default => 'install'

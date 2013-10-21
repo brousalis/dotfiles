@@ -2,6 +2,14 @@
 
 require 'rake'
 
+task :brew do
+  if !File.exists?("/usr/local/Cellar")
+    `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
+  end
+  
+  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush rbenv rbenv-gemset ruby-build tmux vim tree ssh-copy-id`
+end
+
 task :install do
   linkables = Dir.glob('home/*')
   hostname = `hostname`.strip
@@ -85,10 +93,6 @@ task :update_submodules do
       echo
     '
   EOS
-end
-
-task :brew do
-  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush rbenv rbenv-gemset ruby-build tmux vim tree ssh-copy-id`
 end
 
 task :default => 'install'

@@ -15,3 +15,5 @@ export HISTFILESIZE=300000
 export HISTIGNORE="&:ls:[bf]g:exit:history"
 export HISTCONTROL=ignoreboth
 export HISTSIZE=100000
+
+export PATH="$HOME/.rbenv/bin:$PATH"

@@ -1,3 +1,6 @@
 [submodule "janus/splitjoin"]
 	path = janus/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
+[submodule "janus/vim-css3-syntax"]
+	path = janus/vim-css3-syntax
+	url = https://github.com/hail2u/vim-css3-syntax.git

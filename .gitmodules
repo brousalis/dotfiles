@@ -1,0 +1,3 @@
+[submodule "janus/splitjoin"]
+	path = janus/splitjoin
+	url = https://github.com/AndrewRadev/splitjoin.vim

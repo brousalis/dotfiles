@@ -69,7 +69,7 @@ nnoremap <silent> '. :cd %:p:h<cr>
 nnoremap Q q
 nnoremap q <nop>
 map <S-Enter> O<Esc>j
-map <CR> o<Esc>k
+map <CR> o<Esc>
 
 " nerdtree
 nmap <silent> <Leader>n :NERDTreeToggle<CR>

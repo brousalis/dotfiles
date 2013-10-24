@@ -92,6 +92,30 @@ map <Leader>k <C-w>k
 map <Leader>l <C-w>l
 map <Leader>h <C-w>h
 
+" splitjoin plugin
+nmap zj :SplitjoinSplit<cr>
+nmap zk :SplitjoinJoin<cr>
+
+" formatted paste
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
+
+" tab indents
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" visual fold lines with F9
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+" replace quotes
+map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
+
 " jump to last cursor position when opening a file.
 autocmd BufReadPost * call SetCursorPosition()
 function! SetCursorPosition()
@@ -136,23 +160,4 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \}
 
-" splitjoin plugin
-nmap zj :SplitjoinSplit<cr>
-nmap zk :SplitjoinJoin<cr>
 
-" formatted paste
-nmap <leader>p pV`]=
-nmap <leader>P PV`]=
-
-" tab indents
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-inoremap <S-Tab> <C-D>
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-
-" visual fold lines with F9
-inoremap <F9> <C-O>za
-nnoremap <F9> za
-onoremap <F9> <C-C>za
-vnoremap <F9> zf

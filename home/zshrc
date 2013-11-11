@@ -28,6 +28,3 @@ include ~/dotfiles/hosts/$(ls ~/dotfiles/hosts | grep $(hostname -s))
 for file in ~/dotfiles/bash/*; do
   . "$file"
 done
-
-# rbenv
-eval "$(rbenv init -)"

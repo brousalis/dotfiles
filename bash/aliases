@@ -10,6 +10,7 @@ function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd .
 alias be='bundle exec'
 alias rb='rbenv'
 alias pow='powify'
+alias powsr='powify server restart'
 alias rdb='rake db:create db:migrate db:seed'
 
 alias fs="stat -f '%z bytes'"

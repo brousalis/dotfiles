@@ -17,3 +17,4 @@ export HISTCONTROL=ignoreboth
 export HISTSIZE=100000
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH"

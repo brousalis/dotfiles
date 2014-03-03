@@ -25,7 +25,6 @@ set incsearch                   " show search matches while you type
 set ignorecase                  " ignore case when searching
 set smartcase                   " ignore search case if all lowercase
 set hlsearch                    " highlight search terms
-set gdefault                    " default to global replace
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 set clipboard+=unnamed          " share clipboard
 set clipboard=unnamed           " please work
@@ -115,6 +114,10 @@ vnoremap <F9> zf
 
 " replace quotes
 map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
+
+" replace hashrockets
+nmap <F4> :s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+vmap <F4> :'<,'>s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
 
 " jump to last cursor position when opening a file.
 autocmd BufReadPost * call SetCursorPosition()

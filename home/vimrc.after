@@ -3,9 +3,7 @@ syntax on
 
 set t_Co=256
 set background=dark
-
-let g:zenburn_high_Contrast=1
-colorscheme zenburn 
+colorscheme pete 
 
 " settings
 set mouse=a                     " because mouse
@@ -13,7 +11,6 @@ set number                      " line numbers
 set nobackup                    " don't do backups
 set ruler                       " show cursor position
 set nowritebackup               " no backups
-set cursorline
 set noswapfile                  " no swapfiles
 set hidden                      " hide buffers, rather than closing them
 set modelines=0                 " don't allow modelines
@@ -35,6 +32,7 @@ set title                       " set the title
 set shortmess+=atI              " eliminate annoying 'Press ENTER or type command to continue' notices
 set laststatus=1                " status bar only shows if multiple files are open
 set nolist                      " hide invisible characters
+set iskeyword+=-
 
 call pathogen#infect()
 filetype plugin indent on
@@ -129,6 +127,7 @@ function! SetCursorPosition()
   end
 endfunction
 
+
 " ctrl p for cnuapp
 set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
 set wildignore+=*.pyc,*/*.scssc
@@ -162,5 +161,3 @@ let g:ctrlp_open_multiple_files = 't'
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \}
-
-

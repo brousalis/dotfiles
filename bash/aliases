@@ -25,6 +25,10 @@ alias dsremove="find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatc
 alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 alias rails80='rvmsudo rails -s p 80'
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
+alias pt='cd ~/work/primetime'
+alias nc='cd ~/work/netcredit/apps'
+alias js='cd app/assets/javascripts'
+alias css='cd app/assets/stylesheets'
 
 # ls
 alias ls='ls -la'

@@ -11,7 +11,7 @@ task :brew do
 end
 
 task :install do
-  linkables = Dir.glob('home/*')
+  linkables = Dir['home/*'] + ['janus']
   hostname = `hostname`.strip
 
   skip_all = false

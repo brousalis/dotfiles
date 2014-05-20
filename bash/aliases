@@ -24,6 +24,7 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias dsremove="find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch"
 alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 alias rails80='rvmsudo rails -s p 80'
+alias rpsql='rm /usr/local/var/postgres/postmaster.pid'
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
 alias pt='cd ~/work/primetime'
 alias nc='cd ~/work/netcredit/apps'

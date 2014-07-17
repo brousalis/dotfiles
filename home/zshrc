@@ -2,9 +2,6 @@ ZSH="$HOME/.oh-my-zsh"
 ZSH_CUSTOM="$HOME/dotfiles/custom"
 ZSH_THEME="pete"
 
-DISABLE_AUTO_UPDATE="true"
-COMPLETION_WAITING_DOTS="true"
-
 setopt auto_cd
 setopt auto_pushd
 setopt prompt_subst
@@ -13,18 +10,8 @@ autoload -Uz compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
-# tired of writing this
-function include () {
-  [[ -f "$1" ]] && . "$1"
-}
+[[ -f "~/.localrc" ]] && . "~/.localrc"
 
-# load personal settings
-include ~/.localrc
-
-# load settings for specific hostnames
-include ~/dotfiles/hosts/$(ls ~/dotfiles/hosts | grep $(hostname -s)) 
-
-# load rest of files
-for file in ~/dotfiles/bash/*; do
-  . "$file"
+for file in ~/.{aliases,exports}; do
+  [[ -f "$file" ]] && source "$file";
 done

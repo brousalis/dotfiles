@@ -6,29 +6,32 @@ task :brew do
   if !File.exists?("/usr/local/Cellar")
     `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
   end
-  
-  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush rbenv rbenv-gemset ruby-build tmux vim tree ssh-copy-id`
+  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush tmux vim tree ssh-copy-id`
 end
 
 task :install do
-  linkables = Dir.glob('home/*')
-  hostname = `hostname`.strip
+  linkables = Dir.glob('{home/*,janus/*}')
+  username = `whoami`.strip
 
   skip_all = false
   overwrite_all = false
   backup_all = false
 
-  if !File.exists?("/Users/#{hostname}/.vim/janus")
+  unless File.exists?("/Users/#{username}/.vim/bootstrap.sh")
     puts "✱ Installing Janus"
     `curl -Lo- https://bit.ly/janus-bootstrap | bash`
   end
 
-  if !File.exists?("/bin/zsh")
+  unless Dir.exists?("/Users/#{username}/.janus")
+    `mkdir ~/.janus`
+  end
+
+  unless File.exists?("/bin/zsh")
     puts "✱ Installing zsh"
     `sudo apt-get install zsh`
   end
 
-  if !File.exists?("/Users/#{hostname}/.oh-my-zsh")
+  unless File.exists?("/Users/#{username}/.oh-my-zsh")
     puts "✱ Installing oh-my-zsh"
     `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
   end

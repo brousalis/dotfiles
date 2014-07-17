@@ -10,7 +10,6 @@ task :brew do
 end
 
 task :install do
-  linkables = Dir.glob('{home/*,janus/*}')
   username = `whoami`.strip
 
   skip_all = false
@@ -20,10 +19,6 @@ task :install do
   unless File.exists?("/Users/#{username}/.vim/bootstrap.sh")
     puts "✱ Installing Janus"
     `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-  end
-
-  unless Dir.exists?("/Users/#{username}/.janus")
-    `mkdir ~/.janus`
   end
 
   unless File.exists?("/bin/zsh")
@@ -40,7 +35,7 @@ task :install do
   `git submodule update --init`
 
   puts "\n✱ Symlinking dotfiles"
-  linkables.each do |linkable|
+  Dir.glob('home/*').each do |linkable|
     overwrite = false
     backup = false
     linkable = linkable.sub('home/','')
@@ -65,6 +60,18 @@ task :install do
     puts "✱ Linked #{target}"
     `ln -s "$PWD/home/#{linkable}" "#{target}"`
   end
+
+  unless Dir.exists?("/Users/#{username}/.janus")
+    `mkdir ~/.janus`
+  end
+
+  puts "\n✱ Symlinking vim plugins"
+  Dir.glob('janus/*').each do |linkable|
+    linkable = linkable.sub('janus/','')
+    target = "#{ENV["HOME"]}/.janus/#{linkable}"
+    puts "✱ Linked #{target}"
+    `ln -s "$PWD/janus/#{linkable}" "#{target}"`
+  end
 end
 
 task :uninstall do
@@ -84,6 +91,9 @@ task :uninstall do
       `mv "$HOME/backups/.#{linkable}.backup" "$HOME/.#{linkable}"` 
     end
   end
+
+  puts "✱ Removed janus plugins"
+  `rm -rf ~/.janus`
  end
 
 # thanks mislav

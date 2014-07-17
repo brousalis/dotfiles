@@ -1,26 +1,21 @@
-[apply]
-  whitespace = nowarn
 [alias]
-  nb = checkout -b
-  lc = log @{1}.. --stat --no-merges
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar)%Creset' --abbrev-commit --date=relative
-  ff = merge --ff-only @{u}
+  aa = add --all
+  ap = add --patch
+  ca = commit --amend
+  ci = commit -v
+  co = checkout
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+  merge-branch = !git checkout master && git merge @{-1}
+  pr = !hub pull-request
+  st = status
+  up = !git fetch origin && git rebase origin/master
 [color]
-  diff = auto
-  status = auto
-  branch = auto
+  ui = auto
 [core]
   excludesfile = ~/.gitignore
-  quotepath = false
-  whitespace = -blank-at-eol
-[mirror]
-  summary = true
-[branch]
-  autosetupmerge = true
-  autosetuprebase = always
-[push]
-  default = tracking
-[rebase]
-  autosquash = true
-[web]
-  browser = open
+  autocrlf = input
+[include]
+  path = .gitconfig.local
+[apply]
+  whitespace = nowarn

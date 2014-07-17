@@ -5,14 +5,12 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-function u() { NUM=${1:-1}; for (( start = 1; start <= $NUM; start++ )); do cd ..; done; }
 
 alias be='bundle exec'
 alias rb='rbenv'
 alias pow='powify'
 alias powsr='powify server restart'
-alias rdb='rake db:create db:migrate db:seed'
-
+alias rdb='rake db:{reset,migrate}'
 alias fs="stat -f '%z bytes'"
 alias df="df -h"
 alias ifi='ifconfig | ack "net"'
@@ -26,14 +24,25 @@ alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resou
 alias rails80='rvmsudo rails -s p 80'
 alias rpsql='rm /usr/local/var/postgres/postmaster.pid'
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
-alias pt='cd ~/work/primetime'
-alias nc='cd ~/work/netcredit/apps'
 alias js='cd app/assets/javascripts'
 alias css='cd app/assets/stylesheets'
 
-# ls
 alias ls='ls -la'
 alias ll='ls'
 alias l1='tree --dirsfirst -ChFL 1'
 alias l2='tree --dirsfirst -ChFL 2'
 alias l3='tree --dirsfirst -ChFL 3'
+
+alias gl='git pull'
+alias ga='git add'
+alias gp='git push'
+alias gd='git diff'
+alias gco='git checkout'
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gch='git checkout HEAD~2 --'
+alias gb='git branch -v'
+alias gs="git status -sb"
+alias grm="git ls-files --deleted | xargs git rm"
+alias undopush="git push -f origin HEAD^:master"

@@ -2,8 +2,7 @@
 syntax on
 
 set t_Co=256
-set background=dark
-colorscheme pete 
+colorscheme zenpete
 
 " settings
 set mouse=a                     " because mouse

@@ -1,4 +1,0 @@
-function prompt_color {
-  echo %{$bg[yellow]%}%{$fg_bold[black]%}
-}
-

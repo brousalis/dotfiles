@@ -10,6 +10,7 @@ task :brew do
 end
 
 task :install do
+  linkables = Dir['home/*'] + ['janus']
   username = `whoami`.strip
 
   skip_all = false

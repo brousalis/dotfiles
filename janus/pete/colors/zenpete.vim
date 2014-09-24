@@ -4,138 +4,6 @@
 " URL:          http://slinky.imukuppi.org/zenburnpage/
 " License:      GNU GPL <http://www.gnu.org/licenses/gpl.html>
 "
-" Nothing too fancy, just some alien fruit salad to keep you in the zone.
-" This syntax file was designed to be used with dark environments and
-" low light situations. Of course, if it works during a daybright office, go
-" ahead :)
-"
-" Owes heavily to other Vim color files! With special mentions
-" to "BlackDust", "Camo" and "Desert".
-"
-" To install, copy to ~/.vim/colors directory.
-"
-" Alternatively, you can use Vimball installation:
-"     vim zenburn.vba
-"     :so %
-"     :q
-"
-" For details, see :help vimball
-"
-" After installation, use it with :colorscheme zenburn.
-" See also :help syntax
-"
-" Credits:
-"  - Jani Nurminen - original Zenburn, maintainer
-"  - Steve Hall & Cream posse - higher-contrast Visual selection
-"  - Kurt Maier - 256 color console coloring, low and high contrast toggle,
-"                 bug fixing
-"  - Charlie - spotted too bright StatusLine in non-high contrast mode
-"  - Pablo Castellazzi - CursorLine fix for 256 color mode
-"  - Tim Smith - force dark background
-"  - John Gabriele - spotted bad Ignore-group handling
-"  - Zac Thompson - spotted invisible NonText in low contrast mode
-"  - Christophe-Marie Duquesne - suggested making a Vimball,
-"    suggested support for ctags_highlighting.vim
-"  - Andrew Wagner - noted the CursorColumn bug (guifg was unintentionally set),
-"                    unify CursorColumn colour
-"  - Martin Langasek - clarify the license, whitespace fixes
-"  - Marcin Szamotulski - support autocomplete for Zenburn configuration
-"                         parameters
-"  - Clayton Parker (claytron) - Convinced by Kurt Maier to use Zenburn. Point
-"    out issues with LineNr, fix directory styles, and their usage in MacVim.
-"  - PaweÅ‚ Piekarski - Spotted bad FoldColumn and TabLine. Made better 
-"                      FoldColumn colors, fixed TabLine colors.
-"
-" CONFIGURABLE PARAMETERS:
-"
-" You can use the default (don't set any parameters), or you can
-" set some parameters to tweak the Zenburn colours.
-"
-" To use them, put them into your .vimrc file before loading the color scheme,
-" example:
-"    let g:zenburn_high_Contrast=1
-"    colors zenburn
-"
-" You can also do ":let g:zenburn" then hit Ctrl-d or Tab to scroll through the
-" list of configurable parameters.
-"
-" * You can now set a darker background for bright environments. To activate, use:
-"   contrast Zenburn, use:
-"
-"      let g:zenburn_high_Contrast = 1
-"
-" * For example, Vim help files uses the Ignore-group for the pipes in tags
-"   like "|somelink.txt|". By default, the pipes are not visible, as they
-"   map to Ignore group. If you wish to enable coloring of the Ignore group,
-"   set the following parameter to 1. Warning, it might make some syntax files
-"   look strange.
-"
-"      let g:zenburn_color_also_Ignore = 1
-"
-" * To get more contrast to the Visual selection, use
-"
-"      let g:zenburn_alternate_Visual = 1
-"
-"   Note: this is enabled only if the old-style Visual
-"   if used, see g:zenburn_old_Visual
-"
-" * To use alternate colouring for Error message, use
-"
-"      let g:zenburn_alternate_Error = 1
-"
-" * The new default for Include is a duller orange. To use the original
-"   colouring for Include, use
-"
-"      let g:zenburn_alternate_Include = 1
-"
-" * Work-around to a Vim bug, it seems to misinterpret ctermfg and 234 and 237
-"   as light values, and sets background to light for some people. If you have
-"   this problem, use:
-"
-"      let g:zenburn_force_dark_Background = 1
-"
-" * By default the CursorColumn is of a lighter colour. I find it more readable
-"   that way, but some people may want to align it with the darker CursorLine
-"   color, for visual uniformity. To do so, use:
-"
-"      let g:zenburn_unified_CursorColumn = 1
-"
-"   Note: you can ignore this unless you use
-"   ":set cursorline cursorcolumn", since otherwise the effect won't be
-"   seen.
-"
-" * New (dark) Visual coloring has been introduced.
-"   The dark Visual is more aligned with the rest of the colour scheme,
-"   especially if you use line numbers. If you wish to use the 
-"   old Visual coloring, use
-"
-"      let g:zenburn_old_Visual = 1
-"
-"   Default is to use the new Visual.
-"
-"  * EXPERIMENTAL FEATURE: Zenburn will automatically detect if you 
-"    have ctags_highlighting.vim (by Al Budden, 
-"    http://www.vim.org/scripts/script.php?script_id=2646) enabled, and
-"    will set sensible highlight links. Nothing will happen if you do
-"    not have ctags_highlighting.vim. If you do not want this feature, you can
-"    override the check with:
-"
-"    let g:zenburn_disable_ctags_highlighting_support = 1
-"
-" NOTE:
-"
-" * To turn the parameter(s) back to defaults, use UNLET or set them to 0:
-"
-"      unlet g:zenburn_alternate_Include
-"   or 
-"      let g:zenburn_alternate_Include = 0
-"
-"
-" That's it, enjoy!
-"
-" TODO
-"   - Visual alternate color is broken? Try GVim >= 7.0.66 if you have trouble
-"   - IME colouring (CursorIM)
 
 " Set defaults, but keep any parameters already set by the user
 if ! exists("g:zenburn_high_Contrast")
@@ -170,11 +38,6 @@ if ! exists("g:zenburn_old_Visual")
     let g:zenburn_old_Visual = 0
 endif
 
-if ! exists("g:zenburn_disable_ctags_highlighting_support")
-    " enabled by default
-    let g:zenburn_disable_ctags_highlighting_support = 0
-endif
-
 " -----------------------------------------------
 
 set background=dark
@@ -183,12 +46,6 @@ if exists("syntax_on")
     syntax reset
 endif
 let g:colors_name="zenpete"
-
-" check for ctags-highlighting
-if exists("g:loaded_ctags_highlighting") && g:loaded_ctags_highlighting && ! g:zenburn_disable_ctags_highlighting_support
-    " internal
-    let _zenburn_ctags = 1
-endif
 
 hi Boolean         guifg=#dca3a3
 hi Character       guifg=#dca3a3 gui=bold
@@ -404,8 +261,10 @@ if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     hi TabLineSel      guifg=#efefef guibg=#1c1c1b gui=bold
     hi TabLine         guifg=#b6bf98 guibg=#181818 gui=bold
     hi NonText         guifg=#404040 gui=bold
+    hi ExtraWhitespace ctermbg=234
     
     hi LineNr          guifg=#9fafaf guibg=#252525
+    hi Label           ctermfg=187   cterm=underline
 else
     " Original, lighter background
     hi Normal          guifg=#dcdccc guibg=#3f3f3f
@@ -521,41 +380,3 @@ else
         hi TabLineFill   ctermbg=233 ctermfg=233
     endif
 endif
-
-" EXPERIMENTAL ctags_highlighting support
-" link/set sensible defaults here;
-"
-" For now I mostly link to subset of Zenburn colors, the linkage is based
-" on appearance, not semantics. In later versions I might define more new colours.
-"
-" HELP NEEDED to make this work properly.
-if exists("_zenburn_ctags") && _zenburn_ctags
-
-        " Highlighter seems to think a lot of things are global variables even
-        " though they're not. Example: python method-local variable is
-        " coloured as a global variable. They should not be global, since
-        " they're not visible outside the method.
-        " If this is some very bright colour group then things look bad.
-    	hi link CTagsGlobalVariable    Identifier
-        
-        hi CTagsClass             guifg=#acd0b3
-        if &t_Co > 255
-            hi CTagsClass         ctermfg=115
-        endif
-
-        hi link CTagsImport       Statement
-        hi link CTagsMember       Function
-
-    	hi link CTagsGlobalConstant    Constant
-  
-        " These do not yet have support, I can't get them to appear
-        hi link EnumerationValue  Float
-        hi link EnumerationName   Identifier
-        hi link DefinedName       WarningMsg
-    	hi link LocalVariable     WarningMsg
-    	hi link Structure         WarningMsg
-    	hi link Union             WarningMsg
-endif
-
-" TODO check for more obscure syntax groups that they're ok
-

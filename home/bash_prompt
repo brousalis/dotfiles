@@ -73,7 +73,7 @@ if tput setaf 1 &> /dev/null; then
   red=$(tput setaf 124);
   violet=$(tput setaf 61);
   white=$(tput setaf 15);
-  yellow=$(tput setaf 136);
+  yellow=$(tput setaf 190);
 else
   bold='';
   reset="\e[0m";
@@ -106,9 +106,9 @@ fi;
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
 PS1+="\[${blue}\]\h"; # host
-PS1+="\[${white}\] : ";
+PS1+="\[${white}\] ";
 PS1+="\[${yellow}\]\w"; # working directory
-PS1+="\$(prompt_git \"${white} : ${violet}\")"; # Git repository details
+PS1+="\$(prompt_git \"\[${white}\] \[${violet}\")"; # Git repository details
 PS1+="\[${white}\] \[${reset}\]"; # `$` (and reset color)
 export PS1;
 

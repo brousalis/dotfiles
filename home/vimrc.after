@@ -2,7 +2,7 @@
 syntax on
 
 set t_Co=256
-colorscheme zenpete
+colorscheme pete
 
 " settings
 set mouse=a                     " because mouse
@@ -125,7 +125,6 @@ function! SetCursorPosition()
     endif
   end
 endfunction
-
 
 " ctrl p for cnuapp
 set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc

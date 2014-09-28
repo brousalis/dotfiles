@@ -1,0 +1,19 @@
+for file in ~/.{bash_prompt,aliases,path,exports}; do
+  [[ -f "$file" ]] && source "$file";
+done
+unset file;
+
+shopt -s nocaseglob;
+shopt -s histappend;
+shopt -s cdspell;
+
+if which brew > /dev/null && [ -f "$(brew --prefix)/etc/bash_completion" ]; then
+	source "$(brew --prefix)/etc/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+[[ -f "~/.localrc" ]] && . "~/.localrc"
+

@@ -6,7 +6,7 @@ task :brew do
   if !File.exists?("/usr/local/Cellar")
     `ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"`
   end
-  `brew install ack git libtool imagemagick mysql postgres phantomjs pngcrush tmux vim tree ssh-copy-id`
+  `brew bundle`
 end
 
 task :install do
@@ -20,16 +20,6 @@ task :install do
   unless File.exists?("/Users/#{username}/.vim/bootstrap.sh")
     puts "✱ Installing Janus"
     `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-  end
-
-  unless File.exists?("/bin/zsh")
-    puts "✱ Installing zsh"
-    `sudo apt-get install zsh`
-  end
-
-  unless File.exists?("/Users/#{username}/.oh-my-zsh")
-    puts "✱ Installing oh-my-zsh"
-    `curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh`
   end
 
   puts "✱ Syncing gitmodules (janus plugins)"
@@ -96,17 +86,5 @@ task :uninstall do
   puts "✱ Removed janus plugins"
   `rm -rf ~/.janus`
  end
-
-# thanks mislav
-task :update_submodules do
-  system <<-EOS
-    git submodule foreach '
-      rev=$(git rev-parse HEAD)
-      git pull --quiet --ff-only --no-rebase origin master &&
-      git --no-pager log --no-merges --pretty=format:"%s %Cgreen(%ar)%Creset" --date=relative ${rev}..
-      echo
-    '
-  EOS
-end
 
 task :default => 'install'

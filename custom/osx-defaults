@@ -1,9 +1,0 @@
-# Show the ~/Library folder.
-chflags nohidden ~/Library
-
-# Set a really fast key repeat.
-defaults write NSGlobalDomain KeyRepeat -int 0
-
-# Fix font smoothing
-defaults -currentHost write -g AppleFontSmoothing -int 2
-

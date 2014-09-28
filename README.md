@@ -2,7 +2,7 @@
 This is my ideal setup for a Unix/Linux environment. I've taken things from all over the place, and I can't guarentee it will work on your machine as well as it does on mine - this is just what works for me.
 
 ### Setup
-Run `rake` inside the repo. 
+Run `rake install` inside the repo.
 
 This will install Janus, sync git submodules for vim plugins (in ~/.janus), then symlink all of the config files from the repo into your home directory.
 

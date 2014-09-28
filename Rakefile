@@ -87,4 +87,4 @@ task :uninstall do
   `rm -rf ~/.janus`
  end
 
-task :default => 'install'
+task :default => [:brew, :install]

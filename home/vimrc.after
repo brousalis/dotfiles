@@ -126,8 +126,7 @@ function! SetCursorPosition()
   end
 endfunction
 
-" ctrl p for cnuapp
-set wildignore+=/media/**,*//home/alan/media/**,*//home/alan/Music/**,*/*.scssc
+" ctrl p ignores for work
 set wildignore+=*.pyc,*/*.scssc
 set wildignore+=*/cabar/*,*/cnu_active_record/*,*/cnuapp_ci/*,*/cnuapp_doc/*,*/cnuapp_env/*
 set wildignore+=*/cnuapp_qa/*,*/cnuapp_rack/*,*/cnu_bloom/*,*/cnu_brand/*,*/cnu_cluster/*

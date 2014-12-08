@@ -31,6 +31,9 @@ alias js='cd app/assets/javascripts'
 alias css='cd app/assets/stylesheets'
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update --system; sudo gem update'
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias killpsql="sudo kill -9 `ps -u postgres -o pid`"
+
+alias vm="ssh pbrousalis@10.5.109.231"
 
 alias tmux-ls="tmux list-sessions"
 alias tls="tmux list-sessions"

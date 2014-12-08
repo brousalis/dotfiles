@@ -10,6 +10,7 @@
   pr = !hub pull-request
   st = status
   up = !git fetch origin && git rebase origin/master
+  pr = "!f() { git fetch $1 pull/$2/head:pr-$2 && git checkout pr-$2; }; f"
 [color]
   ui = auto
 [core]
@@ -19,3 +20,6 @@
   path = .gitconfig.local
 [apply]
   whitespace = nowarn
+[user]
+	name = AUTHORNAME 
+	email = AUTHOREMAIL 

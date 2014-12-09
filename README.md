@@ -1,3 +1,6 @@
+<a href="#"><img src="http://i.imgur.com/LnekoTL.png" height="300px" width="500px"></a>
+<a href="#"><img src="http://i.imgur.com/31ISiil.png" height="300px" width="500px"></a>
+
 ### Setup
 
 #### `script/install`

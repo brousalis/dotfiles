@@ -1,6 +1,3 @@
-<a href="#"><img src="http://i.imgur.com/LnekoTL.png" height="300px" width="500px"></a>
-<a href="#"><img src="http://i.imgur.com/31ISiil.png" height="300px" width="500px"></a>
-
 ### Setup
 
 #### `script/install`
@@ -55,3 +52,6 @@ I have modified https://github.com/mathiasbynens/dotfiles/blob/master/.osx sligh
 
 ### Custom terminal
 In the `/custom` folder, you'll find my iTerm settings, as well as the font I use: `M Plus 1m` from [M+ Fonts](http://mplus-fonts.sourceforge.jp/). http://www.fontsquirrel.com/fonts/M-1m
+
+<a href="#"><img src="http://i.imgur.com/LnekoTL.png" height="300px" width="500px"></a>
+<a href="#"><img src="http://i.imgur.com/31ISiil.png" height="300px" width="500px"></a>

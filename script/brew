@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+if [ ! -d "/usr/local/.git" ]; then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
+if test $(which brew); then
+  brew update
+  brew upgrade
+
+  brew install coreutils moreutils findutils
+  brew install git
+  brew install bash bash-completion
+  brew install vim --override-system-vi
+  brew install ack
+  brew install node
+  brew install imagemagick --with-webp
+  brew install pngcheck
+  brew install rename
+  brew install tree
+  brew install tmux
+  brew install openssl
+  brew install readline
+  brew install reattach-to-user-namespace
+
+  brew cleanup
+fi

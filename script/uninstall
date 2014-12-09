@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd)/home
+ZSH_ROOT=$(pwd)/zsh
+
+set -e
+echo ''
+
+info () {
+  printf "  [ \033[00;34m..\033[0m ] $1"
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+remove_dotfiles () {
+  for src in $(find "$DOTFILES_ROOT"/* "$ZSH_ROOT"/* -maxdepth 2 -name '*' ! -name 'gitconfig')
+  do
+    dst="$HOME/.$(basename "${src}")"
+    info "$dst"
+    if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]; then
+      rm $dst
+      success "removed $dst"
+    fi
+  done
+}
+
+info 'removing dotfiles'
+
+remove_dotfiles
+
+echo ''
+echo '  All removed'

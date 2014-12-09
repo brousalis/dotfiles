@@ -28,6 +28,6 @@ git submodule update
 script/bootstrap
 
 # switch shell to zsh
-if [ $SHELL != '/bin/zsh' ]
+if [ $SHELL != '/bin/zsh' ]; then
   sudo chsh -s /bin/zsh $USER
 fi

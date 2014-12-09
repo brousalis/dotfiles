@@ -1,2 +1,0 @@
-call janus#disable_plugin('css-color')
-call janus#disable_plugin('syntastic')

@@ -17,7 +17,7 @@ If the installer finds an existing file when symlinking, it will skip
 it.
 
 ### Removal
-#### `script/unintsall`
+#### `script/uninstall`
 
 This will remove all of the symlinks.
 

@@ -117,7 +117,7 @@ install_dotfiles () {
 install_plugins () {
   if [ ! -d "$HOME/.janus" ]; then
     info 'install vim plugins'
-    link_file "$(pwd)/janus" "$HOME/.janus"
+    ln -s "$(pwd)/janus" "$HOME/.janus"
   fi
 }
 

@@ -9,7 +9,7 @@ cd "$(dirname "$0")/.."
 [ ! -d "/usr/local/.git" ] && [ "$(uname -s)" == "Darwin" ] && script/brew 
 
 # apt
-[ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential ack vim tmux
+[ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux
 
 # janus
 [ ! -d "$HOME/.vim/janus" ] && curl -Lo- https://bit.ly/janus-bootstrap | bash

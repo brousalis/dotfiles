@@ -18,7 +18,8 @@ setopt HIST_REDUCE_BLANKS
 
 setopt complete_aliases
 
+# local config
 [[ -a ~/.localrc ]] && source ~/.localrc
 
-
-
+# rbenv
+eval "$(rbenv init -)"

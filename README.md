@@ -1,5 +1,17 @@
 ### Setup
 
+Run this:
+
+    git clone https://github.com/brousalis/dotfiles.git ~/.dotfiles
+    cd ~/.dotfiles
+    script/install
+    
+or more conveniently:
+    
+    git clone https://github.com/brousalis/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && script/install
+
+### Install
+
 #### `script/install`
 
 This will install:
@@ -16,12 +28,13 @@ This will install:
 If the installer finds an existing file when symlinking, it will skip
 it.
 
-### Removal
+### Uninstall
 #### `script/uninstall`
 
-This will remove all of the symlinks.
+This will remove all of the symlinks. 
 
 ### Brew
+#### `script/brew`
 `script/install` will check for Mac OS X and install brew if it doesn't exist. If it does, it update all brew kegs then install the following:
 
     coreutils 

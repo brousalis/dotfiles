@@ -121,7 +121,7 @@ install_plugins () {
   fi
 }
 
-#setup_gitconfig
+setup_gitconfig
 install_plugins
 install_dotfiles
 

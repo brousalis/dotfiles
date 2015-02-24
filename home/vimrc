@@ -1,0 +1,101 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" BUNDLES
+Plugin 'gmarik/Vundle.vim'
+
+" general vim/commands
+Plugin 'tpope/vim-repeat'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/vim-auto-save'
+
+" syntax
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'leshill/vim-json'
+Plugin 'tpope/vim-haml'
+Plugin 'plasticboy/vim-markdown'
+" Plugin 'tpope/vim-markdown'
+Plugin 'tdesikan/vim-tritium'
+Plugin 'slim-template/vim-slim'
+Plugin 'rylnd/vim-javascript-syntax'
+Plugin 'lilydjwg/colorizer'
+Plugin 'mtscout6/vim-cjsx'
+Plugin 'wavded/vim-stylus'
+Plugin 'scrooloose/syntastic'
+Plugin 'dbakker/vim-lint'
+Plugin 'nono/vim-handlebars'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'itspriddle/vim-marked'
+Plugin 'digitaltoad/vim-jade'
+
+" ruby
+Plugin 'tpope/vim-endwise'
+Plugin 'vim-ruby/vim-ruby'
+
+" node
+Plugin 'moll/vim-node'
+
+" formatting
+Plugin 'junegunn/vim-easy-align'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'tpope/vim-commentary'
+" Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-speeddating'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'mattn/emmet-vim'
+
+" files/search/buffers
+Plugin 'scrooloose/nerdtree'
+Plugin 'duff/vim-bufonly'
+Plugin 'mileszs/ack.vim'
+Plugin 'kien/ctrlp.vim'
+" Plugin 'ervandew/supertab'
+Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'tpope/vim-abolish'
+
+" tags
+Plugin 'tpope/vim-ragtag'
+
+" git
+" Plugin 'gregsexton/gitv'
+" Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+
+" rails
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+
+" tmux
+Plugin 'benmills/vimux'
+Plugin 'jgdavey/vim-turbux'
+
+" tools
+Plugin 'bartek/vim-draftin'
+
+" style
+Plugin 'godlygeek/csapprox'
+
+call vundle#end()
+
+filetype plugin indent on
+
+set guifont=Inconsolata\ for\ Powerline:h13
+let g:airline_powerline_fonts = 1
+
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
+
+if filereadable(expand('~/.vimrc.secret'))
+  source ~/.vimrc.secret
+endif

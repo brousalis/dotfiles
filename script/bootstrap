@@ -4,14 +4,14 @@
 # by zach holman, modified
 
 cd "$(dirname "$0")/.."
-DOTFILES_ROOT=$(pwd)/home
-ZSH_ROOT=$(pwd)/zsh
+DOTFILES_ROOT=$(pwd)
+DOTFILES_HOME=$(pwd)/home
 
 set -e
 echo ''
 
 info () {
-  printf "  [ \033[00;34m..\033[0m ] $1"
+  printf "  [ \033[00;34m..\033[0m ] $1\n"
 }
 
 user () {
@@ -104,26 +104,24 @@ link_file () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  info "installing dotfiles"
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find "$DOTFILES_ROOT"/* "$ZSH_ROOT"/* -maxdepth 2 -name '*')
+  for src in $(find "$DOTFILES_HOME"/* -maxdepth 2 -name '*')
   do
     dst="$HOME/.$(basename "${src}")"
     link_file "$src" "$dst"
   done
 }
 
-install_plugins () {
-  if [ ! -d "$HOME/.janus" ]; then
-    info 'install vim plugins'
-    ln -s "$(pwd)/janus" "$HOME/.janus"
-  fi
+install_vim () {
+  info "installing vim plugins"
+  ln -s $DOTFILES_ROOT/vim $HOME/.vim
 }
 
 setup_gitconfig
-install_plugins
 install_dotfiles
+install_vim
 
 echo ''
 echo '  All installed!'

@@ -1,0 +1,214 @@
+scriptencoding utf-8
+set encoding=utf-8
+
+syntax on
+colorscheme pete
+
+" custom binds I use
+let mapleader = ","
+nnoremap <leader><space> :noh<CR>
+inoremap jj <Esc>
+inoremap jk <Esc>
+nnoremap ; :
+noremap Y $
+noremap T ^
+noremap K i<CR><Esc>
+nmap <leader>w :set wrap!<CR>
+nmap <leader>k :set list!<CR>
+inoremap <C-tab> <Esc><<i
+nnoremap j gj
+nnoremap k gk
+nnoremap <silent> '. :cd %:p:h<cr>
+nnoremap Q q
+nnoremap q <nop>
+map <S-Enter> O<Esc>j
+map <CR> o<Esc>
+
+" open nerdtree with ,n
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows=1
+
+" nerdtree tab navigation
+map <F1> :tabprev<CR>
+map <F2> :tabnext<CR>
+
+" vimshell
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+let g:vimshell_prompt =  '$ '
+
+" vim directories: backup, swap files
+set nobackup
+set noswapfile
+set nowritebackup
+set modelines=0
+set nocompatible
+
+" airline
+let g:airline_theme='tomorrow'
+let g:airline#extensions#tmuxline#enabled=0
+
+" tmuxline
+let g:tmuxline_powerline_separators=1
+
+" tabs
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+nnoremap tj :tabnext<CR>
+nnoremap tk :tabprev<CR>
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+nnoremap <C-t> :tabe<Space>
+
+nmap <leader>h :%!html2haml --html-attributes --erb 2> /dev/null<CR>:set ft=haml<CR>
+vmap <leader>h :!html2haml --html-attributes --erb 2> /dev/null<CR>:set ft=haml<CR>
+
+" word separators
+set iskeyword-=_,-
+
+" easyAlign
+" start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+map <Enter> <Plug>(EasyAlign)
+
+" start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
+
+" multikey mapping speed
+set timeout timeoutlen=750 ttimeoutlen=75
+
+" delete character should not squash paste buffer
+nnoremap <silent> x "_x
+vnoremap <silent> x "_x
+
+" xp should still function as transpose
+nnoremap <silent> xp xph
+vnoremap <silent> xp xph
+
+" cursor
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmode=longest,list,full
+set wildmenu
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set number
+set mouse=a                     " because mouse
+set pastetoggle=<F2>            " toggle paste indentation w/ F2
+
+" search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap / /\v
+vnoremap / /\v
+nnoremap <leader><space> :noh<cr>
+nnoremap <leader>r :%s/
+
+" leader
+let mapleader = ","
+
+" ctrlp
+let g:ctrlp_show_hidden=1
+
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+
+set list
+set listchars=tab:▸\
+
+" movement keys
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
+
+" command line
+nnoremap ; :
+
+" easier window resizing
+nnoremap ,. <C-w><
+nnoremap ,p <C-w>>
+
+" quick access to clipboard history
+nmap ,yr :YRShow<CR>
+imap ,yr :YRShow<CR>
+
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" move between panes
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
+map <Leader>h <C-w>h
+
+" splitjoin plugin
+nmap zj :SplitjoinSplit<cr>
+nmap zk :SplitjoinJoin<cr>
+
+" formatted paste
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
+
+" tab indents
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" autoclear trailing white-space and save cursor position
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+
+" strip whitespace
+autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+fun! EnableAutoSave()
+  let g:auto_save = 1
+  set updatetime=200
+endfun
+
+fun! DisableAutoSave()
+  let g:auto_save = 0
+  set updatetime=4000
+endfun
+
+autocmd FileType md,markdown :call EnableAutoSave()
+autocmd FileType * :call DisableAutoSave()
+
+" replace quotes
+map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
+
+" replace hashrockets
+nmap <F4> :s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+vmap <F4> :'<,'>s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+
+" jump to last cursor position when opening a file.
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+  if &filetype !~ 'commit\c'
+    if line("'\"") > 0 && line("'\"") <= line("$")
+     exe "normal g`\""
+    endif
+  end
+endfunction

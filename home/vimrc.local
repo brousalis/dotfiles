@@ -3,9 +3,9 @@ set encoding=utf-8
 
 syntax on
 colorscheme pete
+let mapleader = ","
 
 " custom binds I use
-let mapleader = ","
 nnoremap <leader><space> :noh<CR>
 inoremap jj <Esc>
 inoremap jk <Esc>
@@ -61,9 +61,6 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 nnoremap <C-t> :tabe<Space>
 
-nmap <leader>h :%!html2haml --html-attributes --erb 2> /dev/null<CR>:set ft=haml<CR>
-vmap <leader>h :!html2haml --html-attributes --erb 2> /dev/null<CR>:set ft=haml<CR>
-
 " word separators
 set iskeyword-=_,-
 
@@ -114,12 +111,10 @@ vnoremap / /\v
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>r :%s/
 
-" leader
-let mapleader = ","
-
 " ctrlp
 let g:ctrlp_show_hidden=1
 
+" text settings
 set wrap
 set textwidth=79
 set formatoptions=qrn1
@@ -127,26 +122,8 @@ set formatoptions=qrn1
 set list
 set listchars=tab:▸\
 
-" movement keys
-" nnoremap <up> <nop>
-" nnoremap <down> <nop>
-" nnoremap <left> <nop>
-" nnoremap <right> <nop>
-" inoremap <up> <nop>
-" inoremap <down> <nop>
-" inoremap <left> <nop>
-" inoremap <right> <nop>
-
 " command line
 nnoremap ; :
-
-" easier window resizing
-nnoremap ,. <C-w><
-nnoremap ,p <C-w>>
-
-" quick access to clipboard history
-nmap ,yr :YRShow<CR>
-imap ,yr :YRShow<CR>
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'

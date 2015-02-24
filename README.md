@@ -1,3 +1,5 @@
+Bits and pieces taken from all over GitHub. [Kevin Altman](https://github.com/itsthatguy), [Zach Holman](https://github.com/holman/dotfiles), [Stefan Penner](https://github.com/stefanpenner/dotfiles)
+
 ### Setup
 
 Run this:
@@ -11,27 +13,24 @@ or more conveniently:
     git clone https://github.com/brousalis/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && script/install
 
 ### Install
-
 #### `script/install`
 
 This will install:
 
 - [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-- [brew](http://brew.sh)
 - [rbenv](https://github.com/sstephenson/rbenv)
 - [tmux](http://sourceforge.net/projects/tmux/)
 - [ruby-build](https://github.com/sstephenson/ruby-build)
-- [Janus](https://github.com/carlhuda/janus)
-- additional vim plugins
-- config files
+- [Vundle](https://github.com/gmarik/Vundle.vim) and my vim plugins
+- packages via `brew` or `apt` 
+- various config files
 
-If the installer finds an existing file when symlinking, it will skip
-it.
+If the installer finds an existing file when symlinking, it will skip it.
 
 ### Uninstall
 #### `script/uninstall`
 
-This will remove all of the symlinks. 
+This will remove all of the symlinks, except `.gitconfig` (just to be safe), and remove the vim plugins.
 
 ### Brew
 #### `script/brew`
@@ -57,14 +56,12 @@ This will remove all of the symlinks.
 
 You can run this functionality separately as `script/brew`.
 
-### Vim plugins
-To add more vim plugins, do `git add submodule https://github.com/...` in the `/janus` folder, and they will automatically load the next time you run vim. 
-
 ### OSX Settings
 I have modified https://github.com/mathiasbynens/dotfiles/blob/master/.osx slightly and included it in the script folder. It is well documented, I recommend going through it. Run `script/osx` after running install.
 
 ### Custom terminal
-In the `/custom` folder, you'll find my iTerm settings, as well as the font I use: `M Plus 1m` from [M+ Fonts](http://mplus-fonts.sourceforge.jp/). http://www.fontsquirrel.com/fonts/M-1m
+In the `/custom` folder, you'll find my iTerm settings, as well as modified monospaced fonts from [powerline/fonts](https://github.com/powerline/fonts) which in turn adds support for the [vim-airline](https://github.com/brousalis/vim-airline). 
 
-<a href="#"><img src="http://i.imgur.com/LnekoTL.png" height="300px" width="500px"></a>
-<a href="#"><img src="http://i.imgur.com/31ISiil.png" height="300px" width="500px"></a>
+Run `custom/fonts/install.sh` to install the fonts.
+
+Set both your **Regular Font** and **Non-ASCII Font** to `Inconsolata for Powerline` (installed via powerline/fonts.

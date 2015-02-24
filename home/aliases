@@ -1,5 +1,5 @@
 alias home='cd ~'
-alias dots='cd $DOTFILES'
+alias dots='cd ~/.dotfiles'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

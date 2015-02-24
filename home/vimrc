@@ -55,8 +55,8 @@ Plugin 'duff/vim-bufonly'
 Plugin 'mileszs/ack.vim'
 Plugin 'kien/ctrlp.vim'
 " Plugin 'ervandew/supertab'
-Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
+" Plugin 'bling/vim-airline'
+" Plugin 'edkolev/tmuxline.vim'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'tpope/vim-abolish'
@@ -90,13 +90,6 @@ call vundle#end()
 
 filetype plugin indent on
 
-set guifont=Inconsolata\ for\ Powerline:h13
-let g:airline_powerline_fonts = 1
-
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
-endif
-
-if filereadable(expand('~/.vimrc.secret'))
-  source ~/.vimrc.secret
 endif

@@ -21,7 +21,6 @@ nnoremap k gk
 nnoremap <silent> '. :cd %:p:h<cr>
 nnoremap Q q
 nnoremap q <nop>
-map <S-Enter> O<Esc>j
 map <CR> o<Esc>
 
 " open nerdtree with ,n
@@ -43,13 +42,6 @@ set nowritebackup
 set modelines=0
 set nocompatible
 
-" airline
-let g:airline_theme='tomorrow'
-let g:airline#extensions#tmuxline#enabled=0
-
-" tmuxline
-let g:tmuxline_powerline_separators=1
-
 " tabs
 set tabstop=2
 set shiftwidth=2
@@ -66,7 +58,7 @@ set iskeyword-=_,-
 
 " easyAlign
 " start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-map <Enter> <Plug>(EasyAlign)
+map <S-Enter> <Plug>(EasyAlign)
 
 " start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 nmap <Leader>a <Plug>(EasyAlign)

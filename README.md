@@ -59,9 +59,3 @@ You can run this functionality separately as `script/brew`.
 ### OSX Settings
 I have modified https://github.com/mathiasbynens/dotfiles/blob/master/.osx slightly and included it in the script folder. It is well documented, I recommend going through it. Run `script/osx` after running install.
 
-### Custom terminal
-In the `/custom` folder, you'll find my iTerm settings, as well as modified monospaced fonts from [powerline/fonts](https://github.com/powerline/fonts) which in turn adds support for the [vim-airline](https://github.com/brousalis/vim-airline). 
-
-Run `custom/fonts/install.sh` to install the fonts.
-
-Set both your **Regular Font** and **Non-ASCII Font** to `Inconsolata for Powerline` (installed via powerline/fonts.

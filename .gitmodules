@@ -2,7 +2,3 @@
   path = vim/bundle/Vundle.vim
   url = git@github.com:gmarik/Vundle.vim.git
   ignore = dirty
-[submodule "custom/fonts"]
-  path = custom/fonts
-  url = git@github.com:powerline/fonts.git
-  ignore = dirty

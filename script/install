@@ -3,7 +3,7 @@
 cd "$(dirname "$0")/.."
 
 # zsh
-curl -L http://install.ohmyz.sh | sh
+[ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
 
 # brew
 [ ! -d "/usr/local/.git" ] && [ "$(uname -s)" == "Darwin" ] && script/brew 
@@ -12,22 +12,22 @@ curl -L http://install.ohmyz.sh | sh
 [ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux
 
 # rbenv
-git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+[ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 
 # ruby build
-git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
-
-# janus
-curl -Lo- https://bit.ly/janus-bootstrap | bash
+[ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # update vim plugins
-git submodule init
-git submodule update
+git submodule update --init --recursive
+git submodule foreach git pull
 
 # symlink files
 script/bootstrap
 
+# vim plugins
+vim +PluginInstall +qall
+
 # switch shell to zsh
 if [ $SHELL != '/bin/zsh' ]; then
-  sudo chsh -s /bin/zsh $USER
+  sudo chsh -s /bin/zsh
 fi

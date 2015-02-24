@@ -67,7 +67,7 @@ if &t_Co > 255
    hi SignColumn      ctermfg=118 ctermbg=235
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  
+   hi Special         ctermfg=81
    hi SpecialKey      ctermfg=245
 
    hi Statement       ctermfg=190 cterm=bold
@@ -89,10 +89,11 @@ if &t_Co > 255
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
    hi WildMenu        ctermfg=81  ctermbg=16
 
-   hi Normal          ctermfg=252 
+   hi Normal          ctermfg=252
    hi Comment         ctermfg=59
    hi CursorLine                  ctermbg=232 cterm=none
    hi CursorColumn                ctermbg=234
    hi LineNr          ctermfg=240
-   hi NonText         ctermfg=250 
+   hi NonText         ctermfg=250
 end
+

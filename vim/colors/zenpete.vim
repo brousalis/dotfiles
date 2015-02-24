@@ -214,7 +214,7 @@ if &t_Co > 255
         if exists("g:zenburn_color_also_Ignore") && g:zenburn_color_also_Ignore
             hi Ignore          ctermfg=240
         endif
-        
+
         " normal mode, lighter CursorLine
         hi CursorLine      ctermbg=238   cterm=none
 
@@ -262,7 +262,7 @@ if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     hi TabLine         guifg=#b6bf98 guibg=#181818 gui=bold
     hi NonText         guifg=#404040 gui=bold
     hi ExtraWhitespace ctermbg=234
-    
+
     hi LineNr          guifg=#9fafaf guibg=#252525
     hi Label           ctermfg=187   cterm=underline
 else
@@ -284,7 +284,7 @@ else
     hi TabLineSel      guifg=#efefef guibg=#3a3a39 gui=bold
     hi TabLine         guifg=#b6bf98 guibg=#353535 gui=bold
     hi NonText         guifg=#5b605e gui=bold
-    
+
     hi LineNr          guifg=#9fafaf guibg=#252525
 endif
 
@@ -353,9 +353,9 @@ if exists("g:zenburn_high_Contrast") && g:zenburn_high_Contrast
     hi TabLine       guifg=#88b090 guibg=#313633 gui=none
     hi TabLineSel    guifg=#ccd990 guibg=#222222
     hi TabLineFill   guifg=#88b090 guibg=#313633 gui=none
-    
+
     hi SpecialKey    guibg=#242424
-    
+
     if &t_Co > 255
         hi FoldColumn    ctermbg=233 ctermfg=109
         hi Folded        ctermbg=233 ctermfg=109
@@ -369,7 +369,7 @@ else
     hi TabLine       guifg=#d0d0b8 guibg=#222222 gui=none
     hi TabLineSel    guifg=#f0f0b0 guibg=#333333 gui=bold
     hi TabLineFill   guifg=#dccdcc guibg=#101010 gui=none
-    
+
     hi SpecialKey    guibg=#444444
 
     if &t_Co > 255
@@ -380,3 +380,4 @@ else
         hi TabLineFill   ctermbg=233 ctermfg=233
     endif
 endif
+

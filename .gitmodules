@@ -1,6 +1,8 @@
-[submodule "janus/splitjoin"]
-	path = janus/splitjoin
-	url = https://github.com/AndrewRadev/splitjoin.vim
-[submodule "janus/vim-css3-syntax"]
-	path = janus/vim-css3-syntax
-	url = https://github.com/hail2u/vim-css3-syntax.git
+[submodule "vim/bundle/Vundle.vim"]
+  path = vim/bundle/Vundle.vim
+  url = git@github.com:gmarik/Vundle.vim.git
+  ignore = dirty
+[submodule "custom/fonts"]
+  path = custom/fonts
+  url = git@github.com:powerline/fonts.git
+  ignore = dirty

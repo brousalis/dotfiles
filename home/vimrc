@@ -47,7 +47,7 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mattn/emmet-vim'
-Plugin 'AndrweRadev/splitjoin.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 " files/search/buffers
 Plugin 'scrooloose/nerdtree'

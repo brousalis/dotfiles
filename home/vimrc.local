@@ -57,11 +57,7 @@ nnoremap <C-t> :tabe<Space>
 set iskeyword-=_,-
 
 " easyAlign
-" start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-map <S-Enter> <Plug>(EasyAlign)
-
-" start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
-nmap <Leader>a <Plug>(EasyAlign)
+vmap <Enter> <Plug>(EasyAlign)
 
 " multikey mapping speed
 set timeout timeoutlen=750 ttimeoutlen=75
@@ -88,6 +84,7 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 set number
+set clipboard=unnamed
 set mouse=a                     " because mouse
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 
@@ -98,8 +95,6 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
-nnoremap / /\v
-vnoremap / /\v
 nnoremap <leader><space> :noh<cr>
 nnoremap <leader>r :%s/
 

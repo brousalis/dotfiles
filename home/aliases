@@ -10,6 +10,7 @@ alias postgres.start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgr
 alias postgres.stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias be='bundle exec'
 alias mm='bundle exec middleman'
+alias rnpm='rm -rf node_modules bower_components && npm install'
 alias z='zeus'
 alias rb='rbenv'
 alias pow='powify'

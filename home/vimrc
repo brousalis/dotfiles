@@ -30,6 +30,7 @@ Plugin 'nono/vim-handlebars'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'itspriddle/vim-marked'
 Plugin 'digitaltoad/vim-jade'
+Plugin 'mxw/vim-jsx'
 
 " ruby
 Plugin 'tpope/vim-endwise'

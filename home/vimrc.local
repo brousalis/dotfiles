@@ -31,10 +31,6 @@ let g:NERDTreeDirArrows=1
 map <F1> :tabprev<CR>
 map <F2> :tabnext<CR>
 
-" vimshell
-let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
-let g:vimshell_prompt =  '$ '
-
 " vim directories: backup, swap files
 set nobackup
 set noswapfile
@@ -53,6 +49,9 @@ nnoremap tl :tabnext<CR>
 nnoremap th :tabprev<CR>
 nnoremap <C-t> :tabe<Space>
 
+" disable html linting
+let g:syntastic_html_checkers=['']
+
 " word separators
 set iskeyword-=_,-
 
@@ -61,14 +60,6 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " multikey mapping speed
 set timeout timeoutlen=750 ttimeoutlen=75
-
-" delete character should not squash paste buffer
-nnoremap <silent> x "_x
-vnoremap <silent> x "_x
-
-" xp should still function as transpose
-nnoremap <silent> xp xph
-vnoremap <silent> xp xph
 
 " cursor
 set scrolloff=3
@@ -147,18 +138,9 @@ endfun
 " strip whitespace
 autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
-fun! EnableAutoSave()
-  let g:auto_save = 1
-  set updatetime=200
-endfun
-
-fun! DisableAutoSave()
-  let g:auto_save = 0
-  set updatetime=4000
-endfun
-
-autocmd FileType md,markdown :call EnableAutoSave()
-autocmd FileType * :call DisableAutoSave()
+" auto save
+let g:auto_save = 1
+set updatetime=200
 
 " replace quotes
 map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>

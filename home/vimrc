@@ -9,7 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " general vim/commands
 Plugin 'tpope/vim-repeat'
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/vim-auto-save'
 
 " syntax
@@ -18,33 +18,33 @@ Plugin 'leshill/vim-json'
 Plugin 'tpope/vim-haml'
 Plugin 'plasticboy/vim-markdown'
 " Plugin 'tpope/vim-markdown'
-Plugin 'tdesikan/vim-tritium'
+" Plugin 'tdesikan/vim-tritium'
 Plugin 'slim-template/vim-slim'
 Plugin 'rylnd/vim-javascript-syntax'
 Plugin 'lilydjwg/colorizer'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'wavded/vim-stylus'
+" Plugin 'mtscout6/vim-cjsx'
+" Plugin 'wavded/vim-stylus'
 Plugin 'scrooloose/syntastic'
 Plugin 'dbakker/vim-lint'
 Plugin 'nono/vim-handlebars'
 Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'itspriddle/vim-marked'
+" Plugin 'itspriddle/vim-marked'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mxw/vim-jsx'
 
 " ruby
-Plugin 'tpope/vim-endwise'
-Plugin 'vim-ruby/vim-ruby'
+" Plugin 'tpope/vim-endwise'
+" Plugin 'vim-ruby/vim-ruby'
 
 " node
 Plugin 'moll/vim-node'
 
 " formatting
 Plugin 'junegunn/vim-easy-align'
-Plugin 'jgdavey/vim-blockle'
+"Plugin 'jgdavey/vim-blockle'
 Plugin 'tpope/vim-commentary'
 " Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-speeddating'
+" Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'mattn/emmet-vim'
@@ -58,12 +58,12 @@ Plugin 'kien/ctrlp.vim'
 " Plugin 'ervandew/supertab'
 " Plugin 'bling/vim-airline'
 " Plugin 'edkolev/tmuxline.vim'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'tpope/vim-abolish'
+" Plugin 'Shougo/neosnippet'
+" Plugin 'Shougo/neosnippet-snippets'
+" Plugin 'tpope/vim-abolish'
 
 " tags
-Plugin 'tpope/vim-ragtag'
+" Plugin 'tpope/vim-ragtag'
 
 " git
 " Plugin 'gregsexton/gitv'
@@ -72,20 +72,19 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 " rails
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
+" Plugin 'tpope/vim-bundler'
+" Plugin 'tpope/vim-cucumber'
+" Plugin 'tpope/vim-rails'
+" Plugin 'tpope/vim-rake'
 
 " tmux
-Plugin 'benmills/vimux'
-Plugin 'jgdavey/vim-turbux'
+" Plugin 'benmills/vimux'
+" Plugin 'jgdavey/vim-turbux'
 
 " tools
-Plugin 'bartek/vim-draftin'
+" Plugin 'bartek/vim-draftin'
 
-" style
-Plugin 'godlygeek/csapprox'
+Plugin 'godlygeek/csapprox' " fix gvim colors in vim
 
 call vundle#end()
 

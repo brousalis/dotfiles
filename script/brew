@@ -8,20 +8,44 @@ if test $(which brew); then
   brew update
   brew upgrade
 
-  brew install coreutils moreutils findutils
-  brew install git
-  brew install bash bash-completion
-  brew install vim --override-system-vi
   brew install ack
+  brew install bash
+  brew install bash-completion
+  brew install brew-cask
+  brew install coreutils
+  brew install findutils
+  brew install freetype
+  brew install geoip
+  brew install git
+  brew install htop-osx
+  brew install hub
+  brew install icu4c
+  brew install imagemagick
+  brew install jpeg
+  brew install libevent
+  brew install libpng
+  brew install libtool
+  brew install memcached
+  brew install mongodb
+  brew install moreutils
+  brew install mysql
   brew install node
-  brew install imagemagick --with-webp
-  brew install pngcheck
-  brew install rename
-  brew install tree
-  brew install tmux
   brew install openssl
+  brew install pkg-config
+  brew install pngcheck
+  brew install rabbitmq
   brew install readline
   brew install reattach-to-user-namespace
+  brew install redis
+  brew install rename
+  brew install sqlite
+  brew install tmux
+  brew install trash
+  brew install tree
+  brew install vim
+  brew install webp
+  brew install wget
+  brew install xz
 
   brew cleanup
 fi

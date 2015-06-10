@@ -2,6 +2,12 @@
 
 cd "$(dirname "$0")/.."
 
+# rbenv
+[ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+
+# ruby build
+[ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
 # zsh
 [ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
 
@@ -10,12 +16,6 @@ cd "$(dirname "$0")/.."
 
 # apt
 [ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux
-
-# rbenv
-[ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-
-# ruby build
-[ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # update vim plugins
 git submodule update --init --recursive

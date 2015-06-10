@@ -139,8 +139,8 @@ endfun
 autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " auto save
-let g:auto_save = 1
-set updatetime=200
+"let g:auto_save = 1
+"set updatetime=200
 
 " replace quotes
 map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>

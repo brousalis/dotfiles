@@ -3,3 +3,5 @@ local
 localrc
 screen
 vim/.netrwhist
+vim/bundle
+vim/vim

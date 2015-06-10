@@ -114,8 +114,13 @@ install_dotfiles () {
   done
 }
 
+install_vim () {
+  info "installing vim plugins"
+  ln -s $DOTFILES_ROOT/vim $HOME/.vim
+}
+
 setup_gitconfig
 install_dotfiles
-
+install_vim
 echo ''
 echo '  All installed!'

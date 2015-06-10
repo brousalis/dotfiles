@@ -27,7 +27,13 @@ remove_dotfiles () {
   done
 }
 
+remove_vim () {
+  info 'removing vim plugins'
+  rm -rf $HOME/.vim
+}
+
 remove_dotfiles
+remove_vim
 
 echo ''
 echo '  All removed'

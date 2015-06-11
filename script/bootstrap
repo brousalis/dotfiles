@@ -103,7 +103,7 @@ install_vim () {
 }
 
 install_dotfiles
-echo '\n'
+echo ''
 install_vim
 
 echo ''

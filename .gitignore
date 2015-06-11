@@ -5,3 +5,9 @@ screen
 vim/.netrwhist
 vim/bundle
 vim/vim
+atom/storage
+atom/atom-shell
+atom/.*
+atom/compile-cache
+atom/packages
+

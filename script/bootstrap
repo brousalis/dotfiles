@@ -109,4 +109,4 @@ install_dotfiles
 install_vim
 
 echo ''
-Lcho '  All installed!'
+echo '  All installed!'

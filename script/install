@@ -24,9 +24,8 @@ cd ${DOTFILES_ROOT}
 # apt
 [ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux htop
 
-# update vim plugins
+# install vundle 
 git submodule update --init --recursive
-git submodule foreach git pull
 
 # symlink files
 script/bootstrap

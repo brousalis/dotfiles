@@ -142,6 +142,15 @@ autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWr
 "let g:auto_save = 1
 "set updatetime=200
 
+" dont copy to clipboard when deleting. use leader to cut
+nnoremap x "_x
+nnoremap d "_d
+nnoremap D "_D
+vnoremap d "_d
+nnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>d ""d
+
 " replace quotes
 map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
 

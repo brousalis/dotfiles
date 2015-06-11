@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOTFILES_ROOT="${HOME}/.dotfiles"
-DOTFILES_REPO="https://github.com/brousalis/dotfiles.git"
+DOTFILES_REPO="git@github.com:brousalis/dotfiles.git"
 
 if [[ ! -d ${DOTFILES_ROOT} ]]; then
   git clone ${DOTFILES_REPO} ${DOTFILES_ROOT}

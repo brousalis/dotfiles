@@ -46,6 +46,12 @@ alias flush="sudo dscacheutil -flushcache"
 alias tls='tmux list-sessions'
 alias tc='tmux new-session -s'
 alias ta='tmux attach-session -t'
+function tt { 
+  # opens teamocil backed sessions
+  tmux new-session -d -s "${1}-tmp"
+  tmux send-keys -t "${1}-tmp":1 "teamocil ${1}" C-m
+  tmux attach-session -t ${1}
+}
 
 alias ls='ls -lah'
 alias ll='ls -lth'

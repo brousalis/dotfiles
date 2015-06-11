@@ -5,7 +5,7 @@ Bits and pieces taken from all over GitHub. [Kevin Altman](https://github.com/it
 
     bash -c "$(curl -fsSL raw.github.com/brousalis/dotfiles/master/script/install)"
 
-**Always** read a script before you curl: [https://github.com/brousalis/dotfiles/blob/master/script/install](https://github.com/brousalis/dotfiles/blob/master/script/install)
+Always read a script before you curl: [https://github.com/brousalis/dotfiles/blob/master/script/install](https://github.com/brousalis/dotfiles/blob/master/script/install)
 
 This will install:
 
@@ -73,4 +73,7 @@ This will remove all of the symlinks and the vim plugins.
 #### `script/brew`
 I have modified https://github.com/mathiasbynens/dotfiles/blob/master/.osx slightly and included it in the script folder. It is well documented, I recommend going through it. Run `script/osx` after running install.
 
+### Custom
+#### `script/custom`
+These exist for my personal sake. I've included an install script for my [Spectacle.app](spectacleapp.com) hotkeys, M+ 2m font, and iTerm2 color scheme. I wouldn't run this command if you aren't me. 
 

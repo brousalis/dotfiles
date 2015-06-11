@@ -31,7 +31,7 @@ git submodule update --init --recursive
 script/bootstrap
 
 # vim plugins
-vim +PluginInstall +qall
+vim +PluginInstall +qa
 
 # switch shell to zsh
 if [ $SHELL != '/bin/zsh' ]; then

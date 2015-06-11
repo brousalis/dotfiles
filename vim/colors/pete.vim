@@ -10,7 +10,7 @@ if version > 580
         syntax reset
     endif
 endif
-let g:colors_name="molokai"
+let g:colors_name="pete"
 
 if &t_Co > 255
    hi Boolean         ctermfg=135

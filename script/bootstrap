@@ -22,22 +22,6 @@ success () {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
-setup_gitconfig () {
-  if ! [ -f ~/.gitconfig ]
-  then
-    info 'setup gitconfig'
-
-    user ' - What is your github author name?'
-    read -e git_authorname
-
-    user ' - What is your github author email?'
-    read -e git_authoremail
-
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" home/gitconfig
-    success 'gitconfig'
-  fi
-}
-
 link_file () {
   local src=$1 dst=$2
   local overwrite= backup= skip=
@@ -105,7 +89,9 @@ link_file () {
 
 install_dotfiles () {
   info "installing dotfiles"
-  local overwrite_all=false backup_all=false skip_all=false
+  local overwrite_all=false 
+  local backup_all=false 
+  local skip_all=false
 
   for src in $(find "$DOTFILES_HOME"/* -maxdepth 2 -name '*')
   do
@@ -116,11 +102,11 @@ install_dotfiles () {
 
 install_vim () {
   info "installing vim plugins"
-  ln -s $DOTFILES_ROOT/vim $HOME/.vim
+  link_file "$DOTFILES_ROOT/vim" "$HOME/.vim"
 }
 
-setup_gitconfig
 install_dotfiles
 install_vim
+
 echo ''
-echo '  All installed!'
+Lcho '  All installed!'

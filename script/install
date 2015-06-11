@@ -1,6 +1,13 @@
 #!/bin/bash
 
-cd "$(dirname "$0")/.."
+DOTFILES_ROOT="${HOME}/.dotfiles"
+DOTFILES_REPO="https://github.com/brousalis/dotfiles.git"
+
+if [[ ! -d ${DOTFILES_ROOT} ]]; then
+  git clone ${DOTFILES_REPO} ${DOTFILES_ROOT}
+fi
+
+cd ${DOTFILES_ROOT}
 
 # rbenv
 [ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
@@ -15,7 +22,7 @@ cd "$(dirname "$0")/.."
 [ ! -d "/usr/local/.git" ] && [ "$(uname -s)" == "Darwin" ] && script/brew 
 
 # apt
-[ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux
+[ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux htop
 
 # update vim plugins
 git submodule update --init --recursive

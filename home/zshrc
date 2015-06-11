@@ -3,10 +3,10 @@ export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="steeef"
 plugins=(git osx wd)
 
-# load oh-my-zsh
+# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# aliases 
+# Aliases 
 source $HOME/.aliases
 
 # zsh completion
@@ -20,5 +20,5 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt COMPLETE_ALIASES 
 
-# local config
+# Local config
 [[ -a ~/.localrc ]] && source ~/.localrc

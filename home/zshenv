@@ -1,4 +1,4 @@
-# path 
+# Path 
 export MYBIN="$HOME/bin"
 export BIN="/usr/local/bin"
 export SBIN="/usr/local/sbin"
@@ -7,12 +7,13 @@ export HEROKU="/usr/local/heroku/bin"
 export RBENV="$HOME/.rbenv/bin"
 export PATH=$RBENV:$HEROKU:$NPM:$MYBIN:$BIN:$SBIN:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
-# env variables 
+# Env variables 
 export PGHOST=localhost
 export EDITOR="vim"
 export TERM=xterm-256color
+export DEV="~/dev"
 
-# colors!
+# Colors!
 export CLICOLOR=1
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS="di=1;0;34:ln=0;35:so=32:pi=0;33:ex=0;31:bd=37;46:cd=37;43:su=37;41:sg=37;46:tw=37;42:ow=37;43:or=37;45:mi=37;43:"

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# https://github.com/holman/dotfiles
-# by zach holman, modified
+# script by zach holman, modified
 
 cd "$(dirname "$0")/.."
+
 DOTFILES_ROOT=$(pwd)
 DOTFILES_HOME=$(pwd)/home
 
@@ -88,10 +88,7 @@ link_file () {
 }
 
 install_dotfiles () {
-  info "installing dotfiles"
-  local overwrite_all=false 
-  local backup_all=false 
-  local skip_all=false
+  info "Installing dotfiles"
 
   for src in $(find "$DOTFILES_HOME"/* -maxdepth 2 -name '*')
   do
@@ -101,8 +98,8 @@ install_dotfiles () {
 }
 
 install_vim () {
-  info "installing vim plugins"
-  link_file "$DOTFILES_ROOT/vim" "$HOME/.vim"
+  info "\nInstalling vim plugins"
+  ln -sf "$DOTFILES_ROOT/vim" "$HOME/.vim"
 }
 
 install_dotfiles

@@ -4,13 +4,7 @@ Bits and pieces taken from all over GitHub. [Kevin Altman](https://github.com/it
 
 Run this:
 
-    git clone https://github.com/brousalis/dotfiles.git ~/.dotfiles
-    cd ~/.dotfiles
-    script/install
-    
-or more conveniently:
-    
-    git clone https://github.com/brousalis/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && script/install
+    bash -c "$(curl -fsSL raw.github.com/brousalis/dotfiles/master/script/install)"
 
 ### Install
 #### `script/install`
@@ -27,10 +21,12 @@ This will install:
 
 If the installer finds an existing file when symlinking, it will skip it.
 
+
 ### Uninstall
 #### `script/uninstall`
 
 This will remove all of the symlinks, except `.gitconfig` (just to be safe), and remove the vim plugins.
+
 
 ### Brew
 #### `script/brew`
@@ -56,6 +52,8 @@ This will remove all of the symlinks, except `.gitconfig` (just to be safe), and
 
 You can run this functionality separately as `script/brew`.
 
+
 ### OSX Settings
 I have modified https://github.com/mathiasbynens/dotfiles/blob/master/.osx slightly and included it in the script folder. It is well documented, I recommend going through it. Run `script/osx` after running install.
+
 

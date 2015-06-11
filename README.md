@@ -3,8 +3,6 @@ Bits and pieces taken from all over GitHub. [Kevin Altman](https://github.com/it
 ### Install
 #### `script/install`
 
-Run this:
-
     bash -c "$(curl -fsSL raw.github.com/brousalis/dotfiles/master/script/install)"
 
 **Always** read a script before you curl: [https://github.com/brousalis/dotfiles/blob/master/script/install](https://github.com/brousalis/dotfiles/blob/master/script/install)
@@ -15,7 +13,7 @@ This will install:
 - [rbenv](https://github.com/sstephenson/rbenv)
 - [tmux](http://sourceforge.net/projects/tmux/)
 - [ruby-build](https://github.com/sstephenson/ruby-build)
-- [Vundle](https://github.com/gmarik/Vundle.vim) and my vim plugins
+- [Vundle](https://github.com/gmarik/Vundle.vim) and vim plugins
 - packages via `brew` or `apt` 
 - various config files
 

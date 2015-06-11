@@ -98,11 +98,12 @@ install_dotfiles () {
 }
 
 install_vim () {
-  info "\nInstalling vim plugins"
+  info "Installing vim plugins"
   ln -sf "$DOTFILES_ROOT/vim" "$HOME/.vim"
 }
 
 install_dotfiles
+echo '\n'
 install_vim
 
 echo ''

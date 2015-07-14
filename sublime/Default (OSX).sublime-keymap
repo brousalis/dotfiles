@@ -1,0 +1,71 @@
+[
+  {"keys": ["h"], "command": "move", "args": {"by": "characters", "forward": false}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  {"keys": ["j"], "command": "move", "args": {"by": "lines", "forward": true}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  {"keys": ["k"], "command": "move", "args": {"by": "lines", "forward": false}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  {"keys": ["l"], "command": "move", "args": {"by": "characters", "forward": true}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  // {"keys": ["v"], "command": "create_pane_with_file", "args": {"direction": "left"}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  // {"keys": ["enter"], "command": "move", "args": {"by": "characters", "forward": true}, "context": [ {"key": "control", "operand": "sidebar_tree"} ] },
+  // { "keys": [",", "l"], "command": "travel_to_pane", "args": {"direction": "left"}, "context": [{"key":"control","operand":"sidebar_tree"}]},
+  // { "keys": [",", "n"], "command": "toggle_side_bar" },
+  // { "keys": [",", "l"], "command": "travel_to_pane", "args": {"direction": "left"}, "context": [{"key":"control","operand":"sidebar_tree"}]},
+  // { "keys": ["super+0"], "command": "focus_side_bar" },
+
+  // open sidebar with ,+n (nerdtree)
+  {
+    "keys": [",", "n"],
+    "command": "chain",
+    "args": {
+      "commands": [
+        ["toggle_side_bar"],
+        ["focus_side_bar"]
+      ]
+    }
+  },
+
+  // cmd+s will save then exit insert mode
+  { "keys": ["super+s"], "command": "chain", "args": {"commands": [["save"], ["exit_insert_mode"]]} },
+
+  // toggle word wrap
+  { "keys": [",", "w"], "command": "toggle_setting", "args": {"setting": "word_wrap"} },
+
+  // origami
+  { "keys": [",", "k"], "command": "travel_to_pane", "args": {"direction": "up"} },
+  { "keys": [",", "l"], "command": "travel_to_pane", "args": {"direction": "right"} },
+  { "keys": [",", "j"], "command": "travel_to_pane", "args": {"direction": "down"} },
+  { "keys": [",", "h"], "command": "travel_to_pane", "args": {"direction": "left"} },
+
+  { "keys": ["ctrl+a", "["], "command": "travel_to_pane", "args": {"direction": "left"} },
+  { "keys": ["ctrl+a", "]"], "command": "travel_to_pane", "args": {"direction": "right"} },
+
+  { "keys": ["ctrl+a", "ctrl+k"], "command": "carry_file_to_pane", "args": {"direction": "up"} },
+  { "keys": ["ctrl+a", "ctrl+l"], "command": "carry_file_to_pane", "args": {"direction": "right"} },
+  { "keys": ["ctrl+a", "ctrl+j"], "command": "carry_file_to_pane", "args": {"direction": "down"} },
+  { "keys": ["ctrl+a", "ctrl+h"], "command": "carry_file_to_pane", "args": {"direction": "left"} },
+
+  { "keys": ["ctrl+a", "super+k"], "command": "create_pane", "args": {"direction": "up"} },
+  { "keys": ["ctrl+a", "super+l"], "command": "create_pane", "args": {"direction": "right"} },
+  { "keys": ["ctrl+a", "super+j"], "command": "create_pane", "args": {"direction": "down"} },
+  { "keys": ["ctrl+a", "super+h"], "command": "create_pane", "args": {"direction": "left"} },
+
+  { "keys": ["ctrl+a", "alt+k"], "command": "clone_file_to_pane", "args": {"direction": "up"} },
+  { "keys": ["ctrl+a", "alt+l"], "command": "clone_file_to_pane", "args": {"direction": "right"} },
+  { "keys": ["ctrl+a", "alt+j"], "command": "clone_file_to_pane", "args": {"direction": "down"} },
+  { "keys": ["ctrl+a", "alt+h"], "command": "clone_file_to_pane", "args": {"direction": "left"} },
+
+  { "keys": ["ctrl+a", "super+shift+k"], "command": "destroy_pane", "args": {"direction": "up"} },
+  { "keys": ["ctrl+a", "super+shift+l"], "command": "destroy_pane", "args": {"direction": "right"} },
+  { "keys": ["ctrl+a", "super+shift+j"], "command": "destroy_pane", "args": {"direction": "down"} },
+  { "keys": ["ctrl+a", "super+shift+h"], "command": "destroy_pane", "args": {"direction": "left"} },
+
+  { "keys": ["ctrl+a", "super+alt+k"], "command": "create_pane_with_file", "args": {"direction": "up"} },
+  { "keys": ["ctrl+a", "super+alt+l"], "command": "create_pane_with_file", "args": {"direction": "right"} },
+  { "keys": ["ctrl+a", "super+alt+j"], "command": "create_pane_with_file", "args": {"direction": "down"} },
+  { "keys": ["ctrl+a", "super+alt+h"], "command": "create_pane_with_file", "args": {"direction": "left"} },
+
+  // fix ctrl tab through tabs (dont use recent file stack)
+  { "keys": ["ctrl+pagedown"], "command": "next_view_in_stack" },
+  { "keys": ["ctrl+pageup"], "command": "prev_view_in_stack" },
+
+  { "keys": ["ctrl+tab"], "command": "next_view" },
+  { "keys": ["ctrl+shift+tab"], "command": "prev_view" }
+]

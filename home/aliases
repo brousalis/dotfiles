@@ -70,6 +70,7 @@ alias gca='git commit -v -a'
 alias gch='git checkout HEAD~2 --'
 alias gb='git branch -v'
 alias gs='git status -sb'
+alias gf="git fetch upstream; git rebase upstream/master; git push origin master"
 alias grm='git ls-files --deleted | xargs git rm'
 alias undopush='git push -f origin HEAD^:master'
 alias undocommit='git reset --soft HEAD~1'

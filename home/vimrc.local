@@ -79,8 +79,7 @@ set clipboard=unnamed
 set mouse=a                     " because mouse
 set pastetoggle=<F2>            " toggle paste indentation w/ F2
 
-set statusline=%<\ %=%t%m%r%h%w\ [%l\/%L]
-
+set statusline=%t%m%r%h%w\ [%l\/%L]
 
 " search
 set ignorecase
@@ -148,12 +147,12 @@ autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWr
 
 " dont copy to clipboard when deleting. use leader to cut
 nnoremap x "_x
-nnoremap d "_d
-nnoremap D "_D
-vnoremap d "_d
-nnoremap <leader>d ""d
-nnoremap <leader>D ""D
-vnoremap <leader>d ""d
+" nnoremap d "_d
+" nnoremap D "_D
+" vnoremap d "_d
+" nnoremap <leader>d ""d
+" nnoremap <leader>D ""D
+" vnoremap <leader>d ""d
 
 " replace quotes
 map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>

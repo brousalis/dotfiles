@@ -22,3 +22,6 @@ setopt COMPLETE_ALIASES
 
 # Local config
 [[ -a ~/.localrc ]] && source ~/.localrc
+
+# rbenv
+eval "$(rbenv init -)"

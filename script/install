@@ -18,12 +18,6 @@ cd ${DOTFILES_ROOT}
 # zsh
 [ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
 
-# brew
-[ ! -d "/usr/local/.git" ] && [ "$(uname -s)" == "Darwin" ] && script/brew 
-
-# apt
-[ "$(uname -s)" != "Darwin" ] && sudo apt-get install build-essential zsh ack vim tmux htop
-
 # install vundle 
 git submodule update --init --recursive
 

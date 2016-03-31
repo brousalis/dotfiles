@@ -12,7 +12,8 @@ alias postgres.stop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 alias rake='noglob rake'
 alias be='bundle exec'
 alias mm='bundle exec middleman'
-alias rnpm='rm -rf node_modules bower_components && npm install'
+alias rnpm='rm -rf node_modules && npm cache clean'
+alias rbower='rm -rf bower_components && bower cache clean'
 alias z='zeus'
 alias rb='rbenv'
 alias rdb='rake db:{reset,migrate}'
@@ -38,6 +39,7 @@ alias hidedotfiles='defaults write com.apple.finder AppleShowAllFiles -bool fals
 alias showdeskicons='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 alias hidedeskicons='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias dsremove='find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch'
+alias dsdelete='find . -name .DS_Store -print0 | xargs -0 rm'
 alias poopin='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g; sudo gem update --system; sudo gem update'
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -59,6 +61,8 @@ alias l1='tree --dirsfirst -ChFL 1'
 alias l2='tree --dirsfirst -ChFL 2'
 alias l3='tree --dirsfirst -ChFL 3'
 
+alias g='gulp'
+
 alias gl='git pull'
 alias ga='git add'
 alias gp='git push'
@@ -67,6 +71,20 @@ alias gco='git checkout'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gc='git commit -v'
 alias gca='git commit -v -a'
+alias gcm='git commit -m'
+unalias gg
+function gg {
+  git commit -m ${1} 
+  git push origin master
+}
+function gga {
+  git ls-files --deleted | xargs git rm
+  git add .
+  git commit -m ${1} 
+  git push origin master
+}
+alias gg=gg
+alias gga=gga
 alias gch='git checkout HEAD~2 --'
 alias gb='git branch -v'
 alias gs='git status -sb'

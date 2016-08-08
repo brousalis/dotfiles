@@ -1,0 +1,31 @@
+[core]
+  excludesfile = ~/.gitignore
+  autocrlf = input
+  editor = vim
+[include]
+  path = .gitconfig.local
+[apply]
+  whitespace = nowarn
+[credential]
+  helper = osxkeychain
+[push]
+  default = tracking
+[user]
+  name = Pete Brousalis
+  email = brousapg@gmail.com
+[alias]
+  last = log -1 HEAD
+  p = push
+  l = pull
+  b = branch
+  r = remote 
+  rs = reset --hard HEAD 
+  c = commit -v
+  s = status
+  a = add
+  d = diff
+  co = checkout
+  la = "!git config -l | grep alias | cut -c 7-"
+  pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
+  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+  log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

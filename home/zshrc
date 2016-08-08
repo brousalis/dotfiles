@@ -23,5 +23,11 @@ setopt COMPLETE_ALIASES
 # Local config
 [[ -a ~/.localrc ]] && source ~/.localrc
 
+# List files when cd into a dir
+function chpwd() {
+  emulate -L zsh
+  ls -a
+}
+
 # rbenv
 eval "$(rbenv init -)"

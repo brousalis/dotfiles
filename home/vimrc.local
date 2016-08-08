@@ -10,8 +10,6 @@ nnoremap <leader><space> :noh<CR>
 inoremap jj <Esc>
 inoremap jk <Esc>
 nnoremap ; :
-noremap Y $
-noremap T ^
 noremap K i<CR><Esc>
 nmap <leader>w :set wrap!<CR>
 nmap <leader>k :set list!<CR>
@@ -37,6 +35,7 @@ set noswapfile
 set nowritebackup
 set modelines=0
 set nocompatible
+set autoread
 
 " tabs
 set tabstop=2
@@ -160,6 +159,13 @@ map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
 " replace hashrockets
 nmap <F4> :s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
 vmap <F4> :'<,'>s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+
+" ignores
+set wildignore+=*/tmp/*,bower_components/**,.dev/
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|dev)|(bower_components|node_modules)$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
 
 " jump to last cursor position when opening a file.
 autocmd BufReadPost * call SetCursorPosition()

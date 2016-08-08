@@ -3,7 +3,6 @@
 
 hi clear
 
-set background=dark
 if version > 580
     hi clear
     if exists("syntax_on")
@@ -71,8 +70,8 @@ if &t_Co > 255
    hi SpecialKey      ctermfg=245
 
    hi Statement       ctermfg=190 cterm=bold
-   hi StatusLine      ctermfg=234 ctermbg=231
-   hi StatusLineNC    ctermfg=234 ctermbg=250
+   hi StatusLine      ctermfg=234
+   hi StatusLineNC    ctermfg=234
    hi VertSplit       ctermfg=235 ctermbg=NONE cterm=bold
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=81

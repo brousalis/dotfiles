@@ -177,4 +177,9 @@ function! SetCursorPosition()
   end
 endfunction
 
+" ack
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack! -i<Space>
+
+" markdown folding
 let g:vim_markdown_folding_disabled = 1

@@ -77,3 +77,23 @@ brew install zopfli
 
 # Remove outdated versions from the cellar.
 brew cleanup
+
+# Casks
+
+brew install caskroom/cask/brew-cask
+brew tap caskroom/versions
+
+brew cask install spectacle
+brew cask install dropbox
+brew cask install 1password
+brew cask install flux
+
+brew cask install iterm2
+brew cask install sublime-text
+brew cask install imagealpha
+brew cask install imageoptim
+
+brew cask install google-chrome-canary
+brew cask install firefoxnightly
+brew cask install webkit-nightly
+brew cask install chromium

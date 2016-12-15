@@ -29,5 +29,5 @@ vim +PluginInstall +qa
 
 # switch shell to zsh
 if [ $SHELL != '/bin/zsh' ]; then
-  sudo chsh -s /bin/zsh
+	chsh -s /bin/zsh
 fi

@@ -1,0 +1,71 @@
+# Your keymap
+#
+# Atom keymaps work similarly to style sheets. Just as style sheets use
+# selectors to apply styles to elements, Atom keymaps use selectors to associate
+# keystrokes with events in specific contexts. Unlike style sheets however,
+# each selector can only be declared once.
+#
+# You can create a new keybinding in this file by typing "key" and then hitting
+# tab.
+#
+# Here's an example taken from Atom's built-in keymap:
+#
+# 'atom-text-editor':
+#   'enter': 'editor:newline'
+#
+# 'atom-workspace':
+#   'ctrl-shift-p': 'core:move-up'
+#   'ctrl-p': 'core:move-down'
+#
+# You can find more information about keymaps in these guides:
+# * http://flight-manual.atom.io/using-atom/sections/basic-customization/#_customizing_keybindings
+# * http://flight-manual.atom.io/behind-atom/sections/keymaps-in-depth/
+#
+# If you're having trouble with your keybindings not working, try the
+# Keybinding Resolver: `Cmd+.` on macOS and `Ctrl+.` on other platforms. See the
+# Debugging Guide for more information:
+# * http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-the-keybindings
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+'body':
+  'ctrl-tab': 'pane:show-next-item'
+  'ctrl-tab ^ctrl': 'unset!'
+  'ctrl-shift-tab': 'pane:show-previous-item'
+  'ctrl-shift-tab ^ctrl': 'unset!'
+
+'atom-text-editor':
+  'cmd-ctrl-a': 'align-regexp:align-selection'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  ', l': 'window:focus-next-pane'
+  ', h': 'window:focus-previous-pane'
+  ', w': 'editor:toggle-soft-wrap'
+  # 'cmd-s': 'custom:save'
+
+'.tree-view':
+  ', l': 'tree-view:toggle-focus'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode), .tree-view':
+  ', n': 'tree-view:toggle'
+
+'atom-pane:first-child atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  ', h': 'tree-view:toggle-focus'
+
+# Stop emmet from hijacking basic tabbing
+'atom-text-editor[data-grammar="text html basic"]:not([mini]),
+ atom-text-editor[data-grammar~="jade"]:not([mini]),
+ atom-text-editor[data-grammar~="css"]:not([mini]),
+ atom-text-editor[data-grammar~="sass"]:not([mini])':
+  'tab': 'snippets:next-tab-stop'
+
+# Emmet for JSX
+'atom-text-editor[data-grammar~="jsx"]:not([mini])':
+  'tab': 'emmet:expand-abbreviation-with-tab'
+
+# Stop emmet from hijacking tab from snippets and autocomplete
+'atom-text-editor.autocomplete-active:not([mini])':
+  'tab': 'autocomplete-plus:confirm'

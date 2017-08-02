@@ -1,7 +1,7 @@
 # zsh config
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="steeef"
-plugins=(git autojump ruby brew gem gitfast git-extras osx vim)
+plugins=(git autojump ruby brew gem gitfast git-extras osx vim zsh-autosuggestions)
 
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh

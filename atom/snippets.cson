@@ -1,0 +1,219 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+'.source.js':
+  'React ES6 Component':
+    'prefix': 'rc'
+    'body': """
+      import React, { PropTypes, Component } from 'react';
+
+      class ${1:MyComponent} extends Component {
+        render() {
+          return (
+            <div>
+              ${1:MyComponent}
+            </div>
+          );
+        }
+      }
+
+      ${1}.propTypes = {
+      };
+
+      export default ${1:MyComponent};
+    """
+
+  'React ES6 Component Stateless':
+    'prefix': 'rcs'
+    'body': """
+      import React, { PropTypes } from 'react';
+
+      const ${1:MyComponent} = () => {
+        return (
+          <div>
+            ${1:MyComponent}
+          </div>
+        );
+      };
+
+      ${1}.propTypes = {
+      };
+
+      export default ${1:MyComponent};
+    """
+
+  'React ES6 Component with Constructor':
+    'prefix': 'rcc'
+    'body': """
+      import React, { PropTypes, Component } from 'react';
+
+      class ${1:MyComponent} extends Component {
+
+        constructor(props) {
+          super(props);
+        }
+
+        render() {
+          return (
+            <div>
+              ${1:MyComponent}
+            </div>
+          );
+        }
+      }
+
+      ${1}.propTypes = {
+      };
+
+      export default ${1:MyComponent};
+    """
+
+  'React ES6 Constructor':
+    'prefix': 'rconst'
+    'body': """
+      constructor(props) {
+        super(props);
+        ${1}
+      }
+    """
+
+  'React ES6 bind method to this':
+    'prefix': 'rbm',
+    'body': """
+      this.${1} = this.${1}.bind(this);
+    """
+
+  # PropTypes
+  'React ES6 props definition':
+    'prefix': 'rpd',
+    'body': """
+      ${1}.propTypes = {
+        ${2}
+      };
+    """
+
+  # PropType string
+  'React PropType string':
+    'prefix': 'rpstr',
+    'body': "${1:myProp}: PropTypes.string,"
+  'React PropType string required':
+    'prefix': 'rpstrr',
+    'body': "${1:myProp}: PropTypes.string.isRequired,"
+
+  # PropType number
+  'React PropType number':
+    'prefix': 'rpn',
+    'body': "${1:myProp}: PropTypes.number,"
+  'React PropType number required':
+    'prefix': 'rpnr',
+    'body': "${1:myProp}: PropTypes.number.isRequired,"
+
+  # PropType object
+  'React PropType object':
+    'prefix': 'rpo',
+    'body': "${1:myProp}: PropTypes.object,"
+  'React PropType object required':
+    'prefix': 'rpor',
+    'body': "${1:myProp}: PropTypes.object.isRequired,"
+
+  # PropType array
+  'React PropType array':
+    'prefix': 'rpa',
+    'body': "${1:myProp}: PropTypes.array,"
+  'React PropType array required':
+    'prefix': 'rpar',
+    'body': "${1:myProp}: PropTypes.array.isRequired,"
+
+  # PropType bool
+  'React PropType bool':
+    'prefix': 'rpb',
+    'body': "${1:myProp}: PropTypes.bool,"
+  'React PropType bool required':
+    'prefix': 'rpbr',
+    'body': "${1:myProp}: PropTypes.bool.isRequired,"
+
+  # PropType element
+  'React PropType element':
+    'prefix': 'rpe',
+    'body': "${1:myProp}: PropTypes.element,"
+  'React PropType element required':
+    'prefix': 'rper',
+    'body': "${1:myProp}: PropTypes.element.isRequired,"
+
+  # PropType function
+  'React PropType function':
+    'prefix': 'rpf',
+    'body': "${1:myProp}: PropTypes.func,"
+  'React PropType function required':
+    'prefix': 'rpfr',
+    'body': "${1:myProp}: PropTypes.func.isRequired,"
+
+  # PropType shape
+  'React PropType shape':
+    'prefix': 'rps',
+    'body': """
+      ${1:myProp}: PropTypes.shape({
+        ${2}
+      }),
+    """
+  'React PropType shape required':
+    'prefix': 'rpsr',
+    'body': """
+      ${1:myProp}: PropTypes.shape({
+        ${2}
+      }).isRequired,
+    """
+
+  'React import redux conenct':
+    'prefix': 'irc',
+    'body': """
+      import { bindActionCreators } from 'redux';
+      import { connect } from 'react-redux';
+    """
+
+  'Redux mapDispatchToProps':
+    'prefix': 'mdtp',
+    'body': """
+      const mapDispatchToProps = (dispatch) => {
+        return bindActionCreators(${1}, dispatch);
+      };
+    """
+
+  'React mapStateToProps':
+    'prefix': 'mstp',
+    'body': """
+      const mapStateToProps = (state) => ({
+        ${1}: ${2}
+      });
+    """
+
+  'Import':
+    'prefix': 'imp',
+    'body': """
+      import ${1} from '${2}';
+    """
+
+  'Console log':
+    'prefix': 'cl',
+    'body': """
+      console.log(${1});
+    """

@@ -1,0 +1,221 @@
+// @font: "Ubuntu Mono";
+// @font: "Operator Mono";
+// @font: "Hack";
+@font: "FiraCode-Regular";
+// @font: "FiraMono-Regular";
+// @font: "Droid Sans Mono";
+// @font: "Operator Mono";
+// @font: "M+ 2m";
+// @font: "PragmataPro";
+// @font: "Sudo";
+// @font: "Inconsolata";
+
+atom-workspace,
+atom-text-editor {
+  font-weight: 300;
+  // background-color: #e5e5e6;
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+atom-workspace {
+  font-family: @font;
+  // font-size: 10px;
+}
+
+atom-text-editor {
+  font-family: @font;
+}
+
+// padding around workspace
+atom-workspace atom-workspace-axis.vertical {
+  // padding: 0 5%;
+}
+
+atom-pane-container {
+  padding-top: 0;
+}
+
+atom-panel.header {
+  border-bottom: 0;
+}
+
+// atom-panel-container.left,
+// atom-pane:last-child .list-inline.tab-bar {
+//   display: none !important;
+// }
+//
+// atom-panel-container atom-pane .item-views {
+//   border: none;
+// }
+// .tab-bar .tab.active::after {
+//   border-bottom: 0;
+//   display: none;
+//   border-bottom-color: transparent;
+// }
+
+// wrap guide color
+atom-text-editor .wrap-guide {
+  @wrap: rgba(0,0,0,0.1);
+  color: @wrap;
+  background-color: @wrap;
+}
+
+// gutter for numbers
+atom-text-editor .gutter {
+  // opacity: 0.2;
+  background-color: transparent;
+}
+
+.preview-pane {
+  font-size: 14px;
+  font-family: @font;
+}
+
+.command-palette,
+.fuzzy-finder {
+  font-size: 14px;
+}
+
+.tab-bar .tab .title,
+.tree-view .project-root .header .name,
+.tree-view span.name {
+  font-size: 12px;
+  // font-family: @font;
+}
+
+.custom-title-bar .title-bar,
+.tab-bar {
+  // font-family: @font;
+}
+
+.preview-pane .results-view .preview {
+  font-family: @font;
+}
+
+.status-bar {
+  font-family: @font;
+  display: none;
+}
+
+.tooltip-inner {
+  // font-family: @font;
+}
+
+// remove Git colors from tree-view
+// .tree-view {
+//   .status-modified,
+//   .status-added,
+//   .status-renamed,
+//   .status-removed {
+//     color: inherit !important; // remove diff color
+//
+//     &.directory > .list-item {
+//       color: inherit !important; // remove diff color
+//     }
+//
+//     &.directory.selected > .list-item {
+//       color: inherit !important; // add selected color
+//     }
+//   }
+// }
+
+// hide scrollbars always
+atom-text-editor .vertical-scrollbar,
+atom-text-editor::shadow .vertical-scrollbar {
+  opacity: 0;
+  width: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+// atom-text-editor::shadow .is-focused .cursors .cursor {
+//   opacity: 1;
+// }
+
+// no more blinking cursor
+atom-text-editor.is-focused::shadow .line.cursor-line {
+  background: transparent !important;
+}
+
+atom-text-editor.vim-mode-plus.normal-mode,
+atom-text-editor.vim-mode-plus.operator-pending-mode,
+atom-text-editor.vim-mode-plus.visual-mode
+{
+  &, &.is-focused {
+    &::shadow, &
+    {
+      .cursor {
+        // cursor styles
+      }
+      .blink-off .cursor {
+        // cursor style while blinking
+      }
+    }
+  }
+}
+
+atom-text-editor.editor:not(.mini) {
+  padding-top: 10px;
+}
+
+.results-view .list-nested-item .path-details.list-item {
+  background: rgba(0,0,0,0.1);
+}
+
+.line-number .icon-right {
+  padding: 0;
+}
+
+fonts-fixer {
+  display: none;
+}
+
+.list-tree li.selected:before {
+  background-color: rgba(0,0,0,0.05) !important;
+  border: none !important;
+}
+
+.tree-view .project-root.project-root:first-child {
+  padding-top: 0;
+}
+
+#linter-tooltip linter-message.error {
+  @red: #ec6767;
+  // font-family: @font;
+  font-size: 14px;
+  background-color: @red;
+  &:last-child::before {
+    border-color: transparent transparent @red @red;
+  }
+}
+
+// // distraction free overrides
+// .distraction-free__zenmode .pane.active {
+//   background-color: #282C34;
+// }
+//
+// .distraction-free__zenmode .item-views {
+//   width: 90%;
+//   max-width: 1000px;
+// }
+
+// one dark overrides
+[theme-one-dark-ui-layoutmode="auto"],
+[theme-one-dark-ui-layoutmode="compact"] {
+  atom-pane-container atom-pane-resize-handle.horizontal.horizontal {
+    width: 0px;
+  }
+  atom-pane-container atom-pane-resize-handle.horizontal.horizontal:before {
+    width:2px;
+  }
+  atom-panel.right:first-child {
+    border: none;
+  }
+  atom-pane-container atom-pane {
+    border: none;
+  }
+}

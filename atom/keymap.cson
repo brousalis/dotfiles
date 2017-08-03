@@ -47,13 +47,15 @@
   # 'cmd-s': 'custom:save'
 
 '.tree-view':
-  ', l': 'tree-view:toggle-focus'
+  # ', l': 'tree-view:toggle-focus'
+  ', h': 'tree-view:toggle-focus'
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode), .tree-view':
   ', n': 'tree-view:toggle'
 
 'atom-pane:first-child atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  ', h': 'tree-view:toggle-focus'
+  # ', h': 'tree-view:toggle-focus'
+  ', l': 'tree-view:toggle-focus'
 
 # Stop emmet from hijacking basic tabbing
 'atom-text-editor[data-grammar="text html basic"]:not([mini]),

@@ -5,7 +5,7 @@
 [include]
   path = .gitconfig.local
 [apply]
-  whitespace = nowarn
+  whitespace = fix
 [credential]
   helper = osxkeychain
 [push]
@@ -16,16 +16,15 @@
 [alias]
   last = log -1 HEAD
   p = push
-  l = pull
+  pl = pull
   b = branch
-  r = remote 
-  rs = reset --hard HEAD 
+  r = remote
+  rs = reset --hard HEAD
   c = commit -v
-  s = status
+  s = status -s
   a = add
   d = diff
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
   co = checkout
   la = "!git config -l | grep alias | cut -c 7-"
-  pr  = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-  pr-clean = "!git for-each-ref refs/heads/pr/* --format='%(refname)' | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
   log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit

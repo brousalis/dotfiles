@@ -15,4 +15,3 @@ echo '  Installing M+ 2m (mplus-2m-regular) font'
 
 echo '  Installing custom iTerm colors'
 open $DOTFILES_CUSTOM/iterm.itermcolors
-

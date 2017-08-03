@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Make sure we’re using the latest Homebrew.
+brew update
+
+# Upgrade any already-installed formulae.
+brew upgrade
+
+# Install other useful binaries.
+brew install vim --override-system-vi
+brew install node
+brew install ack
+brew install git
+brew install imagemagick
+brew install lua
+brew install lynx
+brew install rename
+brew install tree
+
+# Remove outdated versions from the cellar.
+brew cleanup
+
+# Casks
+brew install caskroom/cask/brew-cask
+
+brew cask install spectacle
+brew cask install dropbox
+brew cask install 1password
+brew cask install alfred
+brew cask install mattr-slate
+
+brew cask install iterm2
+brew cask install atom
+brew cask install imageoptim
+
+brew cask install google-chrome
+brew cask install firefox
+
+# Fonts
+brew tap caskroom/fonts
+brew cask install font-fira-code

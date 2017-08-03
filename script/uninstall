@@ -16,7 +16,7 @@ success () {
 
 remove_dotfiles () {
   info 'removing dotfiles'
-  for src in $(find "$DOTFILES_ROOT"/* -maxdepth 2 -name '*' ! -name 'gitconfig')
+  for src in $(find "$DOTFILES_ROOT"/* -name '*' -type f ! -name 'gitconfig')
   do
     dst="$HOME/.$(basename "${src}")"
     if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]; then

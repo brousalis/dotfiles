@@ -61,10 +61,6 @@
     openEmptyEditorOnStart: false
     projectHome: "/Users/xpxb058/dev"
     telemetryConsent: "no"
-    themes: [
-      "one-dark-ui"
-      "atom-material-syntax"
-    ]
     titleBar: "hidden"
   "distraction-free":
     zenMode:
@@ -122,6 +118,7 @@
     has_been_configured: true
     nighttime_ui_theme: "one-dark-ui"
   "tree-view":
+    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vertical-tabs": {}
   welcome:

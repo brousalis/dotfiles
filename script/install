@@ -1,30 +1,47 @@
 #!/usr/bin/env bash
 
-# script by zach holman, modified
-
-cd "$(dirname "$0")/.."
-
-DOTFILES_ROOT=$(pwd)
-DOTFILES_HOME=$(pwd)/home
-
 set -e
 echo ''
 
+DOTFILES_ROOT="${HOME}/.dotfiles"
+DOTFILES_HOME=$(pwd)/home
+DOTFILES_REPO="git@github.com:brousalis/dotfiles.git"
+
+if [[ ! -d ${DOTFILES_ROOT} ]]; then
+  git clone ${DOTFILES_REPO} ${DOTFILES_ROOT}
+fi
+
+cd ${DOTFILES_ROOT}
+
+# rbenv
+[ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+
+# ruby build
+[ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# nvm
+[ ! -d "$HOME/.nvm" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+# zsh
+[ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
+
+# install vundle
+git submodule update --init --recursive
+
+# symlink files
 info () {
   printf "  [ \033[00;34m..\033[0m ] $1\n"
 }
-
 user () {
   printf "\r  [ \033[0;33m?\033[0m ] $1 "
 }
-
 success () {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
 link_file () {
   local src=$1 dst=$2
-  local overwrite= backup= skip=
+  local overwrite=true backup= skip=
   local action=
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
@@ -90,7 +107,7 @@ link_file () {
 install_dotfiles () {
   info "Installing dotfiles"
 
-  for src in $(find "$DOTFILES_HOME"/* -maxdepth 2 -name '*')
+  for src in $(find "$DOTFILES_HOME"/* -type f -name '*')
   do
     dst="$HOME/.$(basename "${src}")"
     link_file "$src" "$dst"
@@ -108,3 +125,11 @@ install_vim
 
 echo ''
 echo '  All installed!'
+
+# more vim plugins
+vim +PluginInstall +qa
+
+# make sure to switch shell to zsh
+if [ $SHELL != '/bin/zsh' ]; then
+	chsh -s /bin/zsh
+fi

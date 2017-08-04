@@ -1,7 +1,7 @@
 module.exports = {
   config: {
     // default font size in pixels for all tabs
-    fontSize: 15,
+    fontSize: 13,
 
     // font family with optional fallbacks
     fontFamily: 'Fira Code',
@@ -10,16 +10,16 @@ module.exports = {
     cursorShape: 'BLOCK',
 
     // terminal cursor background color (hex)
-    cursorColor: '#add877',
+    // cursorColor: '#add877',
 
     // color of the text
-    foregroundColor: '#c4e2f2',
+    // foregroundColor: '#c4e2f2',
 
     // terminal background color
-    backgroundColor: '#fafafa',
+    // backgroundColor: '#fafafa',
 
     // border color (window, tabs)
-    borderColor: '#335E69',
+    // borderColor: '#335E69',
 
     // custom css to embed in the main window
     css: `
@@ -31,9 +31,7 @@ module.exports = {
         -webkit-font-feature-settings: "liga" on, "calt" on, "dlig" on !important;
         text-rendering: optimizeLegibility !important;
       }
-      x-row {
-       // line-height: 1.2em;
-      }
+      x-row {}
     `,
 
     // set to `true` if you're using a Linux set up
@@ -53,24 +51,24 @@ module.exports = {
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
-    colors: [
-      '#26292c',
-      '#f69648',
-      '#add877',
-      '#f6f080',
-      '#60a7ca',
-      '#7d72c8',
-      '#e05178',
-      '#ffffff',
-      '#262721',
-      '#dc412f',
-      '#b5d839',
-      '#ff9c5a',
-      '#ff9c5a',
-      '#7d72c8',
-      '#e05178',
-      '#ffffff'
-    ],
+    // colors: [
+    //   '#26292c',
+    //   '#f69648',
+    //   '#add877',
+    //   '#f6f080',
+    //   '#60a7ca',
+    //   '#7d72c8',
+    //   '#e05178',
+    //   '#ffffff',
+    //   '#262721',
+    //   '#dc412f',
+    //   '#b5d839',
+    //   '#ff9c5a',
+    //   '#ff9c5a',
+    //   '#7d72c8',
+    //   '#e05178',
+    //   '#ffffff'
+    // ],
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -84,7 +82,7 @@ module.exports = {
     env: {},
 
     // set to false for no bell
-    bell: 'SOUND',
+    bell: false,
 
     // if true, selected text will automatically be copied to the clipboard
     copyOnSelect: true,
@@ -94,12 +92,10 @@ module.exports = {
 
     keymap: {
       // just examples, see below for detailed explanation
-      'CmdOrCtrl+Alt+[':  'prev-pane',
-      'CmdOrCtrl+Alt+]': 'next-pane',
     },
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-    summonShortcut: 'Control+Esc',
+    summonShortcut: 'Control+`',
 
     paneNavigation: {
       debug: true,
@@ -107,8 +103,8 @@ module.exports = {
         navigation: {
           up: 'ctrl+alt+up',
           down: 'ctrl+alt+down',
-          left: 'ctrl+[',
-          right: 'ctrl+]'
+          left: 'CmdOrCtrl+[',
+          right: 'CmdOrCtrl+]'
         },
       },
     }
@@ -123,12 +119,15 @@ module.exports = {
   plugins: [
     'gitrocket',
     'hypercwd',
-    'hyperline',
+    //'hyperline',
     'hyperlinks',
     'hyperterm-tabs',
-    'hyperminimal',
+    //'hyperminimal',
     'hyper-pane',
-    'hyper-material'
+    // 'hyper-chesterish',
+    'hyper-one-dark',
+    'hyper-tabs-enhanced',
+    // 'hyper-statusline'
   ],
 
   // in development, you can create a directory under

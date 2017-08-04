@@ -96,6 +96,7 @@
   "linter-ui-default":
     gutterPosition: "Left"
     panelHeight: 69
+    showPanel: true
     showProviderName: true
     tooltipFollows: "Keyboard"
   navigate:
@@ -118,7 +119,6 @@
     has_been_configured: true
     nighttime_ui_theme: "one-dark-ui"
   "tree-view":
-    hideVcsIgnoredFiles: true
     squashDirectoryNames: true
   "vertical-tabs": {}
   welcome:

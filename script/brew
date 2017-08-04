@@ -16,6 +16,7 @@ brew install lua
 brew install lynx
 brew install rename
 brew install tree
+brew install autojump
 
 # Remove outdated versions from the cellar.
 brew cleanup
@@ -23,7 +24,6 @@ brew cleanup
 # Casks
 brew install caskroom/cask/brew-cask
 
-brew cask install spectacle
 brew cask install dropbox
 brew cask install 1password
 brew cask install alfred

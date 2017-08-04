@@ -12,6 +12,7 @@ plugins=(
   osx
   vim
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # Load oh-my-zsh

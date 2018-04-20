@@ -20,13 +20,15 @@ cd ${DOTFILES_ROOT}
 [ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # nvm
-[ ! -d "$HOME/.nvm" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+[ ! -d "$HOME/.nvm" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
 
 # zsh
-[ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
+# [ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh
+[ ! -d "$HOME/.zprezto" ] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+[ ! -d "$HOME/.zgen" ] && git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 # install vundle
-git submodule update --init --recursive
+# git submodule update --init --recursive
 
 # symlink files
 info () {
@@ -114,20 +116,20 @@ install_dotfiles () {
   done
 }
 
-install_vim () {
-  info "Installing vim plugins"
-  ln -sf "$DOTFILES_ROOT/vim" "$HOME/.vim"
-}
+# install_vim () {
+#   info "Installing vim plugins"
+#   ln -sf "$DOTFILES_ROOT/vim" "$HOME/.vim"
+# }
 
 install_dotfiles
 echo ''
-install_vim
+# install_vim
 
 echo ''
 echo '  All installed!'
 
-# more vim plugins
-vim +PluginInstall +qa
+# # more vim plugins
+# vim +PluginInstall +qa
 
 # make sure to switch shell to zsh
 if [ $SHELL != '/bin/zsh' ]; then

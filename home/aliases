@@ -13,13 +13,11 @@ alias g='git'
 alias grm='git ls-files --deleted | xargs git rm'
 alias undopush='git push -f origin HEAD^:master'
 alias undocommit='git reset --soft HEAD~1'
-
 alias h='cd ~'
 alias home='cd ~'
 alias dotfiles='cd ~/.dotfiles'
 alias proj="cd ~/proj/"
 alias dev="cd ~/dev/"
-
 alias rake='noglob rake'
 alias be='bundle exec'
 alias mm='bundle exec middleman'
@@ -32,7 +30,6 @@ alias rb='rbenv'
 alias rdb='rake db:{reset,migrate}'
 alias rpsql='rm /usr/local/var/postgres/postmaster.pid'
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
-
 alias fs="stat -f '%z bytes'"
 alias df='df -h'
 alias ifi="ifconfig | ack 'net'"
@@ -45,13 +42,6 @@ alias dsremover='find . -name .DS_Store -print0 | xargs -0 rm'
 alias dsr='find . -name ".DS_Store" -depth -exec rm {} \;'
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias flush="sudo dscacheutil -flushcache"
-
 alias tls='tmux list-sessions'
 alias tc='tmux new-session -s'
 alias ta='tmux attach-session -t'
-function tt {
-  # opens teamocil backed sessions
-  tmux new-session -d -s "${1}-tmp"
-  tmux send-keys -t "${1}-tmp":1 "teamocil ${1}" C-m
-  tmux attach-session -t ${1}
-}

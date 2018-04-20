@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if ! type "brew" > /dev/null; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
+
 # Make sure we’re using the latest Homebrew.
 brew update
 
@@ -7,34 +11,28 @@ brew update
 brew upgrade
 
 # Install other useful binaries.
-brew install vim --override-system-vi
-brew install node
+brew install vim --with-override-system-vi
+brew install tmux
 brew install ack
 brew install git
 brew install imagemagick
-brew install lua
-brew install lynx
-brew install rename
 brew install tree
 brew install autojump
+brew install postgresql
+brew install java
 
 # Remove outdated versions from the cellar.
 brew cleanup
 
 # Casks
-brew install caskroom/cask/brew-cask
+# brew install caskroom/cask/brew-cask
 
-brew cask install dropbox
 brew cask install 1password
-brew cask install alfred
-brew cask install mattr-slate
-
 brew cask install iterm2
-brew cask install atom
-brew cask install imageoptim
-
-brew cask install google-chrome
-brew cask install firefox
+# brew cask install visual-studio-code-insiders
+brew cask install spectacle 
+brew cask install slack
+brew cask install the-unarchiver
 
 # Fonts
 brew tap caskroom/fonts

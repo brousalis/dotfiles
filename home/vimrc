@@ -1,95 +1,164 @@
+scriptencoding utf-8
+set encoding=utf-8
+
+syntax on
+let mapleader = ","
+
+" custom binds I use
+nnoremap <leader><space> :noh<CR>
+inoremap jj <Esc>
+inoremap jk <Esc>
+nnoremap ; :
+noremap K i<CR><Esc>
+nmap <leader>w :set wrap!<CR>
+nmap <leader>k :set list!<CR>
+inoremap <C-tab> <Esc><<i
+nnoremap j gj
+nnoremap k gk
+nnoremap <silent> '. :cd %:p:h<cr>
+nnoremap Q q
+nnoremap q <nop>
+map <CR> o<Esc>
+map <F1> :tabprev<CR>
+map <F2> :tabnext<CR>
+
+" vim directories: backup, swap files
+set nobackup
+set noswapfile
+set nowritebackup
+set modelines=0
 set nocompatible
-filetype off
+set autoread
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" tabs
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+nnoremap tj :tabnext<CR>
+nnoremap tk :tabprev<CR>
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+nnoremap <C-t> :tabe<Space>
 
-" BUNDLES
-Plugin 'gmarik/Vundle.vim'
+" disable html linting
+let g:syntastic_html_checkers=['']
 
-" general vim/commands
-Plugin 'tpope/vim-repeat'
-" Plugin 'terryma/vim-multiple-cursors'
-" Plugin 'vim-scripts/vim-auto-save'
+" word separators
+set iskeyword-=_,-
 
-" syntax
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'leshill/vim-json'
-Plugin 'tpope/vim-haml'
-Plugin 'plasticboy/vim-markdown'
-" Plugin 'tpope/vim-markdown'
-" Plugin 'tdesikan/vim-tritium'
-Plugin 'slim-template/vim-slim'
-Plugin 'rylnd/vim-javascript-syntax'
-Plugin 'lilydjwg/colorizer'
-" Plugin 'mtscout6/vim-cjsx'
-" Plugin 'wavded/vim-stylus'
-Plugin 'scrooloose/syntastic'
-Plugin 'dbakker/vim-lint'
-Plugin 'nono/vim-handlebars'
-Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'itspriddle/vim-marked'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'mxw/vim-jsx'
+" multikey mapping speed
+set timeout timeoutlen=750 ttimeoutlen=75
 
-" ruby
-" Plugin 'tpope/vim-endwise'
-" Plugin 'vim-ruby/vim-ruby'
+" cursor
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmode=longest,list,full
+set wildmenu
+set visualbell
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set number
+set clipboard=unnamed
+set mouse=a                     " because mouse
+set pastetoggle=<F2>            " toggle paste indentation w/ F2
 
-" node
-Plugin 'moll/vim-node'
+set statusline=%t%m%r%h%w\ [%l\/%L]
 
-" formatting
-Plugin 'junegunn/vim-easy-align'
-"Plugin 'jgdavey/vim-blockle'
-Plugin 'tpope/vim-commentary'
-" Plugin 'tomtom/tcomment_vim'
-" Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'mattn/emmet-vim'
-Plugin 'AndrewRadev/splitjoin.vim'
+" search
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
 
-" files/search/buffers
-Plugin 'scrooloose/nerdtree'
-Plugin 'duff/vim-bufonly'
-Plugin 'mileszs/ack.vim'
-Plugin 'kien/ctrlp.vim'
-" Plugin 'ervandew/supertab'
-" Plugin 'bling/vim-airline'
-" Plugin 'edkolev/tmuxline.vim'
-" Plugin 'Shougo/neosnippet'
-" Plugin 'Shougo/neosnippet-snippets'
-" Plugin 'tpope/vim-abolish'
+set hlsearch
+nnoremap <leader><space> :noh<cr>
+nnoremap <leader>r :%s/
 
-" tags
-" Plugin 'tpope/vim-ragtag'
+" ctrlp
+let g:ctrlp_show_hidden=1
 
-" git
-" Plugin 'gregsexton/gitv'
-" Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-fugitive'
-Plugin 'airblade/vim-gitgutter'
+" text settings
+set wrap
+set textwidth=79
+set formatoptions=qrn1
 
-" rails
-" Plugin 'tpope/vim-bundler'
-" Plugin 'tpope/vim-cucumber'
-" Plugin 'tpope/vim-rails'
-" Plugin 'tpope/vim-rake'
+set list
+set listchars=tab:▸\
 
-" tmux
-" Plugin 'benmills/vimux'
-" Plugin 'jgdavey/vim-turbux'
+" command line
+nnoremap ; :
 
-" tools
-" Plugin 'bartek/vim-draftin'
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-Plugin 'godlygeek/csapprox' " fix gvim colors in vim
+" move between panes
+map <Leader>j <C-w>j
+map <Leader>k <C-w>k
+map <Leader>l <C-w>l
+map <Leader>h <C-w>h
 
-call vundle#end()
+" formatted paste
+nmap <leader>p pV`]=
+nmap <leader>P PV`]=
 
-filetype plugin indent on
+" tab indents
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
+" autoclear trailing white-space and save cursor position
+fun! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
+
+" strip whitespace
+autocmd FileType c,cpp,java,php,ruby,python,vim,coffee,js,html,css autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+" auto save
+"let g:auto_save = 1
+"set updatetime=200
+
+" dont copy to clipboard when deleting. use leader to cut
+nnoremap x "_x
+" nnoremap d "_d
+" nnoremap D "_D
+" vnoremap d "_d
+" nnoremap <leader>d ""d
+" nnoremap <leader>D ""D
+" vnoremap <leader>d ""d
+
+" replace quotes
+map <F3> :%s/"\(\([^"]*\)\)"/'\1'/g<cr>
+
+" replace hashrockets
+nmap <F4> :s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+vmap <F4> :'<,'>s/\:\([a-zA-Z_]*\)\s=>/\1\:/g<cr>
+
+" ignores
+set wildignore+=*/tmp/*,bower_components/**,.dev/
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|dev)|(bower_components|node_modules)$',
+  \ 'file': '\.pyc$\|\.pyo$\|\.rbc$|\.rbo$\|\.class$\|\.o$\|\~$\',
+  \ }
+
+" jump to last cursor position when opening a file.
+autocmd BufReadPost * call SetCursorPosition()
+function! SetCursorPosition()
+  if &filetype !~ 'commit\c'
+    if line("'\"") > 0 && line("'\"") <= line("$")
+     exe "normal g`\""
+    endif
+  end
+endfunction

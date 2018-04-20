@@ -1,45 +1,21 @@
-# zsh config
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="steeef"
-plugins=(
-  git
-  autojump
-  ruby
-  brew
-  gem
-  gitfast
-  git-extras
-  osx
-  vim
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-)
+# zsh (prezto)
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+source "${HOME}/.zgen/zgen.zsh"
 
-# Load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+if ! zgen saved; then
+  zgen prezto
+  zgen prezto git
+  zgen prezto command-not-found
+  zgen prezto syntax-highlighting
+  zgen prezto zsh-users/zsh-completions src
+  zgen save
+fi
 
-# Aliases
+# aliases
 source $HOME/.aliases
 
-# zsh completion
-autoload -U compinit
-compinit
-
-# zsh options
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY SHARE_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt COMPLETE_ALIASES
-
-# Local config
+# local config
 [[ -a ~/.localrc ]] && source ~/.localrc
-
-# List files when cd into a dir
-function chpwd() {
-  emulate -L zsh
-  ls -a
-}
 
 # rbenv
 eval "$(rbenv init -)"

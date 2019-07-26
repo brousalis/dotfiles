@@ -5,7 +5,8 @@ export SBIN="/usr/local/sbin"
 export NPM="/usr/local/bin/npm"
 export HEROKU="/usr/local/heroku/bin"
 export RBENV="$HOME/.rbenv/bin"
-export PATH=$RBENV:$HEROKU:$NPM:$MYBIN:$BIN:$SBIN:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PIP="/Users/petebrousalis/Library/Python/2.7/bin"
+export PATH=$PIP:$RBENV:$HEROKU:$NPM:$MYBIN:$BIN:$SBIN:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 # Env
 export PGHOST=localhost

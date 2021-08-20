@@ -22,7 +22,7 @@ sudo nvram SystemAudioVolume=" "
 #defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Enable full keyboard access for all controls
 # (e.g. enable Tab in modal dialogs)
@@ -37,23 +37,23 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 # Finder: show all filename extensions
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-# Finder: show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
+# # Finder: show status bar
+# defaults write com.apple.finder ShowStatusBar -bool true
 
-# Finder: show path bar
-defaults write com.apple.finder ShowPathbar -bool true
+# # Finder: show path bar
+# defaults write com.apple.finder ShowPathbar -bool true
 
-# Finder: allow text selection in Quick Look
-defaults write com.apple.finder QLEnableTextSelection -bool true
+# # Finder: allow text selection in Quick Look
+# defaults write com.apple.finder QLEnableTextSelection -bool true
 
-# Display full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+# # Display full POSIX path as Finder window title
+# defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
-# When performing a search, search the current folder by default
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# # When performing a search, search the current folder by default
+# defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-# Empty Trash securely by default
-defaults write com.apple.finder EmptyTrashSecurely -bool true
+# # Empty Trash securely by default
+# defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library

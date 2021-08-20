@@ -2,13 +2,8 @@
 
 alias ..='cd ..'
 alias ...='cd ../..'
-
 alias ls='ls -lah'
 alias ll='ls -lth'
-alias l1='tree --dirsfirst -ChFL 1'
-alias l2='tree --dirsfirst -ChFL 2'
-alias l3='tree --dirsfirst -ChFL 3'
-
 alias g='git'
 alias ga='git add'
 alias gs='git status -s'
@@ -25,18 +20,9 @@ alias undocommit='git reset --soft HEAD~1'
 alias h='cd ~'
 alias home='cd ~'
 alias dotfiles='cd ~/.dotfiles'
-alias proj="cd ~/proj/"
 alias dev="cd ~/dev/"
-alias rake='noglob rake'
-alias be='bundle exec'
-alias mm='bundle exec middleman'
 alias nom='rm -rf node_modules && npm cache clean && npm install'
-alias bom='rm -rf bower_components && bower cache clean && bower install'
 alias rmnm="find . -name 'node_modules' -exec rm -rf '{}' +"
-alias r='bundle exec rails s'
-alias guard='bundle exec guard'
-alias rb='rbenv'
-alias rdb='rake db:{reset,migrate}'
 alias rpsql='rm /usr/local/var/postgres/postmaster.pid'
 alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
 alias fs="stat -f '%z bytes'"
@@ -51,6 +37,3 @@ alias dsremover='find . -name .DS_Store -print0 | xargs -0 rm'
 alias dsr='find . -name ".DS_Store" -depth -exec rm {} \;'
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias flush="sudo dscacheutil -flushcache"
-alias tls='tmux list-sessions'
-alias tc='tmux new-session -s'
-alias ta='tmux attach-session -t'

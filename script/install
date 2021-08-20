@@ -13,14 +13,14 @@ fi
 
 cd ${DOTFILES_ROOT}
 
-# rbenv
-[ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+# # rbenv
+# [ ! -d "$HOME/.rbenv" ] && git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 
-# ruby build
-[ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# # ruby build
+# [ ! -d "$HOME/.rbenv/plugins/ruby-build" ] && git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-# nvm
-[ ! -d "$HOME/.nvm" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
+# # nvm
+# [ ! -d "$HOME/.nvm" ] && curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.9/install.sh | bash
 
 # zsh
 # [ ! -d "$HOME/.oh-my-zsh" ] && curl -L http://install.ohmyz.sh | sh

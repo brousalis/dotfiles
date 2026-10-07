@@ -1,9 +1,9 @@
--- VS Code / Cursor shortcuts for Neovim. Off by default.
+-- VS Code / Cursor shortcuts for Neovim. On by default.
 --
--- Turn on with either:
---   * NVIM_VSCODE_KEYS=1 in the environment (per machine, e.g. ~/.localenv or
+-- Turn off with either:
+--   * NVIM_VSCODE_KEYS=0 in the environment (per machine, e.g. ~/.localenv or
 --     ~/.localrc.ps1), or
---   * vim.g.vscode_keys = true in lua/config/options.lua (every machine).
+--   * vim.g.vscode_keys = false in lua/config/options.lua (every machine).
 --
 -- These mostly use Ctrl and Alt chords that terminals can send. Ctrl+Shift
 -- combos only work where the terminal sends extended keys, so each has a

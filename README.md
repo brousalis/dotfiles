@@ -80,11 +80,11 @@ Neovim (leader `,`): the old vimrc mappings carry over (`jj`/`jk` to escape,
 the old split-line moved to `,K`; Enter opens a line below only in normal file
 buffers.
 
-### VS Code keys (opt-in)
+### VS Code keys
 
-Off by default. Turn on per machine with `NVIM_VSCODE_KEYS=1` (in
-`~/.localenv`, or `$env:NVIM_VSCODE_KEYS = '1'` in `~/.localrc.ps1`), or
-everywhere with `vim.g.vscode_keys = true` in `lua/config/options.lua`.
+On by default. Turn off per machine with `NVIM_VSCODE_KEYS=0` (in
+`~/.localenv`, or `$env:NVIM_VSCODE_KEYS = '0'` in `~/.localrc.ps1`), or
+everywhere with `vim.g.vscode_keys = false` in `lua/config/options.lua`.
 
 | Key | Action |
 | --- | --- |

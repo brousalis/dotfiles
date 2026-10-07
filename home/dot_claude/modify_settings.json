@@ -1,0 +1,13 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /*
+  ~/.claude/settings.json is also written by Claude Code itself (/config,
+  /permissions). Instead of replacing it, merge the managed keys from
+  .chezmoitemplates/claude-settings.json over whatever is there, so settings
+  changed inside Claude Code survive and the managed ones win.
+*/ -}}
+{{- $current := dict -}}
+{{- if .chezmoi.stdin | trim -}}
+{{-   $current = .chezmoi.stdin | fromJson -}}
+{{- end -}}
+{{- $managed := includeTemplate "claude-settings.json" . | fromJson -}}
+{{- mergeOverwrite $current $managed | toPrettyJson -}}

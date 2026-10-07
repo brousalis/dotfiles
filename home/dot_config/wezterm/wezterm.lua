@@ -55,6 +55,12 @@ if is_windows then
     { key = "LeftArrow", mods = "ALT", action = act.AdjustPaneSize({ "Left", 2 }) },
     { key = "RightArrow", mods = "ALT", action = act.AdjustPaneSize({ "Right", 2 }) },
     { key = "R", mods = "LEADER|SHIFT", action = act.ReloadConfiguration },
+    -- C-a C opens Claude Code to the right, as in tmux.
+    {
+      key = "C",
+      mods = "LEADER|SHIFT",
+      action = act.SplitPane({ direction = "Right", size = { Percent = 40 }, command = { args = { "pwsh.exe", "-NoLogo", "-NoExit", "-Command", "claude" } } }),
+    },
     -- tmux defaults that the tmux config relies on.
     { key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
     { key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },

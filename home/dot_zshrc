@@ -43,6 +43,20 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath 2>/
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 (( $+commands[nvim] ))     && alias vim=nvim vi=nvim
 
+# dev [dir]: a tmux session for the project with Neovim on the left and
+# Claude Code on the right. Re-attaches if the session already exists.
+dev() {
+  local dir=${1:-$PWD}
+  dir=${dir:A}
+  local name=${${dir:t}//[.:]/_}
+  if ! tmux has-session -t "=$name" 2>/dev/null; then
+    tmux new-session -d -s "$name" -c "$dir" nvim
+    tmux split-window -h -l 40% -t "$name" -c "$dir" claude
+    tmux select-pane -t "$name" -L
+  fi
+  if [[ -n $TMUX ]]; then tmux switch-client -t "=$name"; else tmux attach -t "=$name"; fi
+}
+
 # Aliases (kept from the original dotfiles)
 [[ -f ~/.aliases ]] && source ~/.aliases
 

@@ -15,7 +15,7 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install chezmoi (Unix)
         if: runner.os != 'Windows'
@@ -57,8 +57,9 @@ jobs:
           New-Item -ItemType Directory -Force "$env:RUNNER_TEMP\rendered" | Out-Null
           foreach ($f in Get-ChildItem home/.chezmoiscripts/*.ps1.tmpl) {
             $out = Join-Path "$env:RUNNER_TEMP\rendered" ($f.Name -replace '\.tmpl$', '')
-            Get-Content $f.FullName -Raw | chezmoi execute-template --source "$PWD" | Set-Content $out
-            if ((Get-Content $out -Raw).Trim()) { $files += $out }
+            # Scripts for other OSes render empty; skip those.
+            $rendered = (Get-Content $f.FullName -Raw | chezmoi execute-template --source "$PWD") -join "`n"
+            if ($rendered.Trim()) { Set-Content $out $rendered; $files += $out }
           }
           $failed = $false
           foreach ($f in $files) {
@@ -71,7 +72,7 @@ jobs:
   shell-and-tmux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq zsh tmux
       - name: zsh files parse
         run: for f in home/dot_zshenv home/dot_zprofile home/dot_zshrc home/dot_aliases; do zsh -n "$f"; done
@@ -84,7 +85,7 @@ jobs:
   neovim:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install Neovim
         run: |
           curl -fsSL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz | tar -xz -C /opt

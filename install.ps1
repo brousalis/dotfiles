@@ -23,5 +23,16 @@ $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [En
 if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot '.chezmoiroot'))) {
   chezmoi init --apply --source $PSScriptRoot
 } else {
-  chezmoi init --apply --branch $branch --source $dest $repo
+  # An older clone of this repo (before chezmoi) may already be at $dest.
+  if ((Test-Path (Join-Path $dest '.git')) -and -not (Test-Path (Join-Path $dest '.chezmoiroot'))) {
+    Write-Host "Switching existing $dest to $branch"
+    git -C $dest fetch origin $branch
+    git -C $dest switch $branch 2>$null
+    if ($LASTEXITCODE -ne 0) { git -C $dest switch -c $branch --track "origin/$branch" }
+  }
+  if (Test-Path (Join-Path $dest '.chezmoiroot')) {
+    chezmoi init --apply --source $dest
+  } else {
+    chezmoi init --apply --branch $branch --source $dest $repo
+  }
 }

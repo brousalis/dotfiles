@@ -1,0 +1,64 @@
+-- VS Code / Cursor shortcuts for Neovim. Off by default.
+--
+-- Turn on with either:
+--   * NVIM_VSCODE_KEYS=1 in the environment (per machine, e.g. ~/.localenv or
+--     ~/.localrc.ps1), or
+--   * vim.g.vscode_keys = true in lua/config/options.lua (every machine).
+--
+-- These mostly use Ctrl and Alt chords that terminals can send. Ctrl+Shift
+-- combos only work where the terminal sends extended keys, so each has a
+-- <leader> equivalent that always works. Where a key replaces a Vim or
+-- LazyVim default, the comment says what you give up.
+
+local map = function(modes, lhs, rhs, desc, opts)
+  vim.keymap.set(modes, lhs, rhs, vim.tbl_extend("force", { desc = "VSCode: " .. desc, silent = true }, opts or {}))
+end
+local remap = { remap = true }
+
+-- Navigate -------------------------------------------------------------------
+
+map("n", "<C-p>", "<leader>ff", "Go to file (Ctrl+P)", remap) -- replaces: previous line
+map("n", "<C-g>", ":", "Go to line (Ctrl+G), type a number", { silent = false }) -- replaces: file info
+map({ "n", "x" }, "<C-S-p>", "<leader>sC", "Command palette (Ctrl+Shift+P)", remap)
+map("n", "<C-S-f>", "<leader>/", "Search in files (Ctrl+Shift+F)", remap)
+map("n", "<C-S-o>", "<leader>ss", "Go to symbol (Ctrl+Shift+O)", remap)
+map("n", "<C-S-e>", "<leader>e", "Explorer (Ctrl+Shift+E)", remap)
+map("n", "<C-b>", "<leader>e", "Toggle explorer (Ctrl+B)", remap) -- replaces: page up
+map("n", "<C-S-g>", "<leader>gg", "Source control (Ctrl+Shift+G)", remap)
+map("n", "<C-S-m>", "<leader>xx", "Problems (Ctrl+Shift+M)", remap)
+
+-- Edit -----------------------------------------------------------------------
+
+-- Ctrl+S already saves in LazyVim.
+-- Ctrl+/ comments; the terminal toggle that LazyVim has here is still on <leader>ft.
+map("n", "<C-/>", "gcc", "Toggle comment (Ctrl+/)", remap)
+map("n", "<C-_>", "gcc", "Toggle comment (Ctrl+/)", remap)
+map("x", "<C-/>", "gc", "Toggle comment (Ctrl+/)", remap)
+map("x", "<C-_>", "gc", "Toggle comment (Ctrl+/)", remap)
+map("i", "<C-/>", "<cmd>normal gcc<cr>", "Toggle comment (Ctrl+/)")
+map("i", "<C-_>", "<cmd>normal gcc<cr>", "Toggle comment (Ctrl+/)")
+
+-- Alt+Up/Down is not used because tmux resizes panes with it. LazyVim's
+-- Alt+j / Alt+k already move lines; Alt+Shift+j / k copy them.
+map("n", "<M-J>", "<cmd>t.<cr>", "Copy line down (Shift+Alt+Down)")
+map("n", "<M-K>", "<cmd>t-1<cr>", "Copy line up (Shift+Alt+Up)")
+map("x", "<M-J>", ":<C-u>'<,'>t'><cr>gv", "Copy selection down")
+map("x", "<M-K>", ":<C-u>'<,'>t'<-1<cr>gv", "Copy selection up")
+
+map({ "n", "x" }, "<M-F>", "<leader>cf", "Format (Shift+Alt+F)", remap)
+
+-- Code -----------------------------------------------------------------------
+
+-- F2 (rename) is not mapped: tmux uses F1 / F2 for windows. Use <leader>cr.
+map({ "n", "x" }, "<M-.>", "<leader>ca", "Quick fix (Ctrl+. in VS Code)", remap)
+map({ "n", "x" }, "<C-.>", "<leader>ca", "Quick fix (Ctrl+.)", remap)
+map("n", "<F8>", "]d", "Next problem (F8)", remap)
+map("n", "<S-F8>", "[d", "Previous problem (Shift+F8)", remap)
+-- F12 never reaches Neovim inside tmux (it switches windows): use gd / gr / gI.
+
+-- Editors and buffers --------------------------------------------------------
+
+map("n", "<M-w>", "<leader>bd", "Close editor (Ctrl+W in VS Code)", remap)
+for i = 1, 9 do
+  map("n", ("<M-%d>"):format(i), ("<cmd>BufferLineGoToBuffer %d<cr>"):format(i), ("Go to buffer %d (Alt+%d)"):format(i, i))
+end

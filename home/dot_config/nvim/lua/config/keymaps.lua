@@ -56,3 +56,8 @@ map("n", "x", '"_x')
 
 -- Double quotes to single quotes in the file
 map("n", "<F3>", [[:%s/"\(\([^"]*\)\)"/'\1'/g<cr>]], { desc = "Double to single quotes" })
+
+-- Optional VS Code / Cursor shortcuts, off by default (see vscode-keys.lua).
+if vim.g.vscode_keys or vim.env.NVIM_VSCODE_KEYS == "1" then
+  require("config.vscode-keys")
+end

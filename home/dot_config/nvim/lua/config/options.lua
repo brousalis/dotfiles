@@ -5,6 +5,10 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "\\"
 
+-- VS Code / Cursor shortcuts (lua/config/vscode-keys.lua). Set to true to turn
+-- them on everywhere, or set NVIM_VSCODE_KEYS=1 on just one machine.
+vim.g.vscode_keys = false
+
 local opt = vim.opt
 
 -- From the original vimrc

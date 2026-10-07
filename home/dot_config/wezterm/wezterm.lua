@@ -40,6 +40,8 @@ if is_windows then
   local tmux_keys = {
     -- C-a C-a cycles panes, as `bind ^A select-pane -t :.+` does in tmux.
     { key = "a", mods = "LEADER|CTRL", action = act.ActivatePaneDirection("Next") },
+    { key = "F1", action = act.ActivateTabRelative(-1) },
+    { key = "F2", action = act.ActivateTabRelative(1) },
     { key = "F11", action = act.ActivateTabRelative(-1) },
     { key = "F12", action = act.ActivateTabRelative(1) },
     { key = "Escape", mods = "LEADER", action = act.ActivateCopyMode },

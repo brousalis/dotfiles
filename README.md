@@ -63,7 +63,7 @@ WezTerm uses the same keys.
 | `C-a h/j/k/l` | Move between panes |
 | `C-a C-a` | Cycle panes |
 | `C-a s` / `C-a v` | Split side by side / stacked |
-| `F11` / `F12` | Previous / next window |
+| `F1` / `F2`, `F11` / `F12` | Previous / next window |
 | `Alt+arrows` | Resize pane |
 | `Alt+0` | Choose session |
 | `C-a Escape` | Copy mode |
@@ -79,6 +79,26 @@ Neovim (leader `,`): the old vimrc mappings carry over (`jj`/`jk` to escape,
 `,h/j/k/l` between windows, Tab to indent). Two changes: `K` is LSP hover and
 the old split-line moved to `,K`; Enter opens a line below only in normal file
 buffers.
+
+### VS Code keys (opt-in)
+
+Off by default. Turn on per machine with `NVIM_VSCODE_KEYS=1` (in
+`~/.localenv`, or `$env:NVIM_VSCODE_KEYS = '1'` in `~/.localrc.ps1`), or
+everywhere with `vim.g.vscode_keys = true` in `lua/config/options.lua`.
+
+| Key | Action |
+| --- | --- |
+| `Ctrl+P` / `Ctrl+B` / `Ctrl+G` | Go to file / toggle explorer / go to line |
+| `Ctrl+/` | Toggle comment (terminal toggle stays on `,ft`) |
+| `Alt+Shift+j` / `k` | Copy line down / up (`Alt+j` / `k` move it) |
+| `Alt+Shift+f` | Format |
+| `Alt+.` | Quick fix |
+| `F8` / `Shift+F8` | Next / previous problem |
+| `Alt+1` to `Alt+9`, `Alt+w` | Go to buffer N, close buffer |
+| `Ctrl+Shift+P/F/O/E/G/M` | Commands, search, symbols, explorer, git, problems (needs a terminal that sends extended keys; `,sC` `,/` `,ss` `,e` `,gg` `,xx` always work) |
+
+It replaces Vim's `Ctrl+P`, `Ctrl+B` and `Ctrl+G`. F2 (rename) isn't mapped
+because tmux uses `F1` / `F2`; use `,cr`.
 
 ## Layout
 

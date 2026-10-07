@@ -5,7 +5,8 @@
 set -euo pipefail
 
 if command -v apt-get >/dev/null 2>&1; then
-  sudo apt-get update -qq
+  # A broken third-party apt source should not stop the install.
+  sudo apt-get update -qq || true
   sudo apt-get install -y -qq build-essential curl file git procps unzip zsh
 elif command -v dnf >/dev/null 2>&1; then
   sudo dnf install -y gcc gcc-c++ make curl file git procps-ng unzip zsh

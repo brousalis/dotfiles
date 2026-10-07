@@ -1,0 +1,2 @@
+-- Loaded on VeryLazy. LazyVim already restores the cursor position, trims
+-- trailing whitespace through its formatters, and highlights yanks.

@@ -70,7 +70,7 @@ WezTerm uses the same keys.
 | `C-a R` | Reload config |
 | `C-a C` | Open Claude Code in a pane on the right (added) |
 
-`dev [dir]` starts or re-attaches a tmux session for a project with Neovim on
+`ide [dir]` starts or re-attaches a tmux session for a project with Neovim on
 the left and Claude Code on the right. In Claude Code, run `/ide` to connect to
 that Neovim (via claudecode.nvim) for selection context and diffs in the editor.
 

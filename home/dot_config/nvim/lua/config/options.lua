@@ -30,3 +30,16 @@ opt.visualbell = true
 opt.list = true
 opt.listchars = { tab = "▸ ", trail = "·", nbsp = "␣" }
 opt.iskeyword:remove({ "_", "-" })
+
+-- WSL: send the + register to the Windows clipboard. Without this Neovim finds
+-- no clipboard tool in WSL and yanks never leave the terminal. From
+-- :help clipboard-wsl; win32yank.exe, if installed, is faster and is used instead.
+if vim.fn.has("wsl") == 1 and vim.fn.executable("win32yank.exe") == 0 then
+  local paste = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
+  vim.g.clipboard = {
+    name = "WslClipboard",
+    copy = { ["+"] = "clip.exe", ["*"] = "clip.exe" },
+    paste = { ["+"] = paste, ["*"] = paste },
+    cache_enabled = 0,
+  }
+end

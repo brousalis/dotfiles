@@ -2,7 +2,23 @@
 #!/bin/bash
 # Installs the TPM plugins declared in ~/.tmux.conf.
 # tmux.conf hash: {{ include "dot_tmux.conf" | sha256sum }}
-set -euo pipefail
-[ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ] && "$HOME/.tmux/plugins/tpm/bin/install_plugins" >/dev/null
-true
+#
+# TPM needs a tmux server that has loaded ~/.tmux.conf. Use a throwaway server
+# on its own socket directory so any running sessions are left alone.
+set -uo pipefail
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  [ -x "$brew" ] && eval "$("$brew" shellenv)" && break
+done
+installer="$HOME/.tmux/plugins/tpm/bin/install_plugins"
+command -v tmux >/dev/null 2>&1 && [ -x "$installer" ] || exit 0
+
+TMUX_TMPDIR="$(mktemp -d)"
+export TMUX_TMPDIR
+unset TMUX
+tmux new-session -d -s chezmoi-tpm
+tmux set-environment -g TMUX_PLUGIN_MANAGER_PATH "$HOME/.tmux/plugins/"
+"$installer" >/dev/null || echo "tmux plugins did not install; run prefix + I inside tmux."
+tmux kill-server >/dev/null 2>&1
+rm -rf "$TMUX_TMPDIR"
+exit 0
 {{ end -}}

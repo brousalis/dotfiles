@@ -53,7 +53,7 @@ Machine-only settings stay out of the repo: `~/.localrc`, `~/.localenv`,
 | Aliases | Kept from the original dotfiles, ported to PowerShell | `home/dot_aliases`, `home/dot_config/powershell/aliases.ps1` |
 | Multiplexer | tmux + TPM (macOS, Linux, WSL) | `home/dot_tmux.conf` |
 | Terminal | WezTerm, with the tmux keys on native Windows | `home/dot_config/wezterm/wezterm.lua` |
-| Editor | Neovim with LazyVim, comma leader, old vimrc mappings | `home/dot_config/nvim/` |
+| Editor | Neovim with LazyVim, comma leader, old vimrc mappings, Kanagawa Dragon with Claude orange (WezTerm matches) | `home/dot_config/nvim/` |
 | Runtimes | mise (node, python, go, pnpm, uv) | `home/dot_config/mise/config.toml` |
 | Git | delta, rebase on pull, per-OS credentials, gh for GitHub | `home/dot_gitconfig.tmpl` |
 | AI agents | One rules file for Claude Code, Codex and Gemini | `home/.chezmoitemplates/rules.md` |

@@ -1,5 +1,8 @@
 # Paths are target paths (relative to ~), and this file is a template.
 
+# Read straight from the repo by Neovim (see lua/config/lazy.lua).
+.config/nvim/lazy-lock.json
+
 {{- if eq .chezmoi.os "windows" }}
 # tmux and zsh live in WSL on Windows; native Windows uses WezTerm + PowerShell.
 .aliases

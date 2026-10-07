@@ -33,6 +33,12 @@ and Claude Code. Re-running it is safe.
 | See what would change | `chezmoi diff` |
 | Bring back a file edited in place | `chezmoi re-add ~/.tmux.conf` |
 | Add a package | edit `home/.chezmoidata/packages.yaml`, then `chezmoi apply` |
+| Update Neovim plugins | `:Lazy update`, then commit `home/dot_config/nvim/lazy-lock.json` |
+| Same plugin versions on another machine | `chezmoi update`, then `:Lazy restore` in Neovim |
+| Add a LazyVim extra everywhere | add an `import` line in `home/dot_config/nvim/lua/config/lazy.lua` |
+
+CI (`.github/workflows/ci.yml`) applies everything on macOS, Ubuntu and Windows,
+lints the scripts, loads the tmux config and boots Neovim on every push.
 
 Machine-only settings stay out of the repo: `~/.localrc`, `~/.localenv`,
 `~/.gitconfig.local`, `~/.tmux.local.conf`, `~/.localrc.ps1`, and

@@ -29,7 +29,7 @@ The dotfiles are a chezmoi source repo, usually at `~/.dotfiles`
 | zsh | `home/dot_zshenv`, `dot_zprofile`, `dot_zshrc`, `dot_zsh_plugins.txt` |
 | PowerShell | `home/dot_config/powershell/` |
 | git | `home/dot_gitconfig.tmpl`, `home/dot_config/git/ignore` |
-| Neovim (LazyVim) | `home/dot_config/nvim/` |
+| Neovim (LazyVim) | `home/dot_config/nvim/`; extras are `import` lines in `lua/config/lazy.lua`, plugin versions in `lazy-lock.json` |
 | WezTerm | `home/dot_config/wezterm/wezterm.lua` |
 | Runtimes | `home/dot_config/mise/config.toml` |
 | Agent rules (Claude, Codex, Gemini) | `home/.chezmoitemplates/rules.md` |
@@ -47,5 +47,6 @@ rendered content changes (include a hash of the file they depend on).
 
 - `chezmoi execute-template < file.tmpl` renders a template.
 - `chezmoi apply --dry-run --verbose` shows what would change.
+- CI (`.github/workflows/ci.yml`) applies on macOS, Ubuntu and Windows; check it after pushing.
 - For anything OS-specific, check every branch of the `.chezmoi.os` conditions
   and say which OSes you could not test.

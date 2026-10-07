@@ -1,0 +1,99 @@
+name: ci
+
+on:
+  push:
+    branches: [master, main, v2]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  apply:
+    name: apply (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install chezmoi (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Install chezmoi (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          iex "&{$(irm 'https://get.chezmoi.io/ps1')} -b '$HOME\bin'"
+          "$HOME\bin" | Out-File -Append -Encoding utf8 $env:GITHUB_PATH
+
+      # Installs every managed file; the package/install scripts are skipped
+      # here and checked separately below.
+      - name: Apply dotfiles
+        run: chezmoi init --apply --promptDefaults --exclude scripts --source "${{ github.workspace }}"
+
+      - name: Check this OS's scripts render and pass shellcheck
+        if: runner.os != 'Windows'
+        run: |
+          command -v shellcheck >/dev/null || brew install shellcheck
+          mkdir -p /tmp/rendered
+          for f in home/.chezmoiscripts/*.sh.tmpl; do
+            out="/tmp/rendered/$(basename "$f" .tmpl)"
+            chezmoi execute-template --source "$PWD" < "$f" > "$out"
+            [ -n "$(tr -d '[:space:]' < "$out")" ] || continue
+            echo "checking $f"
+            shellcheck -S warning "$out"
+          done
+          shellcheck -S warning install.sh "$HOME/.claude/statusline.sh"
+
+      - name: Check this OS's scripts and profile parse in PowerShell
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $files = @("$HOME\.config\powershell\Microsoft.PowerShell_profile.ps1", "$HOME\.config\powershell\aliases.ps1", "install.ps1")
+          New-Item -ItemType Directory -Force "$env:RUNNER_TEMP\rendered" | Out-Null
+          foreach ($f in Get-ChildItem home/.chezmoiscripts/*.ps1.tmpl) {
+            $out = Join-Path "$env:RUNNER_TEMP\rendered" ($f.Name -replace '\.tmpl$', '')
+            Get-Content $f.FullName -Raw | chezmoi execute-template --source "$PWD" | Set-Content $out
+            if ((Get-Content $out -Raw).Trim()) { $files += $out }
+          }
+          $failed = $false
+          foreach ($f in $files) {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($f, [ref]$null, [ref]$errors) | Out-Null
+            if ($errors) { $failed = $true; Write-Host "::error file=$f::$($errors -join '; ')" } else { Write-Host "ok $f" }
+          }
+          if ($failed) { exit 1 }
+
+  shell-and-tmux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq zsh tmux
+      - name: zsh files parse
+        run: for f in home/dot_zshenv home/dot_zprofile home/dot_zshrc home/dot_aliases; do zsh -n "$f"; done
+      - name: tmux.conf loads without errors
+        run: |
+          out=$(tmux -f /dev/null new-session -d \; source-file home/dot_tmux.conf 2>&1)
+          tmux kill-server || true
+          if [ -n "$out" ]; then echo "$out"; exit 1; fi
+
+  neovim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Neovim
+        run: |
+          curl -fsSL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz | tar -xz -C /opt
+          echo /opt/nvim-linux-x86_64/bin >> "$GITHUB_PATH"
+      - name: Install plugins and start with no errors
+        env:
+          XDG_CONFIG_HOME: ${{ github.workspace }}/.ci-config
+        run: |
+          mkdir -p "$XDG_CONFIG_HOME"
+          cp -r home/dot_config/nvim "$XDG_CONFIG_HOME/nvim"
+          nvim --headless "+Lazy! sync" +qa
+          nvim --headless -c "lua vim.defer_fn(function() vim.api.nvim_exec_autocmds('User', { pattern = 'VeryLazy' }) vim.defer_fn(function() local m = vim.fn.execute('messages') io.stdout:write(m) vim.cmd(m:find('E%d+:') and 'cquit' or 'qa!') end, 2000) end, 2000)"

@@ -9,7 +9,7 @@ alias ga='git add'
 alias gs='git status -s'
 alias gco='git checkout'
 alias gp='git push' 
-function gre() { git fetch origin; git checkout master; git branch -D "$@"; git checkout -t origin/"$@" }
+function gre() { git fetch origin; git checkout "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@')"; git branch -D "$@"; git checkout -t origin/"$@"; }
 alias gbd='git branch -D'
 alias grs='git reset --hard HEAD'
 alias gc='git commit'
@@ -21,19 +21,23 @@ alias h='cd ~'
 alias home='cd ~'
 alias dotfiles='cd ~/.dotfiles'
 alias dev="cd ~/dev/"
-alias nom='rm -rf node_modules && npm cache clean && npm install'
+alias nom='rm -rf node_modules && npm cache clean --force && npm install'
 alias rmnm="find . -name 'node_modules' -exec rm -rf '{}' +"
-alias rpsql='rm /usr/local/var/postgres/postmaster.pid'
-alias server='open http://localhost:1337 && python -m SimpleHTTPServer 1337'
-alias fs="stat -f '%z bytes'"
+alias server='python3 -m http.server 1337'
 alias df='df -h'
-alias ifi="ifconfig | ack 'net'"
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias untar='tar -xvvf'
 alias reload='exec $SHELL -l'
-alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
 alias dsremove='find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatch'
 alias dsremover='find . -name .DS_Store -print0 | xargs -0 rm'
 alias dsr='find . -name ".DS_Store" -depth -exec rm {} \;'
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias flush="sudo dscacheutil -flushcache"
+
+# macOS only
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias rpsql='rm "$(brew --prefix)"/var/postgres*/postmaster.pid'
+  alias fs="stat -f '%z bytes'"
+  alias ifi="ifconfig | grep 'net'"
+  alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl'
+  alias afk="pmset displaysleepnow"
+  alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+fi

@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Installs the winget packages and PowerShell modules in .chezmoidata/packages.yaml.
+$packages = @(
+{{- range .packages.winget }}
+  '{{ . }}'
+{{- end }}
+)
+
+foreach ($id in $packages) {
+  winget list --exact --id $id --accept-source-agreements *> $null
+  if ($LASTEXITCODE -ne 0) {
+    Write-Host "Installing $id"
+    winget install --exact --id $id --silent --accept-package-agreements --accept-source-agreements
+  }
+}
+
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
+
+if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+{{- range .packages.psmodules }}
+  pwsh -NoLogo -NoProfile -Command "if (-not (Get-Module -ListAvailable {{ . }})) { Install-Module {{ . }} -Scope CurrentUser -Force }"
+{{- end }}
+}
+{{ end -}}

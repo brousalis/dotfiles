@@ -1,0 +1,27 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+# Installs build prerequisites and zsh from the distro, then Homebrew on Linux
+# and the packages in .chezmoidata/packages.yaml.
+set -euo pipefail
+
+if command -v apt-get >/dev/null 2>&1; then
+  sudo apt-get update -qq
+  sudo apt-get install -y -qq build-essential curl file git procps unzip zsh
+elif command -v dnf >/dev/null 2>&1; then
+  sudo dnf install -y gcc gcc-c++ make curl file git procps-ng unzip zsh
+elif command -v pacman >/dev/null 2>&1; then
+  sudo pacman -Sy --needed --noconfirm base-devel curl file git procps-ng unzip zsh
+fi
+
+BREW=/home/linuxbrew/.linuxbrew/bin/brew
+if [ ! -x "$BREW" ]; then
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$("$BREW" shellenv)"
+
+brew bundle --file=- <<BREWFILE
+{{ range .packages.brew -}}
+brew {{ . | quote }}
+{{ end -}}
+BREWFILE
+{{ end -}}

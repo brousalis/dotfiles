@@ -1,0 +1,6 @@
+# ~/.zprofile: login shells. Runs after macOS path_helper, so Homebrew wins.
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  [[ -x $brew ]] && eval "$($brew shellenv)" && break
+done
+unset brew
+path=("$HOME/.local/bin" "$HOME/bin" $path)

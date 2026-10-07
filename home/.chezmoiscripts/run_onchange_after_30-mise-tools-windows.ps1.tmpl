@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Installs the runtimes in ~/.config/mise/config.toml.
+# config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
+$env:XDG_CONFIG_HOME = Join-Path $HOME '.config'
+if (Get-Command mise -ErrorAction SilentlyContinue) { mise install --yes }
+{{ end -}}

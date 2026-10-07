@@ -1,0 +1,14 @@
+# ~/.zshenv: read by every zsh, so keep it to environment only.
+
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export EDITOR=nvim
+export VISUAL=nvim
+export PAGER=less
+export LESS=-FRX
+export DEV="$HOME/dev"
+
+typeset -U path PATH
+path=("$HOME/.local/bin" "$HOME/bin" $path)
+
+# Machine-only environment, not in the repo.
+[[ -f ~/.localenv ]] && source ~/.localenv

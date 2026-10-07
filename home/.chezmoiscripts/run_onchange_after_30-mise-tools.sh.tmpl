@@ -1,0 +1,10 @@
+{{ if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# Installs the runtimes in ~/.config/mise/config.toml.
+# config hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+set -euo pipefail
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  [ -x "$brew" ] && eval "$("$brew" shellenv)" && break
+done
+command -v mise >/dev/null 2>&1 && mise install --yes
+{{ end -}}

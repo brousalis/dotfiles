@@ -1,0 +1,12 @@
+# Global runtimes, installed by `mise install` on every OS.
+# Projects pin their own versions with a mise.toml or .tool-versions file.
+[tools]
+node = "lts"
+python = "3.14"
+go = "latest"
+pnpm = "latest"
+uv = "latest"
+tree-sitter = "latest"  # nvim-treesitter needs the CLI
+
+[settings]
+idiomatic_version_file_enable_tools = ["node", "python"]

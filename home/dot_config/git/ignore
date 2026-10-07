@@ -1,0 +1,10 @@
+# Global gitignore
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.direnv/
+.envrc.local
+CLAUDE.local.md
+.claude/settings.local.json

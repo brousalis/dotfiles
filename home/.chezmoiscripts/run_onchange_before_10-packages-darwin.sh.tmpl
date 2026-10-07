@@ -1,0 +1,25 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# Installs Homebrew and the packages in .chezmoidata/packages.yaml.
+set -euo pipefail
+
+if ! xcode-select -p >/dev/null 2>&1; then
+  xcode-select --install
+  echo "Finish installing the Xcode Command Line Tools, then run chezmoi apply again."
+  exit 1
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
+
+brew bundle --file=- <<BREWFILE
+{{ range .packages.brew -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+BREWFILE
+{{ end -}}

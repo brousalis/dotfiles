@@ -1,0 +1,8 @@
+{{ if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# Installs the TPM plugins declared in ~/.tmux.conf.
+# tmux.conf hash: {{ include "dot_tmux.conf" | sha256sum }}
+set -euo pipefail
+[ -x "$HOME/.tmux/plugins/tpm/bin/install_plugins" ] && "$HOME/.tmux/plugins/tpm/bin/install_plugins" >/dev/null
+true
+{{ end -}}

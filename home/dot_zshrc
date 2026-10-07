@@ -1,0 +1,50 @@
+# ~/.zshrc: interactive shells.
+
+# Homebrew for non-login shells (some Linux terminals).
+if (( ! $+commands[brew] )); then
+  for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+    [[ -x $brew ]] && eval "$($brew shellenv)" && break
+  done
+  unset brew
+fi
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks share_history
+
+# Behaviour
+setopt auto_cd auto_pushd pushd_ignore_dups interactive_comments no_beep
+bindkey -e
+WORDCHARS=${WORDCHARS//[\/]}
+
+# Plugins (antidote, see ~/.zsh_plugins.txt)
+zstyle ':antidote:bundle' use-friendly-names 'yes'
+if [[ -r ~/.antidote/antidote.zsh ]]; then
+  source ~/.antidote/antidote.zsh
+  antidote load
+fi
+
+# History substring search on the arrow keys.
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath 2>/dev/null || ls $realpath'
+
+# Tools
+(( $+commands[mise] ))     && eval "$(mise activate zsh)"
+(( $+commands[direnv] ))   && eval "$(direnv hook zsh)"
+(( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
+(( $+commands[fzf] ))      && source <(fzf --zsh)
+(( $+commands[starship] )) && eval "$(starship init zsh)"
+(( $+commands[nvim] ))     && alias vim=nvim vi=nvim
+
+# Aliases (kept from the original dotfiles)
+[[ -f ~/.aliases ]] && source ~/.aliases
+
+# Machine-only config, not in the repo.
+[[ -f ~/.localrc ]] && source ~/.localrc

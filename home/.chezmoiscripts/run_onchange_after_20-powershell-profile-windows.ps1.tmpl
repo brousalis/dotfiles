@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Points Windows at the shared ~/.config tree (Neovim, WezTerm, starship, git
+# and mise all read it) and makes both PowerShell profiles load the managed one.
+$config = Join-Path $HOME '.config'
+[Environment]::SetEnvironmentVariable('XDG_CONFIG_HOME', $config, 'User')
+
+$managed = Join-Path $config 'powershell\Microsoft.PowerShell_profile.ps1'
+$stub = ". `"$managed`""
+
+$profiles = @($PROFILE.CurrentUserCurrentHost)
+if (Get-Command pwsh -ErrorAction SilentlyContinue) {
+  $profiles += pwsh -NoLogo -NoProfile -Command '$PROFILE.CurrentUserCurrentHost'
+}
+
+foreach ($path in $profiles | Select-Object -Unique) {
+  New-Item -ItemType Directory -Force -Path (Split-Path $path) | Out-Null
+  if (-not (Test-Path $path) -or -not (Select-String -Path $path -SimpleMatch $managed -Quiet)) {
+    Add-Content -Path $path -Value $stub
+    Write-Host "Linked $path to $managed"
+  }
+}
+{{ end -}}

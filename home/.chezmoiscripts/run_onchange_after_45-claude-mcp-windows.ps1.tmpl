@@ -1,0 +1,9 @@
+{{ if and (eq .chezmoi.os "windows") .claude.mcpServers -}}
+# Adds the MCP servers listed in .chezmoidata/claude.yaml at user scope.
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User') + ";$HOME\.local\bin"
+if (-not (Get-Command claude -ErrorAction SilentlyContinue)) { exit 0 }
+{{ range .claude.mcpServers -}}
+claude mcp get '{{ .name }}' *> $null
+if ($LASTEXITCODE -ne 0) { claude mcp add --scope user '{{ .name }}' -- {{ .command }} }
+{{ end -}}
+{{ end -}}

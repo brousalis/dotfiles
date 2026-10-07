@@ -1,0 +1,11 @@
+{{- if ne .chezmoi.os "windows" -}}
+[".tmux/plugins/tpm"]
+  type = "git-repo"
+  url = "https://github.com/tmux-plugins/tpm"
+  refreshPeriod = "168h"
+
+[".antidote"]
+  type = "git-repo"
+  url = "https://github.com/mattmc3/antidote"
+  refreshPeriod = "168h"
+{{- end }}

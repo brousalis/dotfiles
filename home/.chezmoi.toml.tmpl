@@ -1,0 +1,25 @@
+{{- /* Asked once on `chezmoi init`; answers are saved in ~/.config/chezmoi/chezmoi.toml */ -}}
+{{- $name := promptStringOnce . "name" "Full name" "Pete Brousalis" -}}
+{{- $email := promptStringOnce . "email" "Git email" "brousapg@gmail.com" -}}
+{{- $work := promptBoolOnce . "work" "Is this a work machine" false -}}
+{{- $wsl := false -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-   $wsl = .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+{{- end -}}
+
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+  name = {{ $name | quote }}
+  email = {{ $email | quote }}
+  work = {{ $work }}
+  wsl = {{ $wsl }}
+
+[edit]
+  command = "nvim"
+
+{{ if eq .chezmoi.os "windows" -}}
+[interpreters.ps1]
+  command = "powershell"
+  args = ["-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File"]
+{{- end }}

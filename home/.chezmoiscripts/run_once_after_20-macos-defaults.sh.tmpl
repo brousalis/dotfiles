@@ -1,0 +1,21 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+# The macOS defaults from the original script/osx that are still meaningful.
+set -euo pipefail
+
+# Key repeat instead of the accent picker, and the fastest repeat.
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain KeyRepeat -int 0
+
+# Full keyboard access for all controls (Tab in dialogs).
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Finder: hidden files, all extensions, path bar.
+defaults write com.apple.finder AppleShowAllFiles -bool true
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder ShowPathbar -bool true
+chflags nohidden ~/Library
+
+killall Finder >/dev/null 2>&1 || true
+echo "macOS defaults applied. Key repeat changes take effect after logging out."
+{{ end -}}

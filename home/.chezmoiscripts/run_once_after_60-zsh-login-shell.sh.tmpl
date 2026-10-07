@@ -1,0 +1,10 @@
+{{ if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# Makes zsh the login shell.
+set -euo pipefail
+zsh_path="$(command -v zsh || true)"
+[ -z "$zsh_path" ] && exit 0
+case "$SHELL" in */zsh) exit 0 ;; esac
+grep -qx "$zsh_path" /etc/shells || echo "$zsh_path" | sudo tee -a /etc/shells >/dev/null
+chsh -s "$zsh_path"
+{{ end -}}

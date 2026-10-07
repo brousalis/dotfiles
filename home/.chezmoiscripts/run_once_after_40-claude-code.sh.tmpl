@@ -1,0 +1,7 @@
+{{ if ne .chezmoi.os "windows" -}}
+#!/bin/bash
+# Installs Claude Code with its native installer; it keeps itself up to date.
+set -euo pipefail
+export PATH="$HOME/.local/bin:$PATH"
+command -v claude >/dev/null 2>&1 || curl -fsSL https://claude.ai/install.sh | bash
+{{ end -}}

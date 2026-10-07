@@ -1,0 +1,7 @@
+# zsh plugins, loaded by antidote from ~/.zshrc. Order matters.
+mattmc3/ez-compinit
+zsh-users/zsh-completions kind:fpath path:src
+Aloxaf/fzf-tab
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting
+zsh-users/zsh-history-substring-search

@@ -1,0 +1,7 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Installs Claude Code with its native installer; it keeps itself up to date.
+$env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User') + ";$HOME\.local\bin"
+if (-not (Get-Command claude -ErrorAction SilentlyContinue)) {
+  Invoke-RestMethod https://claude.ai/install.ps1 | Invoke-Expression
+}
+{{ end -}}

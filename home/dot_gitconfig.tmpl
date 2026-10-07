@@ -1,0 +1,79 @@
+[user]
+  name = {{ .name }}
+  email = {{ .email }}
+[core]
+  editor = nvim
+  autocrlf = input
+  pager = delta
+[init]
+  defaultBranch = main
+[apply]
+  whitespace = fix
+[pull]
+  rebase = true
+[push]
+  default = simple
+  autoSetupRemote = true
+[fetch]
+  prune = true
+[rebase]
+  autoStash = true
+  autoSquash = true
+  updateRefs = true
+[rerere]
+  enabled = true
+[merge]
+  conflictStyle = zdiff3
+[diff]
+  algorithm = histogram
+  colorMoved = default
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  line-numbers = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = version:refname
+[column]
+  ui = auto
+[help]
+  autocorrect = prompt
+{{- if eq .chezmoi.os "darwin" }}
+[credential]
+  helper = osxkeychain
+{{- else if eq .chezmoi.os "windows" }}
+[credential]
+  helper = manager
+{{- else if .wsl }}
+[credential]
+  helper = "/mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe"
+{{- else }}
+[credential]
+  helper = cache --timeout=86400
+{{- end }}
+[credential "https://github.com"]
+  helper =
+  helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+  helper =
+  helper = !gh auth git-credential
+[alias]
+  last = log -1 HEAD
+  p = push
+  pl = pull
+  b = branch
+  r = remote
+  rs = reset --hard HEAD
+  c = commit -v
+  s = status -s
+  a = add
+  d = diff
+  dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+  co = checkout
+  sw = switch
+  la = "!git config -l | grep alias | cut -c 7-"
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[include]
+  path = ~/.gitconfig.local

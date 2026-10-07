@@ -1,0 +1,67 @@
+# Package lists. Editing this file re-runs the install script for that OS
+# on the next `chezmoi apply`.
+packages:
+  # Homebrew formulae, installed on macOS and Linux (including WSL).
+  brew:
+    - bat
+    - btop
+    - direnv
+    - eza
+    - fd
+    - fzf
+    - gh
+    - git
+    - git-delta
+    - jq
+    - just
+    - lazygit
+    - mise
+    - neovim
+    - ripgrep
+    - shellcheck
+    - starship
+    - tlrc
+    - tmux
+    - tree
+    - wget
+    - yq
+    - zoxide
+
+  # macOS-only casks.
+  casks:
+    - 1password
+    - 1password-cli
+    - font-jetbrains-mono-nerd-font
+    - rectangle
+    - slack
+    - the-unarchiver
+    - wezterm
+
+  # winget package ids for native Windows.
+  winget:
+    - AgileBits.1Password
+    - AgileBits.1Password.CLI
+    - BurntSushi.ripgrep.MSVC
+    - DEVCOM.JetBrainsMonoNerdFont
+    - GitHub.cli
+    - Git.Git
+    - JesseDuffield.lazygit
+    - MikeFarah.yq
+    - Microsoft.PowerShell
+    - Neovim.Neovim
+    - Starship.Starship
+    - ajeetdsouza.zoxide
+    - dandavison.delta
+    - direnv.direnv
+    - eza-community.eza
+    - jdx.mise
+    - jqlang.jq
+    - junegunn.fzf
+    - sharkdp.bat
+    - sharkdp.fd
+    - wez.wezterm
+    - zig.zig  # C compiler for nvim-treesitter
+
+  # PowerShell modules for pwsh on Windows.
+  psmodules:
+    - PSFzf

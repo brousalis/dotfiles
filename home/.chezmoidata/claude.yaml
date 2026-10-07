@@ -1,0 +1,8 @@
+# MCP servers added to Claude Code at user scope (`claude mcp add --scope user`).
+# Claude Code keeps these in ~/.claude.json, which also holds login state, so
+# that file is never managed directly. Add entries here instead, for example:
+#
+#   - name: context7
+#     command: npx -y @upstash/context7-mcp
+claude:
+  mcpServers: []

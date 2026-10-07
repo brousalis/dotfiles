@@ -1,13 +1,13 @@
 #!/bin/sh
 # Bootstrap these dotfiles on macOS, Linux or WSL:
 #
-#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/brousalis/dotfiles/v2/install.sh)"
+#   sh -c "$(curl -fsSL https://raw.githubusercontent.com/brousalis/dotfiles/master/install.sh)"
 #
 # Or from a clone: ./install.sh
 set -eu
 
 REPO="${DOTFILES_REPO:-brousalis/dotfiles}"
-BRANCH="${DOTFILES_BRANCH:-v2}"
+BRANCH="${DOTFILES_BRANCH:-master}"
 DEST="${DOTFILES_DIR:-$HOME/.dotfiles}"
 
 if ! command -v chezmoi >/dev/null 2>&1; then
@@ -29,6 +29,7 @@ if [ -d "$DEST/.git" ] && [ ! -f "$DEST/.chezmoiroot" ]; then
   echo "Switching existing $DEST to $BRANCH"
   git -C "$DEST" fetch origin "$BRANCH"
   git -C "$DEST" switch "$BRANCH" 2>/dev/null || git -C "$DEST" switch -c "$BRANCH" --track "origin/$BRANCH"
+  git -C "$DEST" merge --ff-only "origin/$BRANCH"
 fi
 if [ -f "$DEST/.chezmoiroot" ]; then
   exec chezmoi init --apply --source "$DEST"

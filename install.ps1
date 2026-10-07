@@ -1,12 +1,12 @@
 # Bootstrap these dotfiles on native Windows:
 #
-#   irm https://raw.githubusercontent.com/brousalis/dotfiles/v2/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/brousalis/dotfiles/master/install.ps1 | iex
 #
 # Or from a clone: .\install.ps1
 $ErrorActionPreference = 'Stop'
 
 $repo = if ($env:DOTFILES_REPO) { $env:DOTFILES_REPO } else { 'brousalis/dotfiles' }
-$branch = if ($env:DOTFILES_BRANCH) { $env:DOTFILES_BRANCH } else { 'v2' }
+$branch = if ($env:DOTFILES_BRANCH) { $env:DOTFILES_BRANCH } else { 'master' }
 $dest = if ($env:DOTFILES_DIR) { $env:DOTFILES_DIR } else { Join-Path $HOME '.dotfiles' }
 
 # Profiles and local scripts need to be allowed to run.
@@ -29,6 +29,7 @@ if ($PSScriptRoot -and (Test-Path (Join-Path $PSScriptRoot '.chezmoiroot'))) {
     git -C $dest fetch origin $branch
     git -C $dest switch $branch 2>$null
     if ($LASTEXITCODE -ne 0) { git -C $dest switch -c $branch --track "origin/$branch" }
+    git -C $dest merge --ff-only "origin/$branch"
   }
   if (Test-Path (Join-Path $dest '.chezmoiroot')) {
     chezmoi init --apply --source $dest

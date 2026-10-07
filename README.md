@@ -11,11 +11,11 @@ The history goes back to 2011. The setup from before this rewrite is tagged
 
 macOS, Linux or WSL:
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/brousalis/dotfiles/v2/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/brousalis/dotfiles/master/install.sh)"
 
 Windows (PowerShell):
 
-    irm https://raw.githubusercontent.com/brousalis/dotfiles/v2/install.ps1 | iex
+    irm https://raw.githubusercontent.com/brousalis/dotfiles/master/install.ps1 | iex
 
 Always read a script before you curl it: [install.sh](install.sh), [install.ps1](install.ps1).
 

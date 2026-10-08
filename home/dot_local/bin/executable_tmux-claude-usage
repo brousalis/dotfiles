@@ -1,0 +1,25 @@
+#!/bin/sh
+# Compact Claude usage for the tmux status bar: current 5-hour block cost and
+# time left, e.g. "$2.17 · 19m". Prints the cache instantly and refreshes it in
+# the background (ccusage takes seconds), at most once a minute.
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/claude-usage"
+mkdir -p "$(dirname "$cache")"
+
+if [ -z "$(find "$cache" -mmin -1 2>/dev/null)" ]; then
+  touch "$cache"
+  (
+    npx -y ccusage@latest blocks --active --json 2>/dev/null | node -e '
+      let s = "";
+      process.stdin.on("data", (d) => (s += d)).on("end", () => {
+        let b;
+        try { b = JSON.parse(s).blocks.find((x) => x.isActive); } catch {}
+        if (!b) return console.log("idle");
+        const m = Math.max(0, Math.round((new Date(b.endTime) - Date.now()) / 60000));
+        const left = m >= 60 ? `${Math.floor(m / 60)}h${String(m % 60).padStart(2, "0")}m` : `${m}m`;
+        console.log(`$${b.costUSD.toFixed(2)} · ${left}`);
+      });' > "$cache.tmp" && [ -s "$cache.tmp" ] && mv "$cache.tmp" "$cache"
+    rm -f "$cache.tmp"
+  ) >/dev/null 2>&1 &
+fi
+
+cat "$cache" 2>/dev/null

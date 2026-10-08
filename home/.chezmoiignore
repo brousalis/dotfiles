@@ -11,6 +11,7 @@
 # tmux and zsh live in WSL on Windows; native Windows uses WezTerm + PowerShell.
 .aliases
 .tmux.conf
+.local/bin/tmux-claude-usage
 .zprofile
 .zshenv
 .zshrc

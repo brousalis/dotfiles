@@ -26,10 +26,17 @@ map("n", "<C-b>", "<leader>e", "Toggle explorer (Ctrl+B)", remap) -- replaces: p
 map("n", "<C-S-g>", "<leader>gg", "Source control (Ctrl+Shift+G)", remap)
 map("n", "<C-S-m>", "<leader>xx", "Problems (Ctrl+Shift+M)", remap)
 
--- Find and replace (grug-far). Ctrl+Shift+F is project-wide, Ctrl+F is the
+-- Find and replace (grug-far). Ctrl+Shift+F toggles the project-wide sidebar, Ctrl+F is the
 -- current file. Ctrl+F replaces: page down, which moves to Ctrl+H below.
 local function replace(scope)
   return function()
+    if scope == "project" then
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "grug-far" then
+          return vim.api.nvim_win_close(win, true)
+        end
+      end
+    end
     local grug, mode = require("grug-far"), vim.fn.mode()
     local opts = { prefills = scope == "file" and { paths = vim.fn.expand("%") } or nil }
     if mode == "v" or mode == "V" or mode == "\22" then
@@ -40,7 +47,7 @@ local function replace(scope)
     end
   end
 end
-map({ "n", "x" }, "<C-S-f>", replace("project"), "Find and replace in project (Ctrl+Shift+F)")
+map({ "n", "x" }, "<C-S-f>", replace("project"), "Toggle project find and replace (Ctrl+Shift+F)")
 map({ "n", "x" }, "<C-f>", replace("file"), "Find and replace in file (Ctrl+F)")
 map({ "n", "x" }, "<C-h>", "<C-f>", "Page down (was Ctrl+F)", { remap = false }) -- replaces: go to left window, use <C-w>h
 map("n", "<leader>sS", "<leader>/", "Search in files without replace", remap)

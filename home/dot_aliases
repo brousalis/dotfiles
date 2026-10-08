@@ -32,6 +32,8 @@ alias dsremove='find . -name .DS_Store -print0 | xargs -0 git rm --ignore-unmatc
 alias dsremover='find . -name .DS_Store -print0 | xargs -0 rm'
 alias dsr='find . -name ".DS_Store" -depth -exec rm {} \;'
 
+alias u="chezmoi update"
+
 # macOS only
 if [[ "$OSTYPE" == darwin* ]]; then
   alias rpsql='rm "$(brew --prefix)"/var/postgres*/postmaster.pid'

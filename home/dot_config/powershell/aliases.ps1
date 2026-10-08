@@ -46,3 +46,4 @@ function server { python -m http.server 1337 }
 function ip { (Invoke-RestMethod https://api.ipify.org) }
 function untar { tar -xvvf @args }
 function reload { . $PROFILE }
+function u { chezmoi update }

@@ -10,7 +10,7 @@ local config = wezterm.config_builder()
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
 
-config.font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "JetBrains Mono" })
+config.font = wezterm.font_with_fallback({ "Iosevka Nerd Font", "JetBrainsMono Nerd Font", "JetBrains Mono" })
 config.font_size = is_windows and 11 or 14
 config.color_scheme = "One Dark (Gogh)"
 config.window_decorations = "RESIZE"

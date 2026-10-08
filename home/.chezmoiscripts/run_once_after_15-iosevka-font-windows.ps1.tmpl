@@ -1,0 +1,24 @@
+{{ if eq .chezmoi.os "windows" -}}
+# Installs Iosevka Nerd Font for the current user (winget has no package for it).
+$dest = Join-Path $env:LOCALAPPDATA 'Microsoft\Windows\Fonts'
+$styles = 'Regular', 'Bold', 'Italic', 'BoldItalic'
+$missing = $styles | Where-Object { -not (Test-Path (Join-Path $dest "IosevkaNerdFont-$_.ttf")) }
+if (-not $missing) { return }
+
+$tmp = Join-Path ([IO.Path]::GetTempPath()) 'iosevka-nf'
+Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory $tmp, $dest -Force | Out-Null
+$zip = Join-Path $tmp 'Iosevka.zip'
+Invoke-WebRequest 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.zip' -OutFile $zip
+Expand-Archive $zip $tmp -Force
+
+$reg = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts'
+foreach ($style in $missing) {
+  $name = "IosevkaNerdFont-$style.ttf"
+  $target = Join-Path $dest $name
+  Copy-Item (Join-Path $tmp $name) $target -Force
+  New-ItemProperty $reg -Name "Iosevka Nerd Font $style (TrueType)" -Value $target -PropertyType String -Force | Out-Null
+}
+Remove-Item $tmp -Recurse -Force
+Write-Host 'Installed Iosevka Nerd Font; restart WezTerm.'
+{{ end -}}

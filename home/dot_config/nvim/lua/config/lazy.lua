@@ -25,6 +25,14 @@ require("lazy").setup({
     -- Extras live here rather than in lazyvim.json, which LazyVim rewrites
     -- itself (so chezmoi would keep fighting it). :LazyExtras still shows them.
     { import = "lazyvim.plugins.extras.ai.claudecode" },
+    { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.editor.illuminate" },
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    { import = "lazyvim.plugins.extras.editor.navic" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
+    { import = "lazyvim.plugins.extras.test.core" },
+    { import = "lazyvim.plugins.extras.ui.indent-blankline" },
+    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.lang.docker" },
     { import = "lazyvim.plugins.extras.lang.go" },

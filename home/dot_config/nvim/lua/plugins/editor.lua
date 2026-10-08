@@ -48,4 +48,7 @@ return {
       table.insert(opts.right, { title = "Outline", ft = "Outline", size = { width = 0.25 } })
     end,
   },
+
+  -- Show the tab bar even with one file open, as VS Code does.
+  { "akinsho/bufferline.nvim", opts = { options = { always_show_bufferline = true } } },
 }

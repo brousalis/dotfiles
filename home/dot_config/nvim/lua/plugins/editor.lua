@@ -14,4 +14,7 @@ return {
       },
     },
   },
+
+  -- Close the grug-far buffer after a replace; the keymaps are in vscode-keys.lua.
+  { "MagicDuck/grug-far.nvim", opts = { transient = true } },
 }

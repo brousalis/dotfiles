@@ -20,12 +20,29 @@ local remap = { remap = true }
 map("n", "<C-p>", "<leader>ff", "Go to file (Ctrl+P)", remap) -- replaces: previous line
 map("n", "<C-g>", ":", "Go to line (Ctrl+G), type a number", { silent = false }) -- replaces: file info
 map({ "n", "x" }, "<C-S-p>", "<leader>sC", "Command palette (Ctrl+Shift+P)", remap)
-map("n", "<C-S-f>", "<leader>/", "Search in files (Ctrl+Shift+F)", remap)
 map("n", "<C-S-o>", "<leader>ss", "Go to symbol (Ctrl+Shift+O)", remap)
 map("n", "<C-S-e>", "<leader>e", "Explorer (Ctrl+Shift+E)", remap)
 map("n", "<C-b>", "<leader>e", "Toggle explorer (Ctrl+B)", remap) -- replaces: page up
 map("n", "<C-S-g>", "<leader>gg", "Source control (Ctrl+Shift+G)", remap)
 map("n", "<C-S-m>", "<leader>xx", "Problems (Ctrl+Shift+M)", remap)
+
+-- Find and replace (grug-far). Ctrl+Shift+F is project-wide, Ctrl+H is the
+-- current file. Ctrl+H replaces LazyVim's "go to left window" (use <C-w>h).
+local function replace(scope)
+  return function()
+    local grug, mode = require("grug-far"), vim.fn.mode()
+    local opts = { prefills = scope == "file" and { paths = vim.fn.expand("%") } or nil }
+    if mode == "v" or mode == "V" or mode == "\22" then
+      grug.with_visual_selection(opts)
+    else
+      opts.prefills = vim.tbl_extend("force", opts.prefills or {}, { search = vim.fn.expand("<cword>") })
+      grug.open(opts)
+    end
+  end
+end
+map({ "n", "x" }, "<C-S-f>", replace("project"), "Find and replace in project (Ctrl+Shift+F)")
+map({ "n", "x" }, "<C-h>", replace("file"), "Find and replace in file (Ctrl+H)")
+map("n", "<leader>sS", "<leader>/", "Search in files without replace", remap)
 
 -- Edit -----------------------------------------------------------------------
 

@@ -1,7 +1,8 @@
 -- WezTerm: the terminal on macOS, Linux and Windows.
 --
 -- tmux owns C-a and the pane keys everywhere, so WezTerm stays out of the way.
--- On Windows it opens into WSL, where tmux runs.
+-- On Windows it opens into WSL, where tmux runs. Native (non-WSL) panes get
+-- tmux-style keys from WezTerm itself; WSL panes pass them through to tmux.
 
 local wezterm = require("wezterm")
 local act = wezterm.action
@@ -60,6 +61,78 @@ if is_windows then
     },
     { event = { Down = { streak = 1, button = "Right" } }, mods = "NONE", action = act.PasteFrom("Clipboard") },
   }
+
+  -- tmux-style keys for native (non-WSL) panes, e.g. PowerShell. WSL panes run
+  -- the real tmux, so every key below is passed straight through to it there.
+  local function in_wsl(pane)
+    local name = pane:get_foreground_process_name() or ""
+    return name:lower():find("wsl", 1, true) ~= nil
+  end
+
+  -- A binding that runs `action` in native panes and sends the key on in WSL.
+  local function native(key, mods, action)
+    return {
+      key = key,
+      mods = mods,
+      action = wezterm.action_callback(function(window, pane)
+        if in_wsl(pane) then
+          window:perform_action(act.SendKey({ key = key, mods = mods }), pane)
+        else
+          window:perform_action(action, pane)
+        end
+      end),
+    }
+  end
+
+  local function prefix(key, mods, action)
+    return { key = key, mods = mods or "NONE", action = action }
+  end
+
+  local claude = { "pwsh.exe", "-NoLogo", "-NoExit", "-Command", "claude" }
+  local prefix_keys = {
+    -- C-a C-a cycles panes, as `bind ^A select-pane -t :.+` does in tmux.
+    prefix("a", "CTRL", act.ActivatePaneDirection("Next")),
+    prefix("[", nil, act.ActivatePaneDirection("Prev")),
+    prefix("]", nil, act.ActivatePaneDirection("Next")),
+    prefix("Escape", nil, act.ActivateCopyMode),
+    prefix("h", nil, act.ActivatePaneDirection("Left")),
+    prefix("j", nil, act.ActivatePaneDirection("Down")),
+    prefix("k", nil, act.ActivatePaneDirection("Up")),
+    prefix("l", nil, act.ActivatePaneDirection("Right")),
+    prefix("s", nil, act.SplitHorizontal({ domain = "CurrentPaneDomain" })),
+    prefix("v", nil, act.SplitVertical({ domain = "CurrentPaneDomain" })),
+    prefix("R", "SHIFT", act.ReloadConfiguration),
+    -- C-a C opens Claude Code to the right, as in tmux.
+    prefix("C", "SHIFT", act.SplitPane({ direction = "Right", size = { Percent = 40 }, command = { args = claude } })),
+    prefix("c", nil, act.SpawnTab("CurrentPaneDomain")),
+    prefix("n", nil, act.ActivateTabRelative(1)),
+    prefix("p", nil, act.ActivateTabRelative(-1)),
+    prefix("x", nil, act.CloseCurrentPane({ confirm = true })),
+    prefix("z", nil, act.TogglePaneZoomState),
+    prefix("w", nil, act.ShowLauncherArgs({ flags = "FUZZY|TABS" })),
+    prefix("L", "SHIFT", act.ShowLauncher),
+  }
+  -- Windows (tabs) start at 1, like base-index 1 in tmux.
+  for i = 1, 9 do
+    table.insert(prefix_keys, prefix(tostring(i), nil, act.ActivateTab(i - 1)))
+  end
+  config.key_tables = { tmux = prefix_keys }
+
+  local direct_keys = {
+    native("a", "CTRL", act.ActivateKeyTable({ name = "tmux", one_shot = true, timeout_milliseconds = 1000 })),
+    native("F1", "NONE", act.ActivateTabRelative(-1)),
+    native("F2", "NONE", act.ActivateTabRelative(1)),
+    native("F11", "NONE", act.ActivateTabRelative(-1)),
+    native("F12", "NONE", act.ActivateTabRelative(1)),
+    native("0", "ALT", act.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" })),
+    native("UpArrow", "ALT", act.AdjustPaneSize({ "Up", 2 })),
+    native("DownArrow", "ALT", act.AdjustPaneSize({ "Down", 2 })),
+    native("LeftArrow", "ALT", act.AdjustPaneSize({ "Left", 2 })),
+    native("RightArrow", "ALT", act.AdjustPaneSize({ "Right", 2 })),
+  }
+  for _, k in ipairs(direct_keys) do
+    table.insert(config.keys, k)
+  end
 
   config.default_prog = { "wsl.exe", "--cd", "~" }
   config.launch_menu = {

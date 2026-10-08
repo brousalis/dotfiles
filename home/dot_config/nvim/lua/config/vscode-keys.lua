@@ -49,7 +49,7 @@ map({ "n", "x" }, "<M-F>", "<leader>cf", "Format (Shift+Alt+F)", remap)
 
 -- Code -----------------------------------------------------------------------
 
--- F2 (rename) is not mapped: tmux uses F1 / F2 for windows. Use <leader>cr.
+-- F2 (rename) is not mapped: tmux uses F1-F5 for windows. Use <leader>cr.
 map({ "n", "x" }, "<M-.>", "<leader>ca", "Quick fix (Ctrl+. in VS Code)", remap)
 map({ "n", "x" }, "<C-.>", "<leader>ca", "Quick fix (Ctrl+.)", remap)
 map("n", "<F8>", "]d", "Next problem (F8)", remap)

@@ -69,7 +69,8 @@ WezTerm uses the same keys.
 | `C-a h/j/k/l` | Move between panes |
 | `C-a C-a` | Cycle panes |
 | `C-a s` / `C-a v` | Split side by side / stacked |
-| `F1` / `F2`, `F11` / `F12` | Previous / next window |
+| `F1`–`F5` | Select window 1–5 |
+| `F11` / `F12` | Previous / next window |
 | `Alt+arrows` | Resize pane |
 | `Alt+0` | Choose session |
 | `C-a Escape` | Copy mode |
@@ -108,7 +109,7 @@ everywhere with `vim.g.vscode_keys = false` in `lua/config/options.lua`.
 | `Ctrl+Shift+P/F/O/E/G/M` | Commands, search, symbols, explorer, git, problems (needs a terminal that sends extended keys; `,sC` `,/` `,ss` `,e` `,gg` `,xx` always work) |
 
 It replaces Vim's `Ctrl+P`, `Ctrl+B` and `Ctrl+G`. F2 (rename) isn't mapped
-because tmux uses `F1` / `F2`; use `,cr`.
+because tmux uses `F1`–`F5`; use `,cr`.
 
 ## Layout
 

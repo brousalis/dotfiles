@@ -130,8 +130,11 @@ if is_windows then
 
   local direct_keys = {
     native("a", "CTRL", act.ActivateKeyTable({ name = "tmux", one_shot = true, timeout_milliseconds = 1000 })),
-    native("F1", "NONE", act.ActivateTabRelative(-1)),
-    native("F2", "NONE", act.ActivateTabRelative(1)),
+    native("F1", "NONE", act.ActivateTab(0)),
+    native("F2", "NONE", act.ActivateTab(1)),
+    native("F3", "NONE", act.ActivateTab(2)),
+    native("F4", "NONE", act.ActivateTab(3)),
+    native("F5", "NONE", act.ActivateTab(4)),
     native("F11", "NONE", act.ActivateTabRelative(-1)),
     native("F12", "NONE", act.ActivateTabRelative(1)),
     native("[", "ALT", act.ActivatePaneDirection("Prev")),

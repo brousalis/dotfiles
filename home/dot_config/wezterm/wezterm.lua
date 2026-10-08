@@ -21,7 +21,15 @@ config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.hide_tab_bar_if_only_one_tab = true
 
+-- Send Ctrl+Shift chords as distinct keys (CSI u) so Neovim can bind them.
+config.enable_csi_u_key_encoding = true
+
 config.keys = {
+  -- WezTerm's own Ctrl+Shift+F (search), +P (command palette) and +M (hide) would
+  -- swallow the VS Code-style chords in Neovim (lua/config/vscode-keys.lua).
+  { key = "F", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
+  { key = "P", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
+  { key = "M", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
   -- Shift+Enter inserts a newline in Claude Code instead of submitting.
   { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
   -- Ctrl+Shift+B shows / hides the tab bar for this window (resets on reload).

@@ -38,7 +38,6 @@ function undocommit { git reset --soft HEAD~1 }
 function h { Set-Location ~ }
 function home { Set-Location ~ }
 function dotfiles { Set-Location ~/.dotfiles }
-function dev { Set-Location ~/dev }
 
 function nom { Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue; npm cache clean --force; npm install }
 function rmnm { Get-ChildItem -Recurse -Directory -Filter node_modules | Remove-Item -Recurse -Force }

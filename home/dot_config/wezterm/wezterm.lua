@@ -13,30 +13,7 @@ local is_windows = wezterm.target_triple:find("windows") ~= nil
 
 config.font = wezterm.font_with_fallback({ "JetBrainsMono Nerd Font", "JetBrains Mono" })
 config.font_size = is_windows and 11 or 14
--- Kanagawa Dragon, the same palette as Neovim (lua/plugins/colorscheme.lua),
--- so Neovim and the Claude Code pane share one background.
-config.force_reverse_video_cursor = true
-config.colors = {
-  foreground = "#c5c9c5",
-  background = "#181616",
-  cursor_bg = "#c8c093",
-  cursor_fg = "#c8c093",
-  cursor_border = "#c8c093",
-  selection_fg = "#c8c093",
-  selection_bg = "#2d4f67",
-  scrollbar_thumb = "#16161d",
-  split = "#625e5a",
-  ansi = { "#0d0c0c", "#c4746e", "#8a9a7b", "#c4b28a", "#8ba4b0", "#a292a3", "#8ea4a2", "#c8c093" },
-  brights = { "#a6a69c", "#e46876", "#87a987", "#e6c384", "#7fb4ca", "#938aa9", "#7aa89f", "#c5c9c5" },
-  tab_bar = {
-    background = "#0d0c0c",
-    active_tab = { bg_color = "#181616", fg_color = "#d77757", intensity = "Bold" },
-    inactive_tab = { bg_color = "#0d0c0c", fg_color = "#625e5a" },
-    inactive_tab_hover = { bg_color = "#282727", fg_color = "#c5c9c5" },
-    new_tab = { bg_color = "#0d0c0c", fg_color = "#625e5a" },
-    new_tab_hover = { bg_color = "#282727", fg_color = "#c5c9c5" },
-  },
-}
+config.color_scheme = "One Dark (Gogh)"
 config.window_decorations = "RESIZE"
 config.window_padding = { left = 6, right = 6, top = 4, bottom = 4 }
 config.scrollback_lines = 100000

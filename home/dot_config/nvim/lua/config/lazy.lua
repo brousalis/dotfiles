@@ -41,7 +41,7 @@ require("lazy").setup({
     { import = "plugins" },
   },
   defaults = { lazy = false, version = false },
-  install = { colorscheme = { "kanagawa", "habamax" } },
+  install = { colorscheme = { "onedark", "habamax" } },
   checker = { enabled = true, notify = false },
   performance = {
     rtp = {

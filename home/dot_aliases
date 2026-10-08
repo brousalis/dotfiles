@@ -20,7 +20,6 @@ alias undocommit='git reset --soft HEAD~1'
 alias h='cd ~'
 alias home='cd ~'
 alias dotfiles='cd ~/.dotfiles'
-alias dev="cd ~/dev/"
 alias nom='rm -rf node_modules && npm cache clean --force && npm install'
 alias rmnm="find . -name 'node_modules' -exec rm -rf '{}' +"
 alias server='python3 -m http.server 1337'

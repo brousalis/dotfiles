@@ -2,6 +2,9 @@
 # both PowerShell profiles dot-source it (see the powershell-profile script).
 
 if (-not $env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME = Join-Path $HOME '.config' }
+# direnv derives these from $HOME, which Windows doesn't set
+if (-not $env:XDG_CACHE_HOME) { $env:XDG_CACHE_HOME = Join-Path $HOME '.cache' }
+if (-not $env:XDG_DATA_HOME)  { $env:XDG_DATA_HOME  = Join-Path $HOME '.local/share' }
 $env:EDITOR = 'nvim'
 $env:VISUAL = 'nvim'
 $env:DEV = Join-Path $HOME 'dev'
@@ -22,7 +25,7 @@ function Test-Command($name) { [bool](Get-Command $name -ErrorAction SilentlyCon
 # Tools
 if (Test-Command mise)     { mise activate pwsh | Out-String | Invoke-Expression }
 if (Test-Command zoxide)   { zoxide init powershell | Out-String | Invoke-Expression }
-if (Test-Command direnv)   { direnv hook pwsh | Out-String | Invoke-Expression }
+if (Test-Command direnv)   { $h = direnv hook pwsh | Out-String; if ($h.Trim()) { Invoke-Expression $h } }
 if (Test-Command starship) { starship init powershell | Out-String | Invoke-Expression }
 if (Get-Module -ListAvailable PSFzf) {
   Import-Module PSFzf

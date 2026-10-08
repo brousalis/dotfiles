@@ -17,4 +17,13 @@ return {
 
   -- Close the grug-far buffer after a replace; the keymaps are in vscode-keys.lua.
   { "MagicDuck/grug-far.nvim", opts = { transient = true } },
+
+  -- Dock the symbols outline on the right, next to Grug Far and Claude Code.
+  {
+    "folke/edgy.nvim",
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      table.insert(opts.right, { title = "Outline", ft = "Outline", size = { width = 0.25 } })
+    end,
+  },
 }

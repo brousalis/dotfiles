@@ -6,5 +6,9 @@ set -euo pipefail
 for brew in /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
   [ -x "$brew" ] && eval "$("$brew" shellenv)" && break
 done
-command -v mise >/dev/null 2>&1 && mise install --yes
+if ! command -v mise >/dev/null 2>&1; then
+  echo "mise not found on PATH; the package step probably failed. Fix it and run chezmoi apply again." >&2
+  exit 1
+fi
+mise install --yes
 {{ end -}}

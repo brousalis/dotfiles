@@ -27,6 +27,14 @@ config.keys = {
   { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
 }
 
+if not is_windows then
+  -- Cmd+[ / Cmd+] never reach tmux, so send its prefix (C-a) plus the key:
+  -- select the previous / next pane. This overrides WezTerm's default
+  -- Cmd+[ / Cmd+] tab switching.
+  table.insert(config.keys, { key = "[", mods = "SUPER", action = act.SendString("\x01[") })
+  table.insert(config.keys, { key = "]", mods = "SUPER", action = act.SendString("\x01]") })
+end
+
 if is_windows then
   config.default_prog = { "pwsh.exe", "-NoLogo" }
   config.launch_menu = {

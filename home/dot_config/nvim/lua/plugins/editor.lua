@@ -3,6 +3,28 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      -- Two panes on wide terminals: header and keys on the left, recent files,
+      -- projects and git status on the right. Narrow ones get one pane.
+      dashboard = {
+        sections = {
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          {
+            pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1,
+            cwd = true, limit = 8, enabled = function() return vim.o.columns >= 110 end,
+          },
+          {
+            pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1,
+            limit = 5, enabled = function() return vim.o.columns >= 110 end,
+          },
+          {
+            pane = 2, icon = " ", title = "Git Status", section = "terminal", indent = 3, padding = 1, ttl = 5 * 60,
+            cmd = "git status --short --branch --renames", height = 6,
+            enabled = function() return vim.o.columns >= 110 and Snacks.git.get_root() ~= nil end,
+          },
+          { section = "startup" },
+        },
+      },
       picker = {
         sources = {
           files = { hidden = true },

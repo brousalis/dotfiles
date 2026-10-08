@@ -39,6 +39,10 @@ function h { Set-Location ~ }
 function home { Set-Location ~ }
 function dotfiles { Set-Location ~/.dotfiles }
 
+# zoxide: j foo jumps to the best match for foo, ji picks interactively.
+function j { z @args }
+function ji { zi @args }
+
 function nom { Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue; npm cache clean --force; npm install }
 function rmnm { Get-ChildItem -Recurse -Directory -Filter node_modules | Remove-Item -Recurse -Force }
 function server { python -m http.server 1337 }

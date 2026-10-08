@@ -7,7 +7,9 @@ return {
         sources = {
           files = { hidden = true },
           grep = { hidden = true },
-          explorer = { hidden = true },
+          -- The explorer hides git-ignored dirs; `include` overrides that for the
+          -- gitignored repos inside ~/dev/armhr.
+          explorer = { hidden = true, include = { "**/armhr-frontend", "**/armhr-python" } },
         },
       },
     },

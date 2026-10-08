@@ -80,6 +80,10 @@ WezTerm uses the same keys.
 the left and Claude Code on the right. In Claude Code, run `/ide` to connect to
 that Neovim (via claudecode.nvim) for selection context and diffs in the editor.
 
+On work machines (`work = true`), `armhr` starts or re-attaches an `armhr` session
+with three windows: the `ide` layout in `~/dev/armhr`, `armhr-frontend` beside
+`armhr-python`, and a plain shell in `~/dev/armhr`.
+
 Neovim (leader `,`): the old vimrc mappings carry over (`jj`/`jk` to escape,
 `;` for `:`, `,<space>` clears search, `tj`/`tk` and `F1`/`F2` for tabs,
 `,h/j/k/l` between windows, Tab to indent). Two changes: `K` is LSP hover and

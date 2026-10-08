@@ -61,5 +61,8 @@ ide() {
 # Aliases (kept from the original dotfiles)
 [[ -f ~/.aliases ]] && source ~/.aliases
 
+# Work machines only (the file is skipped elsewhere by .chezmoiignore).
+[[ -f ~/.zsh_work ]] && source ~/.zsh_work
+
 # Machine-only config, not in the repo.
 [[ -f ~/.localrc ]] && source ~/.localrc

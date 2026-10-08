@@ -1,0 +1,20 @@
+# Work-machine only (see .chezmoiignore).
+
+# armhr: a tmux session for ~/dev/armhr. Re-attaches if it already exists.
+#   1 ide: Neovim left, Claude Code right (like `ide`)
+#   2 armhr-frontend | armhr-python
+#   3 shell in ~/dev/armhr
+armhr() {
+  local root=~/dev/armhr name=armhr
+  if ! tmux has-session -t "=$name" 2>/dev/null; then
+    tmux new-session -d -s "$name" -n ide -c "$root" -x "$(tput cols)" -y "$(tput lines)" nvim
+    tmux split-window -h -l 40% -t "${name}:ide" -c "$root" claude
+    tmux select-pane -t "${name}:ide" -L
+    tmux new-window -t "$name" -n repos -c "$root/armhr-frontend"
+    tmux split-window -h -t "${name}:repos" -c "$root/armhr-python"
+    tmux select-pane -t "${name}:repos" -L
+    tmux new-window -t "$name" -n armhr -c "$root"
+    tmux select-window -t "${name}:ide"
+  fi
+  if [[ -n $TMUX ]]; then tmux switch-client -t "=$name"; else tmux attach -t "=$name"; fi
+}

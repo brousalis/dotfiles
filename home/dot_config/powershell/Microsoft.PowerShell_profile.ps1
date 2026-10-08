@@ -26,6 +26,11 @@ function Test-Command($name) { [bool](Get-Command $name -ErrorAction SilentlyCon
 if (Test-Command mise)     { mise activate pwsh | Out-String | Invoke-Expression }
 if (Test-Command zoxide)   { zoxide init powershell | Out-String | Invoke-Expression }
 if (Test-Command direnv)   { $h = direnv hook pwsh | Out-String; if ($h.Trim()) { Invoke-Expression $h } }
+if (Test-Command direnv) {
+  # Empty output (direnv failed) would make Invoke-Expression throw.
+  $direnvHook = direnv hook pwsh | Out-String
+  if ($direnvHook.Trim()) { Invoke-Expression $direnvHook }
+}
 if (Test-Command starship) { starship init powershell | Out-String | Invoke-Expression }
 if (Get-Module -ListAvailable PSFzf) {
   Import-Module PSFzf

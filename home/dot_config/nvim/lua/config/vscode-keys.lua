@@ -36,6 +36,9 @@ local function replace(scope)
           return vim.api.nvim_win_close(win, true)
         end
       end
+      -- Same panel as LazyVim's <leader>sr (extension filter, no search prefill).
+      local keys = vim.api.nvim_replace_termcodes("<leader>sr", true, false, true)
+      return vim.api.nvim_feedkeys(keys, "m", false)
     end
     local grug, mode = require("grug-far"), vim.fn.mode()
     local opts = { prefills = scope == "file" and { paths = vim.fn.expand("%") } or nil }

@@ -5,6 +5,13 @@
 input=$(cat)
 field() { printf '%s' "$input" | jq -r "$1 // empty" 2>/dev/null; }
 
+# Hand the 5h rate-limit usage to the tmux status bar (see tmux-claude-usage).
+pct=$(field '.rate_limits.five_hour.used_percentage')
+if [ -n "$pct" ]; then
+  cache="${XDG_CACHE_HOME:-$HOME/.cache}"; mkdir -p "$cache"
+  printf '%s %s\n' "${pct%.*}" "$(field '.rate_limits.five_hour.resets_at')" > "$cache/claude-rate-limit"
+fi
+
 dir=$(field '.workspace.current_dir')
 model=$(field '.model.display_name')
 [ -n "$dir" ] || dir=$PWD

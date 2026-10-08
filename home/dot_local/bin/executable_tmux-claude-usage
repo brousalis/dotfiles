@@ -22,4 +22,16 @@ if [ -z "$(find "$cache" -mmin -1 2>/dev/null)" ]; then
   ) >/dev/null 2>&1 &
 fi
 
-cat "$cache" 2>/dev/null
+out=$(cat "$cache" 2>/dev/null)
+
+# Exact 5h percentage, written by ~/.claude/statusline.sh while a session runs.
+# Dropped once the window it describes has reset.
+read -r pct resets < "$(dirname "$cache")/claude-rate-limit" 2>/dev/null
+if [ -n "$pct" ]; then
+  case "$resets" in
+    ''|*[!0-9]*) fresh=$(find "$(dirname "$cache")/claude-rate-limit" -mmin -30 2>/dev/null) ;;
+    *) [ "$resets" -gt "$(date +%s)" ] && fresh=1 ;;
+  esac
+  [ -n "$fresh" ] && out="$pct% · $out"
+fi
+printf '%s\n' "$out"

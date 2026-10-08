@@ -25,8 +25,12 @@ config.hide_tab_bar_if_only_one_tab = true
 config.enable_csi_u_key_encoding = true
 
 config.keys = {
-  -- WezTerm's own Ctrl+Shift+F (search), +P (command palette) and +M (hide) would
-  -- swallow the VS Code-style chords in Neovim (lua/config/vscode-keys.lua).
+  -- WezTerm's own Ctrl+Shift+F (search) and +P (command palette) would swallow the
+  -- VS Code-style chords in Neovim (lua/config/vscode-keys.lua), so they move to
+  -- Ctrl+Alt. Alt+Shift is taken there too (Alt+Shift+F formats). Ctrl+Shift+M
+  -- is only disabled.
+  { key = "F", mods = "CTRL|ALT", action = act.Search({ CaseSensitiveString = "" }) },
+  { key = "P", mods = "CTRL|ALT", action = act.ActivateCommandPalette },
   { key = "F", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
   { key = "P", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
   { key = "M", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },

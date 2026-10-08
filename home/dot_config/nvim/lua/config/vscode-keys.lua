@@ -26,8 +26,8 @@ map("n", "<C-b>", "<leader>e", "Toggle explorer (Ctrl+B)", remap) -- replaces: p
 map("n", "<C-S-g>", "<leader>gg", "Source control (Ctrl+Shift+G)", remap)
 map("n", "<C-S-m>", "<leader>xx", "Problems (Ctrl+Shift+M)", remap)
 
--- Find and replace (grug-far). Ctrl+Shift+F is project-wide, Ctrl+H is the
--- current file. Ctrl+H replaces LazyVim's "go to left window" (use <C-w>h).
+-- Find and replace (grug-far). Ctrl+Shift+F is project-wide, Ctrl+F is the
+-- current file. Ctrl+F replaces: page down, which moves to Ctrl+H below.
 local function replace(scope)
   return function()
     local grug, mode = require("grug-far"), vim.fn.mode()
@@ -41,7 +41,8 @@ local function replace(scope)
   end
 end
 map({ "n", "x" }, "<C-S-f>", replace("project"), "Find and replace in project (Ctrl+Shift+F)")
-map({ "n", "x" }, "<C-h>", replace("file"), "Find and replace in file (Ctrl+H)")
+map({ "n", "x" }, "<C-f>", replace("file"), "Find and replace in file (Ctrl+F)")
+map({ "n", "x" }, "<C-h>", "<C-f>", "Page down (was Ctrl+F)", { remap = false }) -- replaces: go to left window, use <C-w>h
 map("n", "<leader>sS", "<leader>/", "Search in files without replace", remap)
 
 -- Edit -----------------------------------------------------------------------

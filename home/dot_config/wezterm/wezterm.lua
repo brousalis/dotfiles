@@ -19,11 +19,21 @@ config.scrollback_lines = 100000
 config.audible_bell = "Disabled"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
-config.hide_tab_bar_if_only_one_tab = not is_windows
+config.hide_tab_bar_if_only_one_tab = true
 
 config.keys = {
   -- Shift+Enter inserts a newline in Claude Code instead of submitting.
   { key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
+  -- Ctrl+Shift+B shows / hides the tab bar for this window (resets on reload).
+  {
+    key = "B",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action_callback(function(window)
+      local overrides = window:get_config_overrides() or {}
+      overrides.enable_tab_bar = overrides.enable_tab_bar == false
+      window:set_config_overrides(overrides)
+    end),
+  },
 }
 
 if not is_windows then

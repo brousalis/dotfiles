@@ -39,11 +39,12 @@ config.enable_csi_u_key_encoding = true
 
 config.keys = {
   -- WezTerm's own Ctrl+Shift+F (search) and +P (command palette) would swallow the
-  -- VS Code-style chords in Neovim (lua/config/vscode-keys.lua), so they move to
-  -- Ctrl+Alt. Alt+Shift is taken there too (Alt+Shift+F formats). Ctrl+Shift+M
+  -- VS Code-style chords in Neovim (lua/config/vscode-keys.lua), so they move.
+  -- Search is Ctrl+Alt+F; the palette is Ctrl+Alt+Shift+P because Claude Code uses
+  -- Ctrl+Alt+P. Alt+Shift is taken in Neovim (Alt+Shift+F formats). Ctrl+Shift+M
   -- is only disabled.
   { key = "F", mods = "CTRL|ALT", action = act.Search({ CaseSensitiveString = "" }) },
-  { key = "P", mods = "CTRL|ALT", action = act.ActivateCommandPalette },
+  { key = "P", mods = "CTRL|ALT|SHIFT", action = act.ActivateCommandPalette },
   { key = "F", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
   { key = "P", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },
   { key = "M", mods = "CTRL|SHIFT", action = act.DisableDefaultAssignment },

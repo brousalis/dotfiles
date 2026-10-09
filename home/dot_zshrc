@@ -40,6 +40,11 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath 2>/
 (( $+commands[direnv] ))   && eval "$(direnv hook zsh)"
 (( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
 (( $+commands[fzf] ))      && source <(fzf --zsh)
+# Which system this shell is on, shown by the starship prompt.
+if [[ $OSTYPE == darwin* ]]; then export PROMPT_OS=mac
+elif [[ -n $WSL_DISTRO_NAME ]]; then export PROMPT_OS=wsl
+else export PROMPT_OS=linux
+fi
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 (( $+commands[nvim] ))     && alias vim=nvim vi=nvim
 

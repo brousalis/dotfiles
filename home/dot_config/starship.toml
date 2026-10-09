@@ -2,8 +2,12 @@
 
 add_newline = false
 format = """
-$directory$git_branch$git_status$nodejs$python$golang$rust$cmd_duration
+${env_var.PROMPT_OS}$directory$git_branch$git_status$nodejs$python$golang$rust$cmd_duration
 $character"""
+
+[env_var.PROMPT_OS]
+format = "[$env_value]($style) "
+style = "bold purple"
 
 [directory]
 truncation_length = 4

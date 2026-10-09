@@ -31,6 +31,9 @@ if (Test-Command direnv) {
   $direnvHook = direnv hook pwsh | Out-String
   if ($direnvHook.Trim()) { Invoke-Expression $direnvHook }
 }
+# Which system this shell is on, shown by the starship prompt. Windows
+# PowerShell 5.1 has no $IsMacOS/$IsLinux, so it falls through to win.
+$env:PROMPT_OS = if ($IsMacOS) { 'mac' } elseif ($IsLinux) { if ($env:WSL_DISTRO_NAME) { 'wsl' } else { 'linux' } } else { 'win' }
 if (Test-Command starship) { starship init powershell | Out-String | Invoke-Expression }
 if (Get-Module -ListAvailable PSFzf) {
   Import-Module PSFzf

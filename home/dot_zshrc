@@ -40,8 +40,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath 2>/
 (( $+commands[direnv] ))   && eval "$(direnv hook zsh)"
 (( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
 (( $+commands[fzf] ))      && source <(fzf --zsh)
-# Kanagawa Dragon
-export FZF_DEFAULT_OPTS="--color=bg+:#393836,bg:#181616,spinner:#8ea4a2,hl:#c4746e,fg:#c5c9c5,header:#c4746e,info:#c4b28a,pointer:#8ea4a2,marker:#8a9a7b,fg+:#c5c9c5,prompt:#c4b28a,hl+:#e46876"
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 (( $+commands[nvim] ))     && alias vim=nvim vi=nvim
 

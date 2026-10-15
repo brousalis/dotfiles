@@ -38,6 +38,8 @@ function undocommit { git reset --soft HEAD~1 }
 function h { Set-Location ~ }
 function home { Set-Location ~ }
 function dotfiles { Set-Location ~/.dotfiles }
+function af { Set-Location ~/dev/armhr-frontend }
+function ap { Set-Location ~/dev/armhr-python }
 
 # zoxide: j foo jumps to the best match for foo, ji picks interactively.
 function j { z @args }

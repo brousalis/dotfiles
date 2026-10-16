@@ -9,6 +9,7 @@ alias ga='git add'
 alias gs='git status -s'
 alias gco='git checkout'
 alias gp='git push' 
+alias gpo='git push origin "$(git branch --show-current)"'
 function gre() { git fetch origin; git checkout "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@')"; git branch -D "$@"; git checkout -t origin/"$@"; }
 alias gbd='git branch -D'
 alias grs='git reset --hard HEAD'

@@ -21,6 +21,7 @@ function ga { git add @args }
 function gs { git status -s @args }
 function gco { git checkout @args }
 function gp { git push @args }
+function gpo { git push origin (git branch --show-current) @args }
 function gre($branch) {
   git fetch origin
   git checkout ((git symbolic-ref --short refs/remotes/origin/HEAD) -replace '^origin/', '')

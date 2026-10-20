@@ -21,6 +21,7 @@ function ga { git add @args }
 function gs { git status -s @args }
 function gco { git checkout @args }
 function gp { git push @args }
+function gpo { git push origin (git branch --show-current) @args }
 function gre($branch) {
   git fetch origin
   git checkout ((git symbolic-ref --short refs/remotes/origin/HEAD) -replace '^origin/', '')
@@ -38,6 +39,8 @@ function undocommit { git reset --soft HEAD~1 }
 function h { Set-Location ~ }
 function home { Set-Location ~ }
 function dotfiles { Set-Location ~/.dotfiles }
+function af { Set-Location ~/dev/armhr-frontend }
+function ap { Set-Location ~/dev/armhr-python }
 
 # zoxide: j foo jumps to the best match for foo, ji picks interactively.
 function j { z @args }

@@ -38,6 +38,31 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath 2>/
 # Tools
 (( $+commands[mise] ))     && eval "$(mise activate zsh)"
 (( $+commands[direnv] ))   && eval "$(direnv hook zsh)"
+
+# Put the nearest .venv (found from the current directory upward) on PATH, and
+# take it off again on leaving the project, so git hooks like pre-commit find
+# their tools. Runs at each prompt after mise's hook, so it stays ahead of
+# mise's python. A venv set up some other way (mise, `source activate`) is left alone.
+_venv_auto() {
+  local dir=$PWD venv=
+  while [[ -n $dir ]]; do
+    [[ -x $dir/.venv/bin/python ]] && { venv=$dir/.venv; break }
+    dir=${dir%/*}
+  done
+  if [[ -n $_VENV_AUTO && $VIRTUAL_ENV != $_VENV_AUTO ]]; then
+    path=(${path:#$_VENV_AUTO/bin}); unset _VENV_AUTO   # replaced from outside
+  fi
+  [[ -n $VIRTUAL_ENV && -z $_VENV_AUTO ]] && return
+  if [[ -n $_VENV_AUTO && $venv != $_VENV_AUTO ]]; then
+    path=(${path:#$_VENV_AUTO/bin}); unset _VENV_AUTO VIRTUAL_ENV
+  fi
+  if [[ -n $venv ]]; then
+    export VIRTUAL_ENV=$venv _VENV_AUTO=$venv
+    path=($venv/bin ${path:#$venv/bin})
+  fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _venv_auto
 (( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
 (( $+commands[fzf] ))      && source <(fzf --zsh)
 # Which system this shell is on, shown by the starship prompt.

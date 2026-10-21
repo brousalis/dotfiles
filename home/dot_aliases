@@ -9,6 +9,7 @@ alias ga='git add'
 alias gs='git status -s'
 alias gco='git checkout'
 alias gp='git push' 
+alias gfo='git fetch origin'
 alias gpo='git push origin "$(git branch --show-current)"'
 function gre() { git fetch origin; git checkout "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@')"; git branch -D "$@"; git checkout -t origin/"$@"; }
 alias gbd='git branch -D'
@@ -21,8 +22,8 @@ alias undocommit='git reset --soft HEAD~1'
 alias h='cd ~'
 alias home='cd ~'
 alias dotfiles='cd ~/.dotfiles'
-alias af='cd ~/dev/armhr-frontend'
-alias ap='cd ~/dev/armhr-python'
+alias af='cd ~/dev/armhr/armhr-frontend'
+alias ap='cd ~/dev/armhr/armhr-python'
 
 # zoxide: j foo jumps to the best match for foo, ji picks interactively.
 alias j='z'

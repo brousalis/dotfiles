@@ -20,8 +20,6 @@
       "Bash(chezmoi status:*)"
     ],
     "deny": [
-      "Read(**/.env)",
-      "Read(**/.env.*)",
       "Read(~/.ssh/**)",
       "Read(~/.aws/**)",
       "Read(~/.config/gh/hosts.yml)"

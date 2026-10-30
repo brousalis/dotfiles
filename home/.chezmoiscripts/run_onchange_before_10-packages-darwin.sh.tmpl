@@ -14,12 +14,27 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
 
-brew bundle --file=- <<BREWFILE
+# Install what's missing, but don't upgrade or clean up: `chezmoi update`
+# should be quick and never stop on a package.
+export HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_ENV_HINTS=1
+
+brew bundle --no-upgrade --file=- <<BREWFILE || echo "brew bundle had failures, carrying on"
 {{ range .packages.brew -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .packages.casks -}}
-cask {{ . | quote }}
-{{ end -}}
 BREWFILE
+
+# A cask fails when its app was installed outside Homebrew (the App Store or a
+# download), so skip any app that's already in /Applications.
+installed_casks="$(brew list --cask -1 2>/dev/null || true)"
+for cask in{{ range .packages.casks }} {{ . | quote }}{{ end }}; do
+  grep -qx "$cask" <<<"$installed_casks" && continue
+  app="$(brew info --cask --json=v2 "$cask" 2>/dev/null \
+    | /usr/bin/python3 -c 'import json,sys; a=[x["app"][0] for x in json.load(sys.stdin)["casks"][0]["artifacts"] if "app" in x]; print(a[0] if a and isinstance(a[0], str) else "")' 2>/dev/null || true)"
+  if [ -n "$app" ] && [ -d "/Applications/$app" ]; then
+    echo "Skipping $cask: /Applications/$app is already there"
+    continue
+  fi
+  brew install --cask "$cask" || echo "Couldn't install $cask, carrying on"
+done
 {{ end -}}

@@ -22,10 +22,10 @@ if [ -n "$script_dir" ] && [ -f "$script_dir/.chezmoiroot" ]; then
   exec chezmoi init --apply --source "$script_dir"
 fi
 
-# An older clone of this repo (before chezmoi) may already be at $DEST, for
-# example the original ~/.dotfiles on a Mac. Move it to the chezmoi branch
-# first, or chezmoi would apply the old layout.
-if [ -d "$DEST/.git" ] && [ ! -f "$DEST/.chezmoiroot" ]; then
+# An existing clone at $DEST may be on another branch: the pre-chezmoi layout
+# (the original ~/.dotfiles on a Mac) or the old v2 branch, which no longer
+# exists on GitHub so `chezmoi update` can't pull it. Move it to $BRANCH first.
+if [ -d "$DEST/.git" ] && [ "$(git -C "$DEST" branch --show-current)" != "$BRANCH" ]; then
   echo "Switching existing $DEST to $BRANCH"
   git -C "$DEST" fetch origin "$BRANCH"
   git -C "$DEST" switch "$BRANCH" 2>/dev/null || git -C "$DEST" switch -c "$BRANCH" --track "origin/$BRANCH"

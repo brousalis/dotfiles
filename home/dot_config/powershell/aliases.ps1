@@ -23,6 +23,7 @@ function gco { git checkout @args }
 function gp { git push @args }
 function gfo { git fetch origin @args }
 function gpo { git push origin (git branch --show-current) @args }
+function gpom { git pull origin main @args }
 function gre($branch) {
   git fetch origin
   git checkout ((git symbolic-ref --short refs/remotes/origin/HEAD) -replace '^origin/', '')
